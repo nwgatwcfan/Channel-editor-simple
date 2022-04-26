@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Channel editor simple", "Channel editor simple\Channel editor simple.csproj", "{512F8B1B-938B-46DB-8EFA-7CDEF31FF789}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{512F8B1B-938B-46DB-8EFA-7CDEF31FF789}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{512F8B1B-938B-46DB-8EFA-7CDEF31FF789}.Debug|x86.ActiveCfg = Debug|x86
+		{512F8B1B-938B-46DB-8EFA-7CDEF31FF789}.Debug|x86.Build.0 = Debug|x86
+		{512F8B1B-938B-46DB-8EFA-7CDEF31FF789}.Release|Any CPU.ActiveCfg = Release|x86
+		{512F8B1B-938B-46DB-8EFA-7CDEF31FF789}.Release|x86.ActiveCfg = Release|x86
+		{512F8B1B-938B-46DB-8EFA-7CDEF31FF789}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45CBF563-E0C1-45D1-8424-5F494AFE7F80}
+	EndGlobalSection
+EndGlobal
