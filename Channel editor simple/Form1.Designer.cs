@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.CurDateTime = new System.Windows.Forms.Label();
             this.CurrentDayofYear = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -245,7 +245,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.ResetCommand = new System.Windows.Forms.Button();
             this.Config = new System.Windows.Forms.TabPage();
-            this.label13 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label70 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
@@ -384,9 +383,7 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
             this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
             this.button17 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.label87 = new System.Windows.Forms.Label();
@@ -397,11 +394,7 @@
             this.label82 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
             this.Downloadtab = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.button29 = new System.Windows.Forms.Button();
@@ -410,6 +403,7 @@
             this.Z2I_Lineup_DGV = new System.Windows.Forms.DataGridView();
             this.Download = new System.Windows.Forms.Button();
             this.Lineuptab = new System.Windows.Forms.TabPage();
+            this.Lineup_SendInitialLineup_Button = new System.Windows.Forms.Button();
             this.Lineup_Z2I_Import_Button = new System.Windows.Forms.Button();
             this.Lineup_InsertBelow_Button = new System.Windows.Forms.Button();
             this.Lineup_MoveDown_Button = new System.Windows.Forms.Button();
@@ -464,7 +458,6 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Weathertab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.Downloadtab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Z2I_Listings_DGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Z2I_Lineup_DGV)).BeginInit();
@@ -2337,7 +2330,6 @@
             // Config
             // 
             this.Config.BackColor = System.Drawing.Color.AliceBlue;
-            this.Config.Controls.Add(this.label13);
             this.Config.Controls.Add(this.panel2);
             this.Config.Controls.Add(this.Config_Update_Button);
             this.Config.Controls.Add(this.button15);
@@ -2348,15 +2340,6 @@
             this.Config.Size = new System.Drawing.Size(935, 504);
             this.Config.TabIndex = 4;
             this.Config.Text = "Config";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(35, 469);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 13);
-            this.label13.TabIndex = 129;
-            this.label13.Text = "label13";
             // 
             // panel2
             // 
@@ -3642,9 +3625,7 @@
             this.Weathertab.Controls.Add(this.textBox6);
             this.Weathertab.Controls.Add(this.textBox18);
             this.Weathertab.Controls.Add(this.textBox17);
-            this.Weathertab.Controls.Add(this.textBox15);
             this.Weathertab.Controls.Add(this.textBox14);
-            this.Weathertab.Controls.Add(this.textBox13);
             this.Weathertab.Controls.Add(this.button17);
             this.Weathertab.Controls.Add(this.button16);
             this.Weathertab.Controls.Add(this.label87);
@@ -3655,11 +3636,7 @@
             this.Weathertab.Controls.Add(this.label82);
             this.Weathertab.Controls.Add(this.label6);
             this.Weathertab.Controls.Add(this.button9);
-            this.Weathertab.Controls.Add(this.dataGridView4);
-            this.Weathertab.Controls.Add(this.label19);
             this.Weathertab.Controls.Add(this.label18);
-            this.Weathertab.Controls.Add(this.label17);
-            this.Weathertab.Controls.Add(this.button11);
             this.Weathertab.Location = new System.Drawing.Point(4, 22);
             this.Weathertab.Name = "Weathertab";
             this.Weathertab.Padding = new System.Windows.Forms.Padding(3);
@@ -3751,33 +3728,17 @@
             this.textBox17.Size = new System.Drawing.Size(347, 20);
             this.textBox17.TabIndex = 14;
             // 
-            // textBox15
-            // 
-            this.textBox15.Location = new System.Drawing.Point(464, 315);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(42, 20);
-            this.textBox15.TabIndex = 12;
-            // 
             // textBox14
             // 
-            this.textBox14.Location = new System.Drawing.Point(346, 315);
+            this.textBox14.Location = new System.Drawing.Point(616, 80);
             this.textBox14.Margin = new System.Windows.Forms.Padding(2);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(39, 20);
             this.textBox14.TabIndex = 11;
             // 
-            // textBox13
-            // 
-            this.textBox13.Location = new System.Drawing.Point(243, 315);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(42, 20);
-            this.textBox13.TabIndex = 10;
-            // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(322, 16);
+            this.button17.Location = new System.Drawing.Point(359, 17);
             this.button17.Margin = new System.Windows.Forms.Padding(2);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(74, 23);
@@ -3788,7 +3749,7 @@
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(234, 16);
+            this.button16.Location = new System.Drawing.Point(272, 16);
             this.button16.Margin = new System.Windows.Forms.Padding(2);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(72, 24);
@@ -3869,7 +3830,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(583, 16);
+            this.button9.Location = new System.Drawing.Point(446, 16);
             this.button9.Margin = new System.Windows.Forms.Padding(2);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(94, 24);
@@ -3878,57 +3839,15 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.SendWeatherData_Click);
             // 
-            // dataGridView4
-            // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(39, 426);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(655, 51);
-            this.dataGridView4.TabIndex = 21;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(404, 318);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(56, 13);
-            this.label19.TabIndex = 19;
-            this.label19.Text = "Expansion";
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(300, 318);
+            this.label18.Location = new System.Drawing.Point(570, 83);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(42, 13);
             this.label18.TabIndex = 18;
             this.label18.Text = "Icon ID";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(190, 318);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(45, 13);
-            this.label17.TabIndex = 17;
-            this.label17.Text = "Color ID";
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(489, 16);
-            this.button11.Margin = new System.Windows.Forms.Padding(2);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(72, 24);
-            this.button11.TabIndex = 8;
-            this.button11.Text = "Add";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.AddWeatherData_Click);
             // 
             // Downloadtab
             // 
@@ -3982,8 +3901,8 @@
             this.Z2I_Listings_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Z2I_Listings_DGV.Location = new System.Drawing.Point(8, 158);
             this.Z2I_Listings_DGV.Name = "Z2I_Listings_DGV";
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Z2I_Listings_DGV.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Z2I_Listings_DGV.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.Z2I_Listings_DGV.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Z2I_Listings_DGV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Z2I_Listings_DGV.Size = new System.Drawing.Size(919, 341);
@@ -4011,6 +3930,7 @@
             // Lineuptab
             // 
             this.Lineuptab.BackColor = System.Drawing.Color.AliceBlue;
+            this.Lineuptab.Controls.Add(this.Lineup_SendInitialLineup_Button);
             this.Lineuptab.Controls.Add(this.Lineup_Z2I_Import_Button);
             this.Lineuptab.Controls.Add(this.Lineup_InsertBelow_Button);
             this.Lineuptab.Controls.Add(this.Lineup_MoveDown_Button);
@@ -4031,9 +3951,19 @@
             this.Lineuptab.TabIndex = 1;
             this.Lineuptab.Text = "Channel Lineup";
             // 
+            // Lineup_SendInitialLineup_Button
+            // 
+            this.Lineup_SendInitialLineup_Button.Location = new System.Drawing.Point(8, 471);
+            this.Lineup_SendInitialLineup_Button.Name = "Lineup_SendInitialLineup_Button";
+            this.Lineup_SendInitialLineup_Button.Size = new System.Drawing.Size(95, 27);
+            this.Lineup_SendInitialLineup_Button.TabIndex = 171;
+            this.Lineup_SendInitialLineup_Button.Text = "Initialize CurDay";
+            this.Lineup_SendInitialLineup_Button.UseVisualStyleBackColor = true;
+            this.Lineup_SendInitialLineup_Button.Click += new System.EventHandler(this.Lineup_SendInitialLineup_Click);
+            // 
             // Lineup_Z2I_Import_Button
             // 
-            this.Lineup_Z2I_Import_Button.Location = new System.Drawing.Point(646, 471);
+            this.Lineup_Z2I_Import_Button.Location = new System.Drawing.Point(687, 470);
             this.Lineup_Z2I_Import_Button.Name = "Lineup_Z2I_Import_Button";
             this.Lineup_Z2I_Import_Button.Size = new System.Drawing.Size(69, 27);
             this.Lineup_Z2I_Import_Button.TabIndex = 170;
@@ -4043,7 +3973,7 @@
             // 
             // Lineup_InsertBelow_Button
             // 
-            this.Lineup_InsertBelow_Button.Location = new System.Drawing.Point(529, 471);
+            this.Lineup_InsertBelow_Button.Location = new System.Drawing.Point(576, 471);
             this.Lineup_InsertBelow_Button.Name = "Lineup_InsertBelow_Button";
             this.Lineup_InsertBelow_Button.Size = new System.Drawing.Size(80, 27);
             this.Lineup_InsertBelow_Button.TabIndex = 169;
@@ -4053,7 +3983,7 @@
             // 
             // Lineup_MoveDown_Button
             // 
-            this.Lineup_MoveDown_Button.Location = new System.Drawing.Point(337, 471);
+            this.Lineup_MoveDown_Button.Location = new System.Drawing.Point(399, 471);
             this.Lineup_MoveDown_Button.Name = "Lineup_MoveDown_Button";
             this.Lineup_MoveDown_Button.Size = new System.Drawing.Size(76, 27);
             this.Lineup_MoveDown_Button.TabIndex = 168;
@@ -4063,7 +3993,7 @@
             // 
             // Lineup_MoveUp_Button
             // 
-            this.Lineup_MoveUp_Button.Location = new System.Drawing.Point(255, 471);
+            this.Lineup_MoveUp_Button.Location = new System.Drawing.Point(317, 471);
             this.Lineup_MoveUp_Button.Name = "Lineup_MoveUp_Button";
             this.Lineup_MoveUp_Button.Size = new System.Drawing.Size(76, 27);
             this.Lineup_MoveUp_Button.TabIndex = 167;
@@ -4073,7 +4003,7 @@
             // 
             // Lineup_InsertAbove_Button
             // 
-            this.Lineup_InsertAbove_Button.Location = new System.Drawing.Point(444, 471);
+            this.Lineup_InsertAbove_Button.Location = new System.Drawing.Point(491, 471);
             this.Lineup_InsertAbove_Button.Name = "Lineup_InsertAbove_Button";
             this.Lineup_InsertAbove_Button.Size = new System.Drawing.Size(79, 27);
             this.Lineup_InsertAbove_Button.TabIndex = 166;
@@ -4083,7 +4013,7 @@
             // 
             // Lineup_UpdateEntries_Button
             // 
-            this.Lineup_UpdateEntries_Button.Location = new System.Drawing.Point(748, 471);
+            this.Lineup_UpdateEntries_Button.Location = new System.Drawing.Point(770, 470);
             this.Lineup_UpdateEntries_Button.Margin = new System.Windows.Forms.Padding(2);
             this.Lineup_UpdateEntries_Button.Name = "Lineup_UpdateEntries_Button";
             this.Lineup_UpdateEntries_Button.Size = new System.Drawing.Size(69, 27);
@@ -4107,7 +4037,7 @@
             // 
             // Lineup_SendNextDay_Button
             // 
-            this.Lineup_SendNextDay_Button.Location = new System.Drawing.Point(128, 471);
+            this.Lineup_SendNextDay_Button.Location = new System.Drawing.Point(205, 470);
             this.Lineup_SendNextDay_Button.Name = "Lineup_SendNextDay_Button";
             this.Lineup_SendNextDay_Button.Size = new System.Drawing.Size(91, 27);
             this.Lineup_SendNextDay_Button.TabIndex = 17;
@@ -4117,7 +4047,7 @@
             // 
             // Lineup_SendCurrentDay_Button
             // 
-            this.Lineup_SendCurrentDay_Button.Location = new System.Drawing.Point(31, 471);
+            this.Lineup_SendCurrentDay_Button.Location = new System.Drawing.Point(108, 470);
             this.Lineup_SendCurrentDay_Button.Name = "Lineup_SendCurrentDay_Button";
             this.Lineup_SendCurrentDay_Button.Size = new System.Drawing.Size(91, 27);
             this.Lineup_SendCurrentDay_Button.TabIndex = 16;
@@ -4127,7 +4057,7 @@
             // 
             // Lineup_DeleteSelectedEntries_Button
             // 
-            this.Lineup_DeleteSelectedEntries_Button.Location = new System.Drawing.Point(822, 471);
+            this.Lineup_DeleteSelectedEntries_Button.Location = new System.Drawing.Point(844, 471);
             this.Lineup_DeleteSelectedEntries_Button.Name = "Lineup_DeleteSelectedEntries_Button";
             this.Lineup_DeleteSelectedEntries_Button.Size = new System.Drawing.Size(70, 27);
             this.Lineup_DeleteSelectedEntries_Button.TabIndex = 14;
@@ -4464,14 +4394,12 @@
             this.Commands.ResumeLayout(false);
             this.Commands.PerformLayout();
             this.Config.ResumeLayout(false);
-            this.Config.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.Weathertab.ResumeLayout(false);
             this.Weathertab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.Downloadtab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Z2I_Listings_DGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Z2I_Lineup_DGV)).EndInit();
@@ -4702,7 +4630,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button ResetCommand;
         private System.Windows.Forms.TabPage Config;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label70;
         private System.Windows.Forms.Label label69;
@@ -4841,9 +4768,7 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox18;
         private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.Label label87;
         private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Label label85;
@@ -4852,11 +4777,7 @@
         private System.Windows.Forms.Label label82;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.DataGridView dataGridView4;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button button11;
         private System.Windows.Forms.TabPage Downloadtab;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button29;
@@ -4900,6 +4821,7 @@
         public System.Windows.Forms.Timer timer2;
         public System.Windows.Forms.Button button17;
         public System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button Lineup_SendInitialLineup_Button;
     }
 }
 

@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calc.cs" />
+    <Compile Include="Commands.cs" />
     <Compile Include="Form4.cs">
       <SubType>Form</SubType>
     </Compile>

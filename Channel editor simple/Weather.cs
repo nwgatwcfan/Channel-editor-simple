@@ -24,7 +24,19 @@ namespace Weather
 {
     public class NWS_Weather_Data
     {
-        private List<string> _raw_data = new List<string>();
+        public static List<string> _raw_data = new List<string>();
+
+        public static string sky;
+        public static string weather;
+        public static double temp;
+        public static double wind;
+        public static string winddirection;
+        public static double windgust;
+        public static double pressure;
+        public static double previous_pressure;
+        public static double humidity;
+        public static double dewpoint;
+        public static string visibility;
 
         public List<string> Raw_Data
         { get { return _raw_data; } }
@@ -32,278 +44,300 @@ namespace Weather
         public void AddToLineData(string line)
         { Raw_Data.Add(line); }
 
-        public List<string> GetList()
-        {
-            return _raw_data;
-        }
-    }
-
-    public class Current
-    {
-        private readonly char[] charsToTrim = { '%' };
-
-        private string _sky;
-        private string _displaysky;
-
-        private string _weather;
-        private string _displayweather;
-
-        private double temp;
-        private string _temp;
-        private string _windchill;
-        private string _heatindex;
-        private string _displaytemp;
-
-        private double wind;
-        private string _wind;
-        private string _winddirection;
-        private string _windgust;
-        private string _displaywind;
-
-        private double pressure;
-        private double _previous_pressure;
-        private string _pressure;
-        private string _pressurechg;
-        private string _displaypressure;
-
-        private double humidity;
-        private string _humidity;
-        private string _displayhumidity;
-
-        private double dewpoint;
-        private string _dewpoint;
-        private string _displaydewpoint;
-
-        private string _visibility;
-        private string _displayvisibility;
-
-        private string _displayicon;
-
         public string Sky
         {
-            get { return _sky; }
-            set
-            { CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value);
-                _sky = value;
-            }
+            get { return sky; }
+            set { sky = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value); }
         }
         public string Weather
         {
-            get { return _weather; }
-            set
-            {
-                CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value);
-                _weather = value;
-            }
+            get { return weather; }
+            set { weather = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value); }
         }
-        public string Wind
-        { 
-            get { return _wind; }
-            set { wind = Convert.ToDouble(value);  _wind = value; } 
-        }
-
-        public string WindDirection 
+        public double Wind
         {
-            get { return _winddirection; }
-            set { _winddirection = value; }
+            get { return wind; }
+            set { wind = Convert.ToDouble(value); }
         }
-        public string WindGust 
+        public string WindDirection
         {
-            get { return _windgust; }
-            set { _windgust = value; }
+            get { return winddirection; }
+            set { winddirection = value; }
         }
-        public string Humidity 
+        public double WindGust
         {
-            get { return _humidity; }
-            set { humidity = Convert.ToDouble(value.Trim(charsToTrim));  
-                 _humidity = value;}
+            get { return windgust; }
+            set { windgust = value; }
         }
-        public string Temp
+        public double Humidity
         {
-            get { return _temp; }
-            set 
-            { 
-                temp = Convert.ToDouble(value);
-                value = Math.Floor(temp).ToString();
-                _temp = value;
-            }
+            get { return humidity; }
+            set { humidity = Convert.ToDouble(value); }
         }
-        public string WindChill
+        public double Temp
         {
-            get { return _windchill; }
-            set
-            {
-                if ((temp <= 50) && (wind > 3))
-                {
-                    Calc c = new Calc();
-                    value = c.CalcWindChill(temp, wind).ToString();
-                    _windchill = value;
-                }
-                else
-                { value = "";  _windchill = value; }
-            }
+            get { return temp; }
+            set { temp = Math.Floor(Convert.ToDouble(value)); }
         }
-        public string HeatIndex
+        public double WindChill
         {
-            get { return _heatindex; }
-            set
-            {
-                if (temp >= 70)
-                {
-                    Calc c = new Calc();
-                    value = c.CalcHeatIndex(temp, humidity).ToString();
-                    _heatindex = value;
-                }
-                else 
-                {
-                    value = "";
-                    _heatindex = value;
-                }
-            }
+            get { Calc c = new Calc();
+                  return c.CalcWindChill(Temp, Wind); }
         }
-        public string Pressure
+        public double HeatIndex
         {
-            get { return _pressure; }
-            set 
-            {
-                pressure = Convert.ToDouble(value);
-                _pressure = String.Format("{0:0.00}", value);
-            }
+            get { Calc c = new Calc();
+                  return c.CalcHeatIndex(Temp, Humidity); }
+        }
+        public double Pressure
+        {
+            get{ return pressure; }
+            set{ pressure = Convert.ToDouble(value); }
         }
         public double Previous_Pressure
         {
-            get { return _previous_pressure; }
-            set { _previous_pressure = value; }
+            get { return previous_pressure; }
+            set { previous_pressure = Convert.ToDouble(value); }
         }
-
         public string PressureChg
-        { get { return _pressurechg; } 
-          set {
-
-                if (_previous_pressure < pressure)
-                { _pressurechg = "R"; }
-                else
-                {
-                    if (_previous_pressure > pressure)
-                    { _pressurechg = "F"; }
-                    else
-                    { _pressurechg = "S"; }
-                }
-              }
+        {
+            get { Calc c = new Calc();
+                  return c.PressureTendency(Pressure, Previous_Pressure); }
         }
-        
-        public string DewPoint
-        { 
-            get { return _dewpoint; }
-            set { dewpoint = Math.Floor(Convert.ToDouble(value));
-                 _dewpoint = value; }
+        public double DewPoint
+        {
+            get { return dewpoint; }
+            set { dewpoint = Math.Floor(Convert.ToDouble(value)); }
         }
         public string Visibility
-        { 
-            get { return _visibility; }
-            set { _visibility = value; }
-        }
-
-        public string IconSelection
         {
-            get { return _displayicon; }
-            set
-            {
-                if (_sky == " Partly Cloudy" && _weather == "")
-                { value = "2"; _displayicon = value; }
+            get { return visibility; }
+            set { visibility = value; }
+        }
+    }
+    public class Weather_Display
+    {
+        NWS_Weather_Data nws = new NWS_Weather_Data();
+        public string Sky { get { return "\x18" + nws.Sky; } }
+        public string Weather 
+        { get {
+                if (nws.Weather != null)
+                {
+                    if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Light Drizzle and Fog with Thunder"; }
+                    else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Drizzle and Fog with Thunder"; }
+                    else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Heavy Drizzle and Fog with Thunder"; }
 
-                else if (_sky == " Overcast" && _weather == "")
-                { value = "4"; _displayicon = value; }
+                    else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Light Drizzle and Fog with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Drizzle and Fog with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Heavy Drizzle and Fog with Thunder Nearby"; }
 
-                else if (_sky == " Clear" && _weather == "")
-                { value = "1"; _displayicon = value; }
+                    else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Light Drizzle and Mist with Thunder"; }
+                    else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Drizzle and Mist with Thunder"; }
+                    else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Heavy Drizzle and Mist with Thunder"; }
 
-                else if (_sky == " Mostly Cloudy" && _weather == "")
-                { value = "4"; _displayicon = value; }
+                    else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Light Drizzle and Mist with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Drizzle and Mist with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Heavy Drizzle and Mist with Thunder Nearby"; }
 
-                else if (_sky == "" && _weather == " Fog")
-                { value = "3"; _displayicon = value; }
+                    else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Thunder"))
+                    { return "\x18 Light Drizzle with Thunder"; }
+                    else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Thunder"))
+                    { return "\x18 Drizzle with Thunder"; }
+                    else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Thunder"))
+                    { return "\x18 Heavy Drizzle with Thunder"; }
 
-                else { value = "1"; _displayicon = value; }
+                    else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Lightning Observed"))
+                    { return "\x18 Light Drizzle with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Lightning Observed"))
+                    { return "\x18 Drizzle with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Lightning Observed"))
+                    { return "\x18 Heavy Drizzle with Thunder Nearby"; }
+
+                    else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Light Drizzle and Fog"; }
+                    else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Drizzle and Fog"; }
+                    else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Heavy Drizzle and Fog"; }
+
+                    else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Light Drizzle and Mist"; }
+                    else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Drizzle and Mist"; }
+                    else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Heavy Drizzle and Mist"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Light Rain and Fog with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Rain and Fog with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Heavy Rain and Fog with Thunder Nearby"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Thundershower and Fog"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Thunderstorm and Fog"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Heavy Thunderstorm and Fog"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Thundershower and Fog"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Thunderstorm and Fog"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Heavy Thunderstorm and Fog"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Light Rain and Mist with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Rain and Mist with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Heavy Rain and Mist with Thunder Nearby"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Thundershower and Mist"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Thunderstorm and Mist"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Heavy Thunderstorm and Mist"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Thundershower and Mist"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Thunderstorm and Mist"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Heavy Thunderstorm and Mist"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder In The Vicinity"))
+                    { return "\x18 Light Rain with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder In The Vicinity"))
+                    { return "\x18 Rain with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder In The Vicinity"))
+                    { return "\x18 Heavy Rain with Thunder Nearby"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder"))
+                    { return "\x18 Thundershower"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder"))
+                    { return "\x18 Thunderstorm"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder"))
+                    { return "\x18 Heavy Thunderstorm"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Lightning Observed"))
+                    { return "\x18 Thundershower"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Lightning Observed"))
+                    { return "\x18 Thunderstorm"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Lightning Observed"))
+                    { return "\x18 Heavy Thunderstorm"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Freezing Fog"))
+                    { return "\x18 Light Rain and Freezing Fog"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Freezing Fog"))
+                    { return "\x18 Rain and Freezing Fog"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Freezing Fog"))
+                    { return "\x18 Heavy Rain and Freezing Fog"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Light Rain and Fog"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Rain and Fog"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Heavy Rain and Fog"; }
+
+                    else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Light Rain and Mist"; }
+                    else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Rain and Mist"; }
+                    else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Mist"))
+                    { return "\x18 Heavy Rain and Mist"; }
+
+
+                    else if (nws.Weather.Contains("Light Snow") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Light Snow and Fog"; }
+                    else if (nws.Weather.Contains("Snow") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Snow and Fog"; }
+                    else if (nws.Weather.Contains("Heavy Snow") && nws.Weather.Contains("Fog"))
+                    { return "\x18 Heavy Snow and Fog"; }
+
+                    else if (nws.Weather.Contains("Light Snow") && nws.Weather.Contains("Thunder"))
+                    { return "\x18 Light Snow with Thunder"; }
+                    else if (nws.Weather.Contains("Snow") && nws.Weather.Contains("Thunder"))
+                    { return "\x18 Thundersnow"; }
+                    else if (nws.Weather.Contains("Heavy Snow") && nws.Weather.Contains("Thunder"))
+                    { return "\x18 Heavy Thundersnow"; }
+
+                    else if (nws.Weather.Contains("Light Snow") && nws.Weather.Contains("Lightning Observed"))
+                    { return "\x18 Light Snow with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Snow") && nws.Weather.Contains("Lightning Observed"))
+                    { return "\x18 Snow with Thunder Nearby"; }
+                    else if (nws.Weather.Contains("Heavy Snow") && nws.Weather.Contains("Lightning Observed"))
+                    { return "\x18 Heavy Snow with Thunder Nearby"; }
+
+                    else { return "\x18" + nws.Weather; }
+                }
+                else 
+                { 
+                    return "\x18"; 
+                }
             }
         }
-        public string Display_Sky
+        public string Wind
+        { get { if (nws.Wind == 0) { return "\x18" + "Wind Calm"; }
+                else if (nws.WindGust != 0)
+                { return "\x18" + "Wind " + nws.WindDirection + " at " +
+                          nws.Wind.ToString() + " MPH  Gusts to " + 
+                          nws.WindGust.ToString() + " MPH"; }
+                else { return "\x18" + "Wind " + nws.WindDirection + " at " +
+                               nws.Wind.ToString() + " MPH"; } } }
+        public string Temp
+        { get { if (nws.HeatIndex != nws.Temp)
+                { return "\x18" + "Temp " + nws.Temp.ToString() + 
+                         "^F  Heat Index " + nws.HeatIndex.ToString() + "^F"; }
+                else if (nws.WindChill != nws.Temp)
+                { return "\x18" + "Temp " + nws.Temp.ToString() + 
+                         "^F  Wind Chill " + nws.WindChill.ToString() + "^F"; }
+                else 
+                { return "\x18" + "Temp " + nws.Temp.ToString() + "^F"; } } }
+        public string Humidity { get { return "\x18" + "Humidity " + nws.Humidity.ToString() + "%"; }}
+        public string Pressure { get { return "\x18" + "Pressure " + String.Format("{0:0.00}", nws.Pressure) + " in. " + nws.PressureChg; } }
+        public string DewPoint { get { return "\x18" + "DewPoint " + nws.DewPoint.ToString() + "^F"; } }
+        public string Visibility { get { return "\x18" + "Visibility " + nws.Visibility + " mi."; } }
+        public int Icon
+
+        /// * 0 = illegal
+        /// 1 = no icon
+        /// 2 = "wsun"                      Icon 1 is Sunny
+        /// 3 = "wcloud" (partly cloudy)    Icon 2 is Cloudy
+        /// 4 = "wrain"                     Icon 3 is Rain
+        /// 5 = "wovercast"                 Icon 4 is Partly Cloudy
+        /// 6 = "wsnow"                     Icon 5 is Snow
+        /// 7 = "wfog"                      
+        /// 8 = "wcold                      
+
         {
-            get { _displaysky = "\x18" + _sky;   return _displaysky; }
-        }
-        public string Display_Weather
-        {
-            get { _displayweather = "\x18" + _weather;   return _displayweather; }
-        }
-        public string Display_Wind
-        {
-            get
-            {
-                if (_wind == "0")
-                {
-                    _displaywind = "\x18" + "Wind Calm";
-                    return _displaywind;
-                }
-                else if (_windgust != "0")
-                {
-                    _displaywind = "\x18" + "Wind " + _winddirection + " at " + _wind + " MPH  Gusts to " + _windgust + " MPH";
-                    return _displaywind;
-                }
-                else
-                {
-                    _displaywind = "\x18" + "Wind " + _winddirection + " at " + _wind + " MPH";
-                    return _displaywind;
-                }
-            }
-        }
-        public string Display_Temp
-        {
-            get
-            {
-                if (_heatindex != "")
-                {
-                    _displaytemp = "\x18" + "Temp " + _temp + "^F  Heat Index " + _heatindex + "^F";
-                    return _displaytemp;
-                }
-                else if (_windchill != "")
-                {
-                    _displaytemp = "\x18" + "Temp " + _temp + "^F  Wind Chill " + _windchill + "^F";
-                    return _displaytemp;
-                }
-                else
-                {
-                    _displaytemp = "\x18" + "Temp " + _temp + "^F";
-                    return _displaytemp;
-                }
-             }
-        }
-          public string Display_Humidity
-            {
-                get { _displayhumidity =  "\x18" + "Humidity " + _humidity + "%";
-                    return _displayhumidity; }
-            }      
-
-            public string Display_Dewpoint 
-            { 
-                get { _displaydewpoint = "\x18" + "DewPoint " + _dewpoint + "^F";
-                     return _displaydewpoint;  }
-            }
-
-            public string Display_Visibility
-            {
-                get 
-                {  _displayvisibility = "\x18" + "Visibility "  + _visibility + " mi."; 
-                   return _displayvisibility;                 
-                }
-            }
-
-            public string Display_Pressure
-            {            
-                get { _displaypressure = "\x18" + "Pressure " + _pressure + " in. " + PressureChg;
-                return _displaypressure; }
-            }
-            }
-
+            get { if (nws.Weather != null && nws.Weather.Contains("Drizzle")) { return 4; }
+                else if (nws.Weather != null && nws.Weather.Contains("Rain")) { return 4; }
+                else if (nws.Weather != null && nws.Weather.Contains("Snow")) { return 6; }
+                else if (nws.Weather != null && nws.Weather.Contains("Fog")) { return 5; }
+                else if (nws.Weather != null && nws.Weather.Contains("Haze")) { return 3; }
+                else if (nws.Sky == " Clear") { return 2; }
+                else if (nws.Sky == " Partly Cloudy") { return 3; }
+                else if (nws.Sky == " Mostly Cloudy") { return 3; }
+                else if (nws.Sky == " Overcast") { return 5; }
+                else { return 1; } } }
+    }
     public class WeatherFile
     {
         public void Weather_NWS_Raw_Data_Download()
@@ -335,6 +369,7 @@ namespace Weather
                 response.Close();
                 }
                 Weather_NWS_Raw_Data_SaveToFile(nws);
+                Weather_NWS_Raw_Data_Parse(nws);
             }
             catch (Exception)
             {
@@ -348,19 +383,14 @@ namespace Weather
             string weatherdatafile = settings.FolderPath + @"\" + settings.WeatherID + ".TXT";
             File.WriteAllLines(weatherdatafile, nws.Raw_Data);
         }
-    }
-
-    public class GetWeatherData
-    {
         public void Weather_NWS_Raw_Data_Parse(NWS_Weather_Data nws)
         {
             char[] delimiterChars = { ':' };
             char[] spacedelimiter = { ' ' };
+            char[] charsToTrim = { '%' };
 
             string line;
-
-            Current cur = new Current();
-            cur.Weather = "";
+            
 
             foreach (string linedata in nws.Raw_Data)
             {
@@ -372,31 +402,31 @@ namespace Weather
                         string[] parsewindline = line.Split(spacedelimiter);
                         if (parsewindline[1] == "Calm")
                         {
-                            cur.Wind = "0";
-                            cur.WindDirection = "";
-                            cur.WindGust = "0";
+                            nws.Wind = 0;
+                            nws.WindDirection = "";
+                            nws.WindGust = 0;
                         }
                         else
                         {
                             if (Array.Exists(parsewindline, element => element == "gusting"))
                             {
-                                cur.Wind = parsewindline[7];
-                                cur.WindDirection = parsewindline[3];
-                                cur.WindGust = parsewindline[13];
+                                nws.Wind = Convert.ToDouble(parsewindline[7]);
+                                nws.WindDirection = parsewindline[3];
+                                nws.WindGust = Convert.ToDouble(parsewindline[13]);
                             }
                             else
                             {
                                 if (Array.Exists(parsewindline, element => element == "(direction variable)"))
                                 {
-                                    cur.Wind = parsewindline[7];
-                                    cur.WindDirection = "Variable";
-                                    cur.WindGust = "0";
+                                    nws.Wind = Convert.ToDouble(parsewindline[7]);
+                                    nws.WindDirection = "Variable";
+                                    nws.WindGust = 0;
                                 }
                                 else
                                 {
-                                    cur.Wind = parsewindline[7];
-                                    cur.WindDirection = parsewindline[3];
-                                    cur.WindGust = "0";
+                                    nws.Wind = Convert.ToDouble(parsewindline[7]);
+                                    nws.WindDirection = parsewindline[3];
+                                    nws.WindGust = 0;
                                 }
                             }
                         }
@@ -406,37 +436,38 @@ namespace Weather
                         string[] parsevisibilityline = line.Split(spacedelimiter);
                         if (parsevisibilityline[1] == "less")
                         {
-                            cur.Visibility = parsevisibilityline[1] + " " + parsevisibilityline[2] + " " + parsevisibilityline[3];
+                            nws.Visibility = parsevisibilityline[1] + " " + parsevisibilityline[2] + " " + parsevisibilityline[3];
                         }
                         else
                         {
-                            cur.Visibility = parsevisibilityline[1];
+                            nws.Visibility = parsevisibilityline[1];
                         }
                         break;
                     case "Sky conditions":
-                        cur.Sky = parseinfo[1];
+                        nws.Sky = parseinfo[1];
                         break;
                     case "Weather":
-                        cur.Weather = parseinfo[1];
+                        nws.Weather = "";
+                        nws.Weather = parseinfo[1];
                         break;
                     case "Temperature":
                         line = parseinfo[1];
                         string[] parsetempline = line.Split(spacedelimiter);
-                        cur.Temp = parsetempline[1];
+                        nws.Temp = Convert.ToDouble(parsetempline[1]);
                         break;
                     case "Dew Point":
                         line = parseinfo[1];
                         string[] parseDewptline = line.Split(spacedelimiter);
-                        cur.DewPoint = parseDewptline[1];
+                        nws.DewPoint = Convert.ToDouble(parseDewptline[1]);
                         break;
                     case "Relative Humidity":
-                        cur.Humidity = parseinfo[1];
+                        nws.Humidity = Convert.ToDouble(parseinfo[1].Trim(charsToTrim));
                         break;
                     case "Pressure (altimeter)":
-                        cur.Previous_Pressure = Convert.ToDouble(cur.Pressure);
+                        nws.Previous_Pressure = nws.Pressure;
                         line = parseinfo[1];
                         string[] parsePressureline = line.Split(spacedelimiter);
-                        cur.Pressure = parsePressureline[1];
+                        nws.Pressure = Convert.ToDouble(parsePressureline[1]);
                         break;
                     default:
                         break;
@@ -447,58 +478,51 @@ namespace Weather
     }
     public class WeatherData
     {
-        public void Weather_GetData(NWS_Weather_Data nws)
+        public void Weather_GetData()
         {
-            WeatherFile wfile = new WeatherFile();
-            wfile.Weather_NWS_Raw_Data_Download();
-
-            GetWeatherData wthr = new GetWeatherData();
-            wthr.Weather_NWS_Raw_Data_Parse(nws);
+            WeatherFile wthr = new WeatherFile();
+            wthr.Weather_NWS_Raw_Data_Download();
         }
 
         public char[] empty = new char[] { };
         public string Weather_SendData(SerialPort serialport)
-        {
+        {   
             string message;
-            Current cur = new Current();     
             try
-            {     
+            {   
+                Weather_Display disp = new Weather_Display();
                 List<char> list = new List<char>();
-                list.AddRange(Convert.ToInt32(User_Settings.Default.WeatherParseCycle).ToString());
-                list.AddRange(Convert.ToChar("1").ToString()); //ClrID
-                list.AddRange(cur.IconSelection);
-                list.AddRange(Convert.ToChar("1").ToString()); //Exp
+                list.AddRange(Convert.ToChar(Convert.ToInt16(User_Settings.Default.WeatherParseCycle)).ToString());
+                list.AddRange(Convert.ToChar(1).ToString()); //ClrID
+                list.AddRange(Convert.ToChar(disp.Icon).ToString());
+                list.AddRange(Convert.ToChar(1).ToString()); //Exp
                 list.AddRange(User_Settings.Default.WeatherID);
                 list.AddRange(Convert.ToChar(18).ToString());  //flag1
-                list.AddRange(cur.Display_Sky);
-                if (cur.Display_Weather != "")
+                list.AddRange(disp.Sky);
+                if (disp.Weather != "\x18")
                 {
-                    list.AddRange(cur.Display_Weather);
+                    list.AddRange(disp.Weather);
                 }
-                list.AddRange(cur.Display_Temp);
-                list.AddRange(cur.Display_Wind);
-                list.AddRange(cur.Display_Pressure);
-                list.AddRange(cur.Display_Humidity);
-                list.AddRange(cur.Display_Dewpoint);
-                list.AddRange(cur.Display_Visibility);
+                list.AddRange(disp.Temp);
+                list.AddRange(disp.Wind);
+                list.AddRange(disp.Pressure);
+                list.AddRange(disp.Humidity);
+                list.AddRange(disp.DewPoint);
+                list.AddRange(disp.Visibility);
                 char[] body = list.ToArray();
 
 
                 if (User_Settings.Default.Port_Selected == 'T')
                 {
                     Network net = new Network();
-                    net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                    net.TransmitNetworkMessage("bottom line", User_Settings.Default.BottomLine.ToCharArray());
-                    net.TransmitNetworkMessage("box off", empty);
-                    message = "EPG Bottom line information sent via TCP/IP";
+                    net.TransmitNetworkMessage("weather data", body);
+                    message = "Weather data sent over TCP/IP";
                     return message;
                 }
                 else if (User_Settings.Default.Port_Selected == 'S')
                 {
                     Serial s = new Serial();
-                    s.TransmitMessage(serialport, "box on", User_Settings.Default.Select_Code.ToCharArray());
                     s.TransmitMessage(serialport, "weather data", body);
-                    s.TransmitMessage(serialport, "box off", empty);
                     message = "Weather data sent over Serial Port";
                     return message;
                 }
@@ -512,106 +536,10 @@ namespace Weather
             catch (Exception)
             {
                 MessageBox.Show("Cannot send data", "My Application", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                //PrevueDataSender.Form1.timer2.Enabled = false;
-                //PrevueDataSender.Form1.button16.Enabled = true;
-                //PrevueDataSender.Form1.button17.Enabled = false;
                 message = "Error with Weather - check code";
                 return message;
             }
         }
     }
-    /*
-       public void ReadWeatherFile(DataTable weather)
-       {
-           string weatherfilename = PrevueDataSender.Properties.Settings.Default.FolderPath + @"\weatherdata.txt";
-           string data;
-
-           if (File.Exists(weatherfilename))
-           {
-               StreamReader weatherfile = new StreamReader(weatherfilename);
-
-               while ((data = weatherfile.ReadLine()) != null)
-               {
-                   char[] delimiterChars = { '\x00' };
-                   string text = data;
-                   string[] parseinfo = text.Split(delimiterChars);
-
-                   DataRow workRow;
-                   workRow = weather.NewRow();
-
-                   workRow["display_length"] = Int32.Parse(parseinfo[0]);
-                   workRow["ColorID"] = Int32.Parse(parseinfo[1]);
-                   workRow["IconID"] = Int32.Parse(parseinfo[2]);
-                   workRow["Expansion"] = Int32.Parse(parseinfo[3]);
-                   workRow["IDString"] = parseinfo[4];
-                   workRow["CurSky"] = parseinfo[5];
-                   workRow["CurWeather"] = parseinfo[6];
-                   workRow["CurTemp"] = parseinfo[7];
-                   workRow["CurWind"] = parseinfo[8];
-                   workRow["CurPressure"] = parseinfo[9];
-                   workRow["CurHumidity"] = parseinfo[10];
-                   workRow["CurDewPoint"] = parseinfo[11];
-                   workRow["CurVisibility"] = parseinfo[12];
-
-                   weather.Rows.Add(workRow);
-
-                   //f.toolStripStatusLabel1.Text = "File Uploading" + weather.Rows.Count + " records found";
-
-               }
-
-               weatherfile.Close();
-               //f.toolStripStatusLabel1.Text = "File Reading Completed: " + weather.Rows.Count + " records found";
-           }
-           else
-           {
-               // Create the file.
-               File.Create(weatherfilename);
-           }
-       }
-
-       public void WriteWeatherFile(DataTable weather)
-       {
-           string weatherfilename = PrevueDataSender.Properties.Settings.Default.FolderPath + @"\weatherdata.txt";
-           try
-           {
-               if (File.Exists(weatherfilename))
-               {
-                   StreamWriter weatherfile = new StreamWriter(weatherfilename);
-
-                   //DataTable weather = f.WeatherDataSet.Tables["Weather"];
-
-                   for (int i = 0; i < weather.Rows.Count; i++)
-                   {
-                       weatherfile.WriteLine(weather.Rows[i]["display_length"] + "\x00" +
-                                             weather.Rows[i]["ColorID"] + "\x00" +
-                                             weather.Rows[i]["IconID"] + "\x00" +
-                                             weather.Rows[i]["Expansion"] + "\x00" +
-                                             weather.Rows[i]["IDString"] + "\x00" +
-                                             weather.Rows[i]["CurSky"] + "\x00" +
-                                             weather.Rows[i]["CurWeather"] + "\x00" +
-                                             weather.Rows[i]["CurTemp"] + "\x00" +
-                                             weather.Rows[i]["CurWind"] + "\x00" +
-                                             weather.Rows[i]["CurPressure"] + "\x00" +
-                                             weather.Rows[i]["CurHumidity"] + "\x00" +
-                                             weather.Rows[i]["CurDewPoint"] + "\x00" +
-                                             weather.Rows[i]["CurVisibility"]);
-
-                       //f.toolStripStatusLabel1.Text = "File Saving:" + weather.Rows.Count + " records saved";
-                   }
-
-                   weatherfile.Close();
-                   //f.toolStripStatusLabel1.Text = "File Save Completed: " + weather.Rows.Count + " records saved";
-               }
-               else
-               {
-                   // Create the file.
-                   File.Create(weatherfilename);
-               }
-           }
-           catch (Exception)
-           {
-               MessageBox.Show("Cannot save weather data", "My Application", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-           }
-       }*/
 
 }

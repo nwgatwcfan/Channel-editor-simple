@@ -23,6 +23,7 @@ using SerialIO;
 using NetworkIO;
 using LineupBuilder;
 using ListingsBuilder;
+using Commands;
 using User_Settings = PrevueDataSender.Properties.Settings;
 
 namespace PrevueDataSender
@@ -195,6 +196,8 @@ namespace PrevueDataSender
             }
             else
             {
+                SerialFile serial = new SerialFile();
+                serial.ClearSerialLogFile();
                 UserSettings_InitializeTextFields();
                 ReadConfigurationFile();
                 LineupFile lineupfile = new LineupFile();
@@ -437,15 +440,34 @@ namespace PrevueDataSender
             LineupBuild lineup = new LineupBuild();
             lineup.DeleteSelectedEntries(Lineup_DGV, LineupDataSet.Tables["Lineup"]);
         }
+
+        private void Lineup_SendInitialLineup_Click(object sender, EventArgs e)
+        {
+            //Version 7 requires the clock command to be sent first before a channel lineup can be sent.
+
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Clock(serialPort1, clock);
+            LineupBuild lineup = new LineupBuild();
+            toolStripStatusLabel1.Text = lineup.SendLineup(serialPort1, LineupDataSet.Tables["Lineup"], clock.CurrentPrevueDayOfYear);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
+        }
         private void Lineup_SendCurrentDay_Click(object sender, EventArgs e)
         {
+            //Use for changes to current lineup already sent
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
             LineupBuild lineup = new LineupBuild();
-            lineup.SendLineup(serialPort1, LineupDataSet.Tables["Lineup"], clock.CurrentPrevueDayOfYear);
+            toolStripStatusLabel1.Text = lineup.SendLineup(serialPort1, LineupDataSet.Tables["Lineup"], clock.CurrentPrevueDayOfYear);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }        
         private void Lineup_SendNextDay_Click(object sender, EventArgs e)
         {
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
             LineupBuild lineup = new LineupBuild();
-            lineup.SendLineup(serialPort1, LineupDataSet.Tables["Lineup"], clock.CurrentPrevueDayOfYear + 1);
+            toolStripStatusLabel1.Text = lineup.SendLineup(serialPort1, LineupDataSet.Tables["Lineup"], clock.CurrentPrevueDayOfYear + 1);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
         private void Lineup_Z2I_Import_Click(object sender, EventArgs e) 
         {
@@ -511,8 +533,10 @@ namespace PrevueDataSender
         {
             Zap2ItXMLFile listingxml = new Zap2ItXMLFile();
             Thread Z2IDownload_Thread = new Thread(listingxml.DownloadZap2ItXMLInfo);
+            Download.Enabled = false;
             Z2IDownload_Thread.Start();
             toolStripStatusLabel1.Text = "Zap2Xml Information has downloaded.";
+            Download.Enabled = true;
         }
         private void Z2I_LoadDataGridViews_Click(object sender, EventArgs e)
         {
@@ -530,301 +554,87 @@ namespace PrevueDataSender
         /// The screen controls are located in the Commands Tab.
         /// </summary>
 
- 
         private void SaveDataButton_Click(object sender, EventArgs e)
         {
-            char[] body = new char[] { };
-
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                net.TransmitNetworkMessage("save data", body);
-                net.TransmitNetworkMessage("box off", empty);
-                toolStripStatusLabel1.Text = "Save Command sent via TCP/IP";
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                Serial s = new Serial();
-                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-                s.TransmitMessage(serialPort1, "save data", empty);
-                s.TransmitMessage(serialPort1, "box off", empty);
-                toolStripStatusLabel1.Text = "Save Command sent via serial";
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Save_Prevue_Data(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
-            char[] body = new char[] { };
-
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                net.TransmitNetworkMessage("reset", body);
-                net.TransmitNetworkMessage("box off", empty);
-                toolStripStatusLabel1.Text = "Reset Command sent via TCP/IP";
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                Serial s = new Serial();
-                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-                s.TransmitMessage(serialPort1, "reset", body);
-                s.TransmitMessage(serialPort1, "box off", empty);
-                toolStripStatusLabel1.Text = "Reset Command sent via serial";
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
-
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Reset_Prevue_Software(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
 
         private void SendManualBoxOn_Click(object sender, EventArgs e)
         {
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                toolStripStatusLabel1.Text = "Sent manual box on command via TCP-IP";
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                Serial s = new Serial();
-                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-                toolStripStatusLabel1.Text = "Sent manual box on command via serial";
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
         }
 
         private void SendManualBoxOff_Click(object sender, EventArgs e)
-        { 
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box off", empty);
-                toolStripStatusLabel1.Text = "Sent manual box off command via TCP-IP";
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                Serial s = new Serial();
-                s.TransmitMessage(serialPort1, "box off", empty);
-                toolStripStatusLabel1.Text = "Sent manual box off command via serial";
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
+        {
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
 
         private void Version_Check_Click(object sender, EventArgs e)
         {
-            string messagebody = '\x01' + User_Settings.Default.Current_Version;
-            char[] body = messagebody.ToCharArray();
-
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                net.TransmitNetworkMessage("version", body);
-                net.TransmitNetworkMessage("box off", empty);
-                toolStripStatusLabel1.Text = "Version check sent via TCP/IP";
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                Serial s = new Serial();
-                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-                s.TransmitMessage(serialPort1, "version", body);
-                s.TransmitMessage(serialPort1, "box off", empty);
-                toolStripStatusLabel1.Text = "Version check sent via serial";
-            }
-            else 
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Version_Check(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
 
         private void SendClockData_Click(object sender, EventArgs e)
         {
-            char[] daylight;
-
-            if (clock.CurrentDSTSetting == true)
-            {
-                daylight = new char[] { Convert.ToChar(1) };
-            }
-            else
-            {
-                daylight = new char[] { Convert.ToChar(0) };
-            }
-            
-            List<char> list = new List<char>();
-            list.AddRange(Convert.ToChar(clock.CurrentDayOfWeek).ToString());
-            list.AddRange(Convert.ToChar(clock.CurrentMonth - 1).ToString());
-            list.AddRange(Convert.ToChar(clock.CurrentDay - 1).ToString());
-            list.AddRange(Convert.ToChar(clock.CurrentYear - 1900).ToString());
-            list.AddRange(Convert.ToChar(clock.CurrentHour).ToString());
-            list.AddRange(Convert.ToChar(clock.CurrentMinute).ToString());
-            list.AddRange(Convert.ToChar(clock.CurrentSecond).ToString());
-            list.AddRange(daylight);
-
-            char[] body = list.ToArray();
-            
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                net.TransmitNetworkMessage("clock", body);
-                net.TransmitNetworkMessage("box off", empty);
-                toolStripStatusLabel1.Text = "Clock Data sent via TCP/IP";
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                Serial s = new Serial();
-                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-                s.TransmitMessage(serialPort1, "clock", body);
-                s.TransmitMessage(serialPort1, "box off", empty);
-                toolStripStatusLabel1.Text = "Clock Data sent via serial";
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
-        }
-
-        private void SendDSTData(string option)
-        { 
-            char[] commandlength = new char[] { '2', '7' };
-
-            List<char> list = new List<char>();
-            list.AddRange(option);
-            list.AddRange(commandlength);
-            list.AddRange("\x04");
-            list.AddRange(clock.DST_Enter_Year);
-            list.AddRange(clock.DST_Enter_DayOfYear);
-            list.AddRange(clock.DST_Enter_Time);
-            list.AddRange("\x13");
-            list.AddRange(clock.DST_Exit_Year);
-            list.AddRange(clock.DST_Exit_DayOfYear);
-            list.AddRange(clock.DST_Exit_Time);
-
-            char[] body = list.ToArray();
-
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                net.TransmitNetworkMessage("DST", body);
-                net.TransmitNetworkMessage("box off", empty);
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                Serial s = new Serial();
-                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-                s.TransmitMessage(serialPort1, "DST", body);
-                s.TransmitMessage(serialPort1, "box off", empty);
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
-
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Clock(serialPort1, clock);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
 
         private void Send_DST_G2_Click(object sender, EventArgs e)
         {
-
-            SendDSTData("2");
-            toolStripStatusLabel1.Text = "DST 2 Data sent via serial";
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            toolStripStatusLabel1.Text = cmd.DST_Data(serialPort1, "2", clock);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
 
         private void Send_DST_G3_Click(object sender, EventArgs e)
         {
-            SendDSTData("3");
-            toolStripStatusLabel1.Text = "DST 3 Data sent via serial";
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            toolStripStatusLabel1.Text = cmd.DST_Data(serialPort1, "3", clock);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
 
         private void WeatherID_Send_Click(object sender, EventArgs e)
         {
-            Serial s = new Serial();
-            string messagebody = User_Settings.Default.WeatherFrequency +
-                                 User_Settings.Default.WeatherID + '\x12' +
-                                 User_Settings.Default.WeatherCity;
-
-            char[] body = messagebody.ToCharArray();
-
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                net.TransmitNetworkMessage("weather id", body);
-                net.TransmitNetworkMessage("box off", empty);
-                toolStripStatusLabel1.Text = "Weather ID sent via TCP/IP";
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-                s.TransmitMessage(serialPort1, "weather id", body);
-                s.TransmitMessage(serialPort1, "box off", empty);
-                toolStripStatusLabel1.Text = "Weather ID sent via serial";
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Weather_ID(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
         private void TopLineSendBtn_Click(object sender, EventArgs e)
         {
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                net.TransmitNetworkMessage("top line", User_Settings.Default.TopLine.ToCharArray());
-                net.TransmitNetworkMessage("box off", empty);
-                toolStripStatusLabel1.Text = "EPG Top line information sent via TCP/IP";
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                Serial s = new Serial();
-                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-                s.TransmitMessage(serialPort1, "top line", User_Settings.Default.TopLine.ToCharArray());
-                s.TransmitMessage(serialPort1, "box off", empty);
-                toolStripStatusLabel1.Text = "EPG Top line information sent via serial.";
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Top_Line(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
 
         private void BottomLineSendBtn_Click(object sender, EventArgs e)
         {
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                net.TransmitNetworkMessage("bottom line", User_Settings.Default.BottomLine.ToCharArray());
-                net.TransmitNetworkMessage("box off", empty);
-                toolStripStatusLabel1.Text = "EPG Bottom line information sent via TCP/IP";
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                Serial s = new Serial();
-                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-                s.TransmitMessage(serialPort1, "bottom line", User_Settings.Default.BottomLine.ToCharArray());
-                s.TransmitMessage(serialPort1, "box off", empty);
-                toolStripStatusLabel1.Text = "EPG Bottom line information sent via serial.";
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Bottom_Line(serialPort1);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
         private void UtilityCommand_Click(object sender, EventArgs e)
         {
@@ -1017,37 +827,29 @@ namespace PrevueDataSender
         /// 
         /// </summary>
 
-        private void Weather_InitializeTextFields()
+        private void Weather_TextBoxDisplay()
         {
-            Current cur = new Current();
-            WeatherParseCycleTextBox.Text = User_Settings.Default.WeatherParseCycle;
-            textBox13.Text = "1";
-            textBox14.Text = cur.IconSelection; //iconid
-            textBox15.Text = "1";
-            WeatherIDTextBox.Text = User_Settings.Default.WeatherID;
-            textBox17.Text = cur.Display_Sky;
-            textBox86.Text = cur.Display_Weather;
-            textBox18.Text = cur.Display_Temp;
-            textBox84.Text = cur.Display_Wind;
-            textBox83.Text = cur.Display_Pressure;
-            textBox82.Text = cur.Display_Humidity;
-            textBox6.Text =  cur.Display_Dewpoint;
-            textBox85.Text = cur.Display_Visibility;
-            
+            Weather_Display disp = new Weather_Display();
+            textBox14.Text = disp.Icon.ToString();
+            textBox17.Text = disp.Sky;
+            textBox86.Text = disp.Weather;
+            textBox18.Text = disp.Temp;
+            textBox84.Text = disp.Wind;
+            textBox83.Text = disp.Pressure;
+            textBox82.Text = disp.Humidity;
+            textBox6.Text =  disp.DewPoint;
+            textBox85.Text = disp.Visibility;
         }
 
         private void AddWeatherData_Click(object sender, EventArgs e)
         {
-            NWS_Weather_Data nws = new NWS_Weather_Data();
-            WeatherData w = new WeatherData();
-            w.Weather_GetData(nws);
-            Weather_InitializeTextFields();
-            toolStripStatusLabel1.Text = "Weather data added.";
         }
 
         private void SendWeatherData_Click(object sender, EventArgs e)
         {
             WeatherData w = new WeatherData();
+            w.Weather_GetData();
+            Weather_TextBoxDisplay();
             toolStripStatusLabel1.Text = w.Weather_SendData(serialPort1);
         }
 
@@ -1056,18 +858,15 @@ namespace PrevueDataSender
             // Verify if the time didn't pass.
             if ((wu_minutes == 0) && (wu_seconds == 0))
             {
-                NWS_Weather_Data nws = new NWS_Weather_Data();
                 WeatherData w = new WeatherData();
                 // If the time is over, clear all settings and fields.
                 button16.Enabled = false;
                 button17.Enabled = true;
                 label91.Text = "Downloading Update";
-                w.Weather_GetData(nws);
-                Weather_InitializeTextFields();
+                w.Weather_GetData();
+                Weather_TextBoxDisplay();
                 toolStripStatusLabel1.Text = w.Weather_SendData(serialPort1);
-                //DataTable weather = WeatherDataSet.Tables["Weather"];
-                //int i = weather.Rows.Count - 1;
-                //wu_minutes = Convert.ToInt32(weather.Rows[i]["display_length"]);
+                wu_minutes = Convert.ToInt32(User_Settings.Default.WeatherParseCycle);
             }
             else
             {
@@ -1424,8 +1223,8 @@ namespace PrevueDataSender
             Calc c = new Calc();
 
             List<char> list = new List<char>();
-            list.AddRange("1"); //command family = 1 for ASCII
-            list.AddRange("52"); //length of command including checksum
+            //list.AddRange("\u0000"); //command family = 1 for ASCII
+            //list.AddRange("\u0000\u0036"); //length of command including checksum
 
             //PrevueConfig.Default.Grid_Hold_Time
             list.AddRange(PrevueConfig.Default.Grid_Hold_Time.ToString());
@@ -1533,7 +1332,8 @@ namespace PrevueDataSender
             list.AddRange(Convert.ToChar(PrevueConfig.Default.Custom_Display_Length).ToString());
 
             //PrevueConfig.Default.Number_of_Colors
-            list.AddRange(Convert.ToChar(PrevueConfig.Default.Number_of_Colors).ToString());
+            //list.AddRange(Convert.ToChar(PrevueConfig.Default.Number_of_Colors).ToString());
+            list.AddRange(PrevueConfig.Default.Number_of_Colors.ToString());
 
             //PrevueConfig.Default.Text_Ad_Flag
             list.AddRange(PrevueConfig.Default.Text_Ad_Flag);
@@ -1555,15 +1355,11 @@ namespace PrevueDataSender
 
             char[] body = list.ToArray();
 
-            byte[] data = Encoding.GetEncoding("UTF-8").GetBytes(body);
-
-            label13.Text = data.Length.ToString();
-
             if (User_Settings.Default.Port_Selected == 'T')
             {
                 Network net = new Network();
                 net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                net.TransmitNetworkMessage("new config", body);
+                net.TransmitNewLookNetworkMessage("new config", body);
                 net.TransmitNetworkMessage("box off", empty);
                 toolStripStatusLabel1.Text = "New Config Information sent via TCP/IP";
             }
@@ -1700,10 +1496,7 @@ namespace PrevueDataSender
 
         private void Button26_Click(object sender, EventArgs e)
         {
-            Serial s = new Serial();
-            int jdate = 27; // Convert.ToInt16(textBox93.Text);
-
-            char[] msglength = new char[] { '1', '4' };  //length of command including checksum
+            int messagelength = 0;
 
             string sourceid = "32046"; //textBox94.Text;
             int telvue = 35; // Convert.ToInt16(textBox95.Text);
@@ -1712,7 +1505,7 @@ namespace PrevueDataSender
             int gridforegclr = 255; // Convert.ToInt16(textBox98.Text);
             string brushid = "DT"; // textBox99.Text;
 
-            char[] jdte = new char[] { Convert.ToChar(jdate) };
+            char[] jdte = new char[] { Convert.ToChar(clock.CurrentPrevueDayOfYear) };
             char[] srcid = sourceid.ToCharArray();
             char[] flag2 = new char[] { Convert.ToChar(telvue) };
             char[] sports = new char[] { Convert.ToChar(sportsum) };
@@ -1722,7 +1515,8 @@ namespace PrevueDataSender
 
             List<char> list = new List<char>();
             list.AddRange(jdte);
-            list.AddRange(msglength);
+            messagelength = 0;
+
             list.AddRange(srcid);
             list.AddRange(flag2);
             list.AddRange(sports);
@@ -1732,17 +1526,27 @@ namespace PrevueDataSender
 
             char[] body = list.ToArray();
 
-            s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-            s.TransmitMessage(serialPort1, "chan attr", body);
-            s.TransmitMessage(serialPort1, "box off", empty);
+            if (User_Settings.Default.Port_Selected == 'T')
+            {
+                Network net = new Network();
+                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
+                net.TransmitNewLookNetworkMessage("chan attr", body);
+                net.TransmitNetworkMessage("box off", empty);
+                toolStripStatusLabel1.Text = "Channel Lineup Attributes sent via TCP/IP";
+            }
+            else if (User_Settings.Default.Port_Selected == 'S')
+            {
+                Serial s = new Serial();
+                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
+                s.TransmitMessage(serialPort1, "chan attr", body);
+                s.TransmitMessage(serialPort1, "box off", empty);
+                toolStripStatusLabel1.Text = "Channel Lineup Attributes sent via serial port";
 
-            Network net = new Network();
-            net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-            net.TransmitNetworkMessage("chan attr", body);
-            net.TransmitNetworkMessage("box off", empty);
-
-
-            toolStripStatusLabel1.Text = "Channel Lineup Attributes sent via serial";
+            }
+            else
+            {
+                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
+            }
         }
 
         private void BuildQTable_Click(object sender, EventArgs e)
@@ -1803,7 +1607,6 @@ namespace PrevueDataSender
 
             toolStripStatusLabel1.Text = "test sent via serial";
         }
-
     }
 }
 

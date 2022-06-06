@@ -288,58 +288,78 @@ namespace Calculator
             return convertedvalue;
 
         }
+        public string PressureTendency(double current, double previous) 
+        {
+            if (current > previous) { return "R"; }
+            else if (current < previous) { return "F"; }
+            else { return "S"; }
+        }
 
         public double CalcWindChill(double temp, double wind)
         {
-            double WindChill;
+            if ((temp <= 50) && (wind > 3))
+            {
+                double WindChill;
 
-            double piece1 = 0.6215 * temp;
-            double windfactor = 0.16;
-            double windcomponent = Math.Pow(wind, windfactor);
+                double piece1 = 0.6215 * temp;
+                double windfactor = 0.16;
+                double windcomponent = Math.Pow(wind, windfactor);
 
-            WindChill = 35.74 + piece1
-                      - (35.75 * windcomponent)
-                      + (0.4275 * temp * windcomponent);
+                WindChill = 35.74 + piece1
+                          - (35.75 * windcomponent)
+                          + (0.4275 * temp * windcomponent);
 
-            return (int)Math.Round(WindChill, 0);
+                return (int)Math.Round(WindChill, 0);
+            }
+            else 
+            {
+                return temp;
+            }
         }
         public double CalcHeatIndex(double temp, double humidity)
         {
-            double HeatIndex;
-            double AdjustedHeatIndex;
-
-            HeatIndex = -42.379 + (2.04901523 * temp) + (10.14333127 * humidity) - (0.22475541 * temp * humidity)
-                        - (0.00683783 * (long)Math.Pow(temp, 2))
-                        - (0.05481717 * (long)Math.Pow(humidity, 2))
-                        + (0.00122874 * (long)Math.Pow(temp, 2) * (humidity))
-                        + (0.00085282 * temp * (long)Math.Pow((humidity), 2))
-                        - (0.00000199 * (long)Math.Pow(temp, 2) * (long)Math.Pow((humidity), 2));
-
-            if (temp >= 80 && temp <= 112 && humidity <= 13)
+            if (temp >= 70)
             {
-                AdjustedHeatIndex = HeatIndex - ((13 - humidity) / 4) * Math.Sqrt((17 - Math.Abs(temp - 95)) / 17);
-                return (double)Math.Round(AdjustedHeatIndex, 0);
-            }
-            else
-            {
-                if (temp >= 80 && temp <= 87 && humidity > 85)
+                double HeatIndex;
+                double AdjustedHeatIndex;
+
+                HeatIndex = -42.379 + (2.04901523 * temp) + (10.14333127 * humidity) - (0.22475541 * temp * humidity)
+                            - (0.00683783 * (long)Math.Pow(temp, 2))
+                            - (0.05481717 * (long)Math.Pow(humidity, 2))
+                            + (0.00122874 * (long)Math.Pow(temp, 2) * (humidity))
+                            + (0.00085282 * temp * (long)Math.Pow((humidity), 2))
+                            - (0.00000199 * (long)Math.Pow(temp, 2) * (long)Math.Pow((humidity), 2));
+
+                if (temp >= 80 && temp <= 112 && humidity <= 13)
                 {
-                    AdjustedHeatIndex = HeatIndex + ((humidity - 85) / 10) * ((87 - temp) / 5);
+                    AdjustedHeatIndex = HeatIndex - ((13 - humidity) / 4) * Math.Sqrt((17 - Math.Abs(temp - 95)) / 17);
                     return (double)Math.Round(AdjustedHeatIndex, 0);
                 }
                 else
                 {
-                    if (temp < 80)
+                    if (temp >= 80 && temp <= 87 && humidity > 85)
                     {
-                        AdjustedHeatIndex = 0.5 * (temp + 61.0 + ((temp - 68.0) * 1.2) + (humidity * 0.094));
+                        AdjustedHeatIndex = HeatIndex + ((humidity - 85) / 10) * ((87 - temp) / 5);
                         return (double)Math.Round(AdjustedHeatIndex, 0);
                     }
                     else
                     {
-                        AdjustedHeatIndex = HeatIndex;
-                        return (double)Math.Round(AdjustedHeatIndex, 0);
+                        if (temp < 80)
+                        {
+                            AdjustedHeatIndex = 0.5 * (temp + 61.0 + ((temp - 68.0) * 1.2) + (humidity * 0.094));
+                            return (double)Math.Round(AdjustedHeatIndex, 0);
+                        }
+                        else
+                        {
+                            AdjustedHeatIndex = HeatIndex;
+                            return (double)Math.Round(AdjustedHeatIndex, 0);
+                        }
                     }
                 }
+            }
+            else 
+            { 
+                return temp; 
             }
         }
     }

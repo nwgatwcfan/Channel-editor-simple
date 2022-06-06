@@ -136,7 +136,7 @@ namespace LineupBuilder
             UpdateEntries(to_table);
         }
 
-        public void SendLineup(SerialPort port, DataTable lineup, int jdate)
+        public string SendLineup(SerialPort port, DataTable lineup, int jdate)
         {
             List<char> list = new List<char>();
             list.AddRange(Convert.ToChar(jdate).ToString());
@@ -169,26 +169,25 @@ namespace LineupBuilder
                 list.AddRange(lineup.Rows[counter]["ID"].ToString());
             }
             char[] body = list.ToArray();
-
             if (PrevueDataSender.Properties.Settings.Default.Port_Selected == 'T')
             {
                 Network net = new Network();
-                net.TransmitNetworkMessage("box on", PrevueDataSender.Properties.Settings.Default.Select_Code.ToCharArray());
+                //net.TransmitNetworkMessage("box on", PrevueDataSender.Properties.Settings.Default.Select_Code.ToCharArray());
                 net.TransmitNetworkMessage("channel", body);
-                net.TransmitNetworkMessage("box off", empty);
-                //toolStripStatusLabel1.Text = "Current day channel lineup sent over TCP/IP";
+                //net.TransmitNetworkMessage("box off", empty);
+                return "Current day channel lineup sent over TCP/IP";
             }
             else if (PrevueDataSender.Properties.Settings.Default.Port_Selected == 'S')
             {
                 Serial s = new Serial();
-                s.TransmitMessage(port, "box on", PrevueDataSender.Properties.Settings.Default.Select_Code.ToCharArray());
+                //s.TransmitMessage(port, "box on", PrevueDataSender.Properties.Settings.Default.Select_Code.ToCharArray());
                 s.TransmitMessage(port, "channel", body);
-                s.TransmitMessage(port, "box off", empty);
-                //toolStripStatusLabel1.Text = "Current day channel lineup sent over serial port";
+                //s.TransmitMessage(port, "box off", empty);
+                return "Current day channel lineup sent over serial port";
             }
             else
             {
-                //toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
+                return "Error with Port Selected Setting - check code";
             }
 
         }

@@ -111,5 +111,71 @@ namespace NetworkIO
             */
         }
 
+        public void TransmitNewLookNetworkMessage(string selectedmode, char[] messagebody)
+        {
+            int messagelength = 0;
+            
+            try
+            {
+                // Translate the passed message into ASCII and store it as a Byte array.
+
+                byte[] header = new byte[] { (byte)'\u0055', (byte)'\u00AA' };
+                byte[] commandfamily = new byte[] { (byte)'\u0000' };
+                byte[] endcommand = new byte[] { (byte)'\u0000' };
+
+                ConvertArray array = new ConvertArray();
+                ModeSelect m = new ModeSelect();
+                byte[] mode = array.CharArrayToByteArrayFunction(m.Get_Mode_Select(selectedmode));
+                byte[] body = array.CharArrayToByteArrayFunction(messagebody);
+
+                messagelength = body.Length + 2;
+                MessageBox.Show("length ", messagelength.ToString(), MessageBoxButtons.OK);
+                byte[] msglength = new byte[] { (byte)'\u0000', (byte)messagelength};
+
+                List<byte> list = new List<byte>();
+                list.AddRange(header);
+                list.AddRange(mode);
+                list.AddRange(commandfamily); //command family = 1 for ASCII
+                list.AddRange(msglength); //length of command including checksum
+                list.AddRange(body);
+                list.AddRange(endcommand);
+                byte[] messagebuild = list.ToArray();
+                byte[] checksum = new byte[] { (byte)array.XORByteArrayFunction(messagebuild) };
+                List<byte> messagetosend = new List<byte>();
+                messagetosend.AddRange(messagebuild);
+                messagetosend.AddRange(checksum);
+                
+                byte[] messagetotransmit = messagetosend.ToArray();
+
+
+                TcpClient client = new TcpClient(PrevueDataSender.Properties.Settings.Default.IP_Address, Convert.ToInt32(PrevueDataSender.Properties.Settings.Default.Port_Number));
+                NetworkStream stream = client.GetStream();
+                stream.Write(messagetotransmit, 0, messagetotransmit.Length);
+
+                SerialFile ser = new SerialFile();
+                ser.WriteSerialLogFile(messagetotransmit);
+
+                stream.Close();
+                client.Close();
+            }
+            catch (ArgumentNullException e)
+            {
+                MessageBox.Show("Error sending data. Arg Null 2222 " + e, "Error", MessageBoxButtons.OK);
+                //Console.WriteLine("ArgumentNullException: {0}", e);
+            }
+            catch (SocketException e)
+            {
+                MessageBox.Show("Error sending data. Socket 2222 " + e, "Error", MessageBoxButtons.OK);
+                //Console.WriteLine("SocketException: {0}", e);
+            }
+            catch (IOException e)
+            {
+
+                MessageBox.Show("Error sending data. Check net setting. " + e, "Error", MessageBoxButtons.OK);
+
+            }
+
+        }
+
     }
 }

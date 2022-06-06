@@ -77,7 +77,7 @@ namespace FileIO
             {
                 MessageBox.Show(ex.ToString());
             }
-            
+
             try
             {
                 FileStream writeStream = new FileStream(serial_log_filename, FileMode.Create);
@@ -86,6 +86,22 @@ namespace FileIO
                 writeData.Write(read_data);
                 writeData.Write(line_end);
                 writeData.Write(array);
+                writeData.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        public void ClearSerialLogFile()
+        {
+            string serial_log_filename = PrevueDataSender.Properties.Settings.Default.FolderPath + @"\serial_log.txt";
+            try
+            {
+                FileStream writeStream = new FileStream(serial_log_filename, FileMode.Create);
+
+                BinaryWriter writeData = new BinaryWriter(writeStream);
+                writeData.Write(String.Empty);
                 writeData.Close();
             }
             catch (Exception ex)
