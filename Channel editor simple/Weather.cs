@@ -47,7 +47,7 @@ namespace Weather
         public string Sky
         {
             get { return sky; }
-            set { sky = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value); }
+            set { sky = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value.Remove(0,1)); }
         }
         public string Weather
         {
@@ -124,172 +124,172 @@ namespace Weather
                 if (nws.Weather != null)
                 {
                     if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Light Drizzle and Fog with Thunder"; }
+                    { return "\x18Light Drizzle and Fog with Thunder"; }
                     else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Drizzle and Fog with Thunder"; }
+                    { return "\x18Drizzle and Fog with Thunder"; }
                     else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Heavy Drizzle and Fog with Thunder"; }
+                    { return "\x18Heavy Drizzle and Fog with Thunder"; }
 
                     else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Light Drizzle and Fog with Thunder Nearby"; }
+                    { return "\x18Light Drizzle and Fog with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Drizzle and Fog with Thunder Nearby"; }
+                    { return "\x18Drizzle and Fog with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Heavy Drizzle and Fog with Thunder Nearby"; }
+                    { return "\x18Heavy Drizzle and Fog with Thunder Nearby"; }
 
                     else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Light Drizzle and Mist with Thunder"; }
+                    { return "\x18Light Drizzle and Mist with Thunder"; }
                     else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Drizzle and Mist with Thunder"; }
+                    { return "\x18Drizzle and Mist with Thunder"; }
                     else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Heavy Drizzle and Mist with Thunder"; }
+                    { return "\x18Heavy Drizzle and Mist with Thunder"; }
 
                     else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Light Drizzle and Mist with Thunder Nearby"; }
+                    { return "\x18Light Drizzle and Mist with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Drizzle and Mist with Thunder Nearby"; }
+                    { return "\x18Drizzle and Mist with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Heavy Drizzle and Mist with Thunder Nearby"; }
+                    { return "\x18Heavy Drizzle and Mist with Thunder Nearby"; }
 
                     else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Thunder"))
-                    { return "\x18 Light Drizzle with Thunder"; }
+                    { return "\x18Light Drizzle with Thunder"; }
                     else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Thunder"))
-                    { return "\x18 Drizzle with Thunder"; }
+                    { return "\x18Drizzle with Thunder"; }
                     else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Thunder"))
-                    { return "\x18 Heavy Drizzle with Thunder"; }
+                    { return "\x18Heavy Drizzle with Thunder"; }
 
                     else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Lightning Observed"))
-                    { return "\x18 Light Drizzle with Thunder Nearby"; }
+                    { return "\x18Light Drizzle with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Lightning Observed"))
-                    { return "\x18 Drizzle with Thunder Nearby"; }
+                    { return "\x18Drizzle with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Lightning Observed"))
-                    { return "\x18 Heavy Drizzle with Thunder Nearby"; }
+                    { return "\x18Heavy Drizzle with Thunder Nearby"; }
 
                     else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Light Drizzle and Fog"; }
+                    { return "\x18Light Drizzle and Fog"; }
                     else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Drizzle and Fog"; }
+                    { return "\x18Drizzle and Fog"; }
                     else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Heavy Drizzle and Fog"; }
+                    { return "\x18Heavy Drizzle and Fog"; }
 
                     else if (nws.Weather.Contains("Light Drizzle") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Light Drizzle and Mist"; }
+                    { return "\x18Light Drizzle and Mist"; }
                     else if (nws.Weather.Contains("Drizzle") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Drizzle and Mist"; }
+                    { return "\x18Drizzle and Mist"; }
                     else if (nws.Weather.Contains("Heavy Drizzle") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Heavy Drizzle and Mist"; }
+                    { return "\x18Heavy Drizzle and Mist"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Light Rain and Fog with Thunder Nearby"; }
+                    { return "\x18Light Rain and Fog with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Rain and Fog with Thunder Nearby"; }
+                    { return "\x18Rain and Fog with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Heavy Rain and Fog with Thunder Nearby"; }
+                    { return "\x18Heavy Rain and Fog with Thunder Nearby"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Thundershower and Fog"; }
+                    { return "\x18Thundershower and Fog"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Thunderstorm and Fog"; }
+                    { return "\x18Thunderstorm and Fog"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Heavy Thunderstorm and Fog"; }
+                    { return "\x18Heavy Thunderstorm and Fog"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Thundershower and Fog"; }
+                    { return "\x18Thundershower and Fog"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Thunderstorm and Fog"; }
+                    { return "\x18Thunderstorm and Fog"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Heavy Thunderstorm and Fog"; }
+                    { return "\x18Heavy Thunderstorm and Fog"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Light Rain and Mist with Thunder Nearby"; }
+                    { return "\x18Light Rain and Mist with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Rain and Mist with Thunder Nearby"; }
+                    { return "\x18Rain and Mist with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder In The Vicinity") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Heavy Rain and Mist with Thunder Nearby"; }
+                    { return "\x18Heavy Rain and Mist with Thunder Nearby"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Thundershower and Mist"; }
+                    { return "\x18Thundershower and Mist"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Thunderstorm and Mist"; }
+                    { return "\x18Thunderstorm and Mist"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Heavy Thunderstorm and Mist"; }
+                    { return "\x18Heavy Thunderstorm and Mist"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Thundershower and Mist"; }
+                    { return "\x18Thundershower and Mist"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Thunderstorm and Mist"; }
+                    { return "\x18Thunderstorm and Mist"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Lightning Observed") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Heavy Thunderstorm and Mist"; }
+                    { return "\x18Heavy Thunderstorm and Mist"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder In The Vicinity"))
-                    { return "\x18 Light Rain with Thunder Nearby"; }
+                    { return "\x18Light Rain with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder In The Vicinity"))
-                    { return "\x18 Rain with Thunder Nearby"; }
+                    { return "\x18Rain with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder In The Vicinity"))
-                    { return "\x18 Heavy Rain with Thunder Nearby"; }
+                    { return "\x18Heavy Rain with Thunder Nearby"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Thunder"))
-                    { return "\x18 Thundershower"; }
+                    { return "\x18Thundershower"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Thunder"))
-                    { return "\x18 Thunderstorm"; }
+                    { return "\x18Thunderstorm"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Thunder"))
-                    { return "\x18 Heavy Thunderstorm"; }
+                    { return "\x18Heavy Thunderstorm"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Lightning Observed"))
-                    { return "\x18 Thundershower"; }
+                    { return "\x18Thundershower"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Lightning Observed"))
-                    { return "\x18 Thunderstorm"; }
+                    { return "\x18Thunderstorm"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Lightning Observed"))
-                    { return "\x18 Heavy Thunderstorm"; }
+                    { return "\x18Heavy Thunderstorm"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Freezing Fog"))
-                    { return "\x18 Light Rain and Freezing Fog"; }
+                    { return "\x18Light Rain and Freezing Fog"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Freezing Fog"))
-                    { return "\x18 Rain and Freezing Fog"; }
+                    { return "\x18Rain and Freezing Fog"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Freezing Fog"))
-                    { return "\x18 Heavy Rain and Freezing Fog"; }
+                    { return "\x18Heavy Rain and Freezing Fog"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Light Rain and Fog"; }
+                    { return "\x18Light Rain and Fog"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Rain and Fog"; }
+                    { return "\x18Rain and Fog"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Heavy Rain and Fog"; }
+                    { return "\x18Heavy Rain and Fog"; }
 
                     else if (nws.Weather.Contains("Light Rain") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Light Rain and Mist"; }
+                    { return "\x18Light Rain and Mist"; }
                     else if (nws.Weather.Contains("Rain") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Rain and Mist"; }
+                    { return "\x18Rain and Mist"; }
                     else if (nws.Weather.Contains("Heavy Rain") && nws.Weather.Contains("Mist"))
-                    { return "\x18 Heavy Rain and Mist"; }
+                    { return "\x18Heavy Rain and Mist"; }
 
 
                     else if (nws.Weather.Contains("Light Snow") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Light Snow and Fog"; }
+                    { return "\x18Light Snow and Fog"; }
                     else if (nws.Weather.Contains("Snow") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Snow and Fog"; }
+                    { return "\x18Snow and Fog"; }
                     else if (nws.Weather.Contains("Heavy Snow") && nws.Weather.Contains("Fog"))
-                    { return "\x18 Heavy Snow and Fog"; }
+                    { return "\x18Heavy Snow and Fog"; }
 
                     else if (nws.Weather.Contains("Light Snow") && nws.Weather.Contains("Thunder"))
-                    { return "\x18 Light Snow with Thunder"; }
+                    { return "\x18Light Snow with Thunder"; }
                     else if (nws.Weather.Contains("Snow") && nws.Weather.Contains("Thunder"))
-                    { return "\x18 Thundersnow"; }
+                    { return "\x18Thundersnow"; }
                     else if (nws.Weather.Contains("Heavy Snow") && nws.Weather.Contains("Thunder"))
-                    { return "\x18 Heavy Thundersnow"; }
+                    { return "\x18Heavy Thundersnow"; }
 
                     else if (nws.Weather.Contains("Light Snow") && nws.Weather.Contains("Lightning Observed"))
-                    { return "\x18 Light Snow with Thunder Nearby"; }
+                    { return "\x18Light Snow with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Snow") && nws.Weather.Contains("Lightning Observed"))
-                    { return "\x18 Snow with Thunder Nearby"; }
+                    { return "\x18Snow with Thunder Nearby"; }
                     else if (nws.Weather.Contains("Heavy Snow") && nws.Weather.Contains("Lightning Observed"))
-                    { return "\x18 Heavy Snow with Thunder Nearby"; }
+                    { return "\x18Heavy Snow with Thunder Nearby"; }
 
                     else if (nws.Weather.Contains("Lightning Observed"))
-                    { return "\x18 Thunder Nearby"; }
+                    { return "\x18Thunder Nearby"; }
 
                     else if (nws.Weather.Contains("Thunder"))
-                    { return "\x18 Thunder"; }
+                    { return "\x18Thunder"; }
 
                     else { return "\x18" + nws.Weather; }
                 }
