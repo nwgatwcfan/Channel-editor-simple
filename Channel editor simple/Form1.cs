@@ -841,10 +841,6 @@ namespace PrevueDataSender
             textBox85.Text = disp.Visibility;
         }
 
-        private void AddWeatherData_Click(object sender, EventArgs e)
-        {
-        }
-
         private void SendWeatherData_Click(object sender, EventArgs e)
         {
             WeatherData w = new WeatherData();
