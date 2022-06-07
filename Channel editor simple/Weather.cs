@@ -285,6 +285,12 @@ namespace Weather
                     else if (nws.Weather.Contains("Heavy Snow") && nws.Weather.Contains("Lightning Observed"))
                     { return "\x18 Heavy Snow with Thunder Nearby"; }
 
+                    else if (nws.Weather.Contains("Lightning Observed"))
+                    { return "\x18 Thunder Nearby"; }
+
+                    else if (nws.Weather.Contains("Thunder"))
+                    { return "\x18 Thunder"; }
+
                     else { return "\x18" + nws.Weather; }
                 }
                 else 
