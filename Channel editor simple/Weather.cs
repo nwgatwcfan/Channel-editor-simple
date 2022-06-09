@@ -291,7 +291,7 @@ namespace Weather
                     else if (nws.Weather.Contains("Thunder"))
                     { return "\x18Thunder"; }
 
-                    else { return "\x18" + nws.Weather; }
+                    else { return "\x18" + nws.Weather.Remove(0, 1); }
                 }
                 else 
                 { 
