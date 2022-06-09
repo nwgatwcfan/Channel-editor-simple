@@ -338,10 +338,10 @@ namespace Weather
                 else if (nws.Weather != null && nws.Weather.Contains("Snow")) { return 6; }
                 else if (nws.Weather != null && nws.Weather.Contains("Fog")) { return 5; }
                 else if (nws.Weather != null && nws.Weather.Contains("Haze")) { return 3; }
-                else if (nws.Sky == " Clear") { return 2; }
-                else if (nws.Sky == " Partly Cloudy") { return 3; }
-                else if (nws.Sky == " Mostly Cloudy") { return 3; }
-                else if (nws.Sky == " Overcast") { return 5; }
+                else if (nws.Sky == "Clear") { return 2; }
+                else if (nws.Sky == "Partly Cloudy") { return 3; }
+                else if (nws.Sky == "Mostly Cloudy") { return 3; }
+                else if (nws.Sky == "Overcast") { return 5; }
                 else { return 1; } } }
     }
     public class WeatherFile
