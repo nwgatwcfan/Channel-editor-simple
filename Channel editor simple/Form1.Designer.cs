@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.CurDateTime = new System.Windows.Forms.Label();
             this.CurrentDayofYear = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -436,6 +438,40 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.TimeSlotLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.radioButton13 = new System.Windows.Forms.RadioButton();
+            this.radioButton14 = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radioButton10 = new System.Windows.Forms.RadioButton();
+            this.radioButton11 = new System.Windows.Forms.RadioButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.Scroll_Messages_DGV = new System.Windows.Forms.DataGridView();
+            this.Scroll_Messages_DataSet = new System.Data.DataSet();
+            this.ScrollMessages = new System.Data.DataTable();
+            this.dataColumn9 = new System.Data.DataColumn();
+            this.dataColumn16 = new System.Data.DataColumn();
+            this.dataColumn17 = new System.Data.DataColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.LineupRtClickMenu.SuspendLayout();
@@ -466,6 +502,15 @@
             this.Listings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Listings_DGV)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Scroll_Messages_DGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Scroll_Messages_DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ScrollMessages)).BeginInit();
             this.SuspendLayout();
             // 
             // CurDateTime
@@ -3901,8 +3946,8 @@
             this.Z2I_Listings_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Z2I_Listings_DGV.Location = new System.Drawing.Point(8, 158);
             this.Z2I_Listings_DGV.Name = "Z2I_Listings_DGV";
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Z2I_Listings_DGV.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Z2I_Listings_DGV.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.Z2I_Listings_DGV.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Z2I_Listings_DGV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Z2I_Listings_DGV.Size = new System.Drawing.Size(919, 341);
@@ -4116,7 +4161,7 @@
             this.Listings.Padding = new System.Windows.Forms.Padding(3);
             this.Listings.Size = new System.Drawing.Size(935, 504);
             this.Listings.TabIndex = 0;
-            this.Listings.Text = "Channel Listings";
+            this.Listings.Text = "Listings";
             // 
             // Listings_SendNextDayEntries_Button
             // 
@@ -4342,6 +4387,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.Listings);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.Lineuptab);
             this.tabControl1.Controls.Add(this.Downloadtab);
             this.tabControl1.Controls.Add(this.Weathertab);
@@ -4350,11 +4396,393 @@
             this.tabControl1.Controls.Add(this.QTable);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(0, 49);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(943, 530);
             this.tabControl1.TabIndex = 49;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.label13);
+            this.tabPage3.Controls.Add(this.button18);
+            this.tabPage3.Controls.Add(this.button14);
+            this.tabPage3.Controls.Add(this.button13);
+            this.tabPage3.Controls.Add(this.button11);
+            this.tabPage3.Controls.Add(this.button10);
+            this.tabPage3.Controls.Add(this.button8);
+            this.tabPage3.Controls.Add(this.button7);
+            this.tabPage3.Controls.Add(this.button6);
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.Scroll_Messages_DGV);
+            this.tabPage3.Controls.Add(this.groupBox5);
+            this.tabPage3.Controls.Add(this.groupBox4);
+            this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Controls.Add(this.groupBox2);
+            this.tabPage3.Controls.Add(this.groupBox1);
+            this.tabPage3.Controls.Add(this.label19);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(935, 504);
+            this.tabPage3.TabIndex = 10;
+            this.tabPage3.Text = "Listing Setup";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.radioButton13);
+            this.groupBox5.Controls.Add(this.radioButton14);
+            this.groupBox5.Location = new System.Drawing.Point(693, 31);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(95, 82);
+            this.groupBox5.TabIndex = 25;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Other";
+            // 
+            // radioButton13
+            // 
+            this.radioButton13.AutoSize = true;
+            this.radioButton13.Location = new System.Drawing.Point(6, 19);
+            this.radioButton13.Name = "radioButton13";
+            this.radioButton13.Size = new System.Drawing.Size(51, 17);
+            this.radioButton13.TabIndex = 20;
+            this.radioButton13.TabStop = true;
+            this.radioButton13.Text = "None";
+            this.radioButton13.UseVisualStyleBackColor = true;
+            this.radioButton13.CheckedChanged += new System.EventHandler(this.Other_Listing_Color_CheckedChanged);
+            // 
+            // radioButton14
+            // 
+            this.radioButton14.AutoSize = true;
+            this.radioButton14.Location = new System.Drawing.Point(6, 55);
+            this.radioButton14.Name = "radioButton14";
+            this.radioButton14.Size = new System.Drawing.Size(66, 17);
+            this.radioButton14.TabIndex = 19;
+            this.radioButton14.TabStop = true;
+            this.radioButton14.Text = "Highlight";
+            this.radioButton14.UseVisualStyleBackColor = true;
+            this.radioButton14.CheckedChanged += new System.EventHandler(this.Other_Listing_Color_CheckedChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radioButton10);
+            this.groupBox4.Controls.Add(this.radioButton11);
+            this.groupBox4.Location = new System.Drawing.Point(561, 31);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(95, 82);
+            this.groupBox4.TabIndex = 24;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "News";
+            // 
+            // radioButton10
+            // 
+            this.radioButton10.AutoSize = true;
+            this.radioButton10.Location = new System.Drawing.Point(6, 19);
+            this.radioButton10.Name = "radioButton10";
+            this.radioButton10.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioButton10.Size = new System.Drawing.Size(51, 17);
+            this.radioButton10.TabIndex = 17;
+            this.radioButton10.TabStop = true;
+            this.radioButton10.Text = "None";
+            this.radioButton10.UseVisualStyleBackColor = true;
+            this.radioButton10.CheckedChanged += new System.EventHandler(this.News_Listing_Color_CheckedChanged);
+            // 
+            // radioButton11
+            // 
+            this.radioButton11.AutoSize = true;
+            this.radioButton11.Location = new System.Drawing.Point(6, 55);
+            this.radioButton11.Name = "radioButton11";
+            this.radioButton11.Size = new System.Drawing.Size(66, 17);
+            this.radioButton11.TabIndex = 16;
+            this.radioButton11.TabStop = true;
+            this.radioButton11.Text = "Highlight";
+            this.radioButton11.UseVisualStyleBackColor = true;
+            this.radioButton11.CheckedChanged += new System.EventHandler(this.News_Listing_Color_CheckedChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButton7);
+            this.groupBox3.Controls.Add(this.radioButton8);
+            this.groupBox3.Location = new System.Drawing.Point(425, 31);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(95, 82);
+            this.groupBox3.TabIndex = 23;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Family";
+            // 
+            // radioButton7
+            // 
+            this.radioButton7.AutoSize = true;
+            this.radioButton7.Location = new System.Drawing.Point(8, 19);
+            this.radioButton7.Name = "radioButton7";
+            this.radioButton7.Size = new System.Drawing.Size(51, 17);
+            this.radioButton7.TabIndex = 14;
+            this.radioButton7.TabStop = true;
+            this.radioButton7.Text = "None";
+            this.radioButton7.UseVisualStyleBackColor = true;
+            this.radioButton7.CheckedChanged += new System.EventHandler(this.Family_Listing_Color_CheckedChanged);
+            // 
+            // radioButton8
+            // 
+            this.radioButton8.AutoSize = true;
+            this.radioButton8.Location = new System.Drawing.Point(8, 55);
+            this.radioButton8.Name = "radioButton8";
+            this.radioButton8.Size = new System.Drawing.Size(66, 17);
+            this.radioButton8.TabIndex = 13;
+            this.radioButton8.TabStop = true;
+            this.radioButton8.Text = "Highlight";
+            this.radioButton8.UseVisualStyleBackColor = true;
+            this.radioButton8.CheckedChanged += new System.EventHandler(this.Family_Listing_Color_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioButton4);
+            this.groupBox2.Controls.Add(this.radioButton5);
+            this.groupBox2.Location = new System.Drawing.Point(283, 31);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(99, 82);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Sports";
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(9, 19);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(51, 17);
+            this.radioButton4.TabIndex = 11;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "None";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.Sports_Listing_Color_CheckedChanged);
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(9, 55);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(66, 17);
+            this.radioButton5.TabIndex = 10;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Highlight";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.CheckedChanged += new System.EventHandler(this.Sports_Listing_Color_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Location = new System.Drawing.Point(139, 31);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(100, 82);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Movie";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(9, 19);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(51, 17);
+            this.radioButton1.TabIndex = 6;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "None";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.Movie_Listing_Color_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(9, 55);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(66, 17);
+            this.radioButton2.TabIndex = 7;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Highlight";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.Movie_Listing_Color_CheckedChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(398, 15);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(111, 13);
+            this.label19.TabIndex = 5;
+            this.label19.Text = "Listing Color Attributes";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(935, 504);
+            this.tabPage4.TabIndex = 11;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // Scroll_Messages_DGV
+            // 
+            this.Scroll_Messages_DGV.AllowUserToAddRows = false;
+            this.Scroll_Messages_DGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.Scroll_Messages_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Scroll_Messages_DGV.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Scroll_Messages_DGV.Location = new System.Drawing.Point(66, 139);
+            this.Scroll_Messages_DGV.Margin = new System.Windows.Forms.Padding(2);
+            this.Scroll_Messages_DGV.Name = "Scroll_Messages_DGV";
+            this.Scroll_Messages_DGV.RowHeadersWidth = 51;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Scroll_Messages_DGV.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.Scroll_Messages_DGV.RowTemplate.Height = 24;
+            this.Scroll_Messages_DGV.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Scroll_Messages_DGV.Size = new System.Drawing.Size(782, 299);
+            this.Scroll_Messages_DGV.TabIndex = 47;
+            this.Scroll_Messages_DGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Scroll_Messages_DGV_CellClick);
+            // 
+            // Scroll_Messages_DataSet
+            // 
+            this.Scroll_Messages_DataSet.DataSetName = "Scroll_Messages_DataSet";
+            this.Scroll_Messages_DataSet.Tables.AddRange(new System.Data.DataTable[] {
+            this.ScrollMessages});
+            // 
+            // ScrollMessages
+            // 
+            this.ScrollMessages.Columns.AddRange(new System.Data.DataColumn[] {
+            this.dataColumn9,
+            this.dataColumn16,
+            this.dataColumn17});
+            this.ScrollMessages.TableName = "ScrollMessages";
+            // 
+            // dataColumn9
+            // 
+            this.dataColumn9.ColumnName = "SourceID";
+            // 
+            // dataColumn16
+            // 
+            this.dataColumn16.Caption = "Attr";
+            this.dataColumn16.ColumnName = "Attr";
+            this.dataColumn16.DataType = typeof(short);
+            this.dataColumn16.DefaultValue = ((short)(1));
+            // 
+            // dataColumn17
+            // 
+            this.dataColumn17.ColumnName = "Message";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button2.Location = new System.Drawing.Point(55, 460);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(87, 25);
+            this.button2.TabIndex = 48;
+            this.button2.Text = "Send Selected";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.Scroll_Messages_SendSelectedEntries_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(148, 461);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(82, 25);
+            this.button6.TabIndex = 49;
+            this.button6.Text = "Current Day";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Scroll_Messages_SendCurrentDayEntries_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(233, 461);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(81, 25);
+            this.button7.TabIndex = 55;
+            this.button7.Text = "Next Day";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Scroll_Messages_SendNextDayEntries_Click);
+            // 
+            // button8
+            // 
+            this.button8.AutoSize = true;
+            this.button8.Location = new System.Drawing.Point(332, 460);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(72, 27);
+            this.button8.TabIndex = 56;
+            this.button8.Text = "Move Up";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Scroll_Messages_MoveEntryUp_Click);
+            // 
+            // button10
+            // 
+            this.button10.AutoSize = true;
+            this.button10.Location = new System.Drawing.Point(409, 460);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 27);
+            this.button10.TabIndex = 57;
+            this.button10.Text = "Move Down";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.Scroll_Messages_MoveEntryDown_Click);
+            // 
+            // button11
+            // 
+            this.button11.AutoSize = true;
+            this.button11.Location = new System.Drawing.Point(502, 460);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(77, 27);
+            this.button11.TabIndex = 58;
+            this.button11.Text = "Insert Above";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.Scroll_Messages_InsertEntryAbove_Click);
+            // 
+            // button13
+            // 
+            this.button13.AutoSize = true;
+            this.button13.Location = new System.Drawing.Point(585, 459);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(79, 27);
+            this.button13.TabIndex = 59;
+            this.button13.Text = "Insert Below";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.Scroll_Messages_InsertEntryBelow_Click);
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(686, 458);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(79, 27);
+            this.button14.TabIndex = 60;
+            this.button14.Text = "Update";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.Scroll_Messages_UpdateEntries_Click);
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(775, 458);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(73, 27);
+            this.button18.TabIndex = 61;
+            this.button18.Text = "Delete";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.Scroll_Messages_DeleteSelectedEntries_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(406, 124);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(84, 13);
+            this.label13.TabIndex = 62;
+            this.label13.Text = "Scroll Messages";
             // 
             // Form1
             // 
@@ -4410,6 +4838,21 @@
             this.Listings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Listings_DGV)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Scroll_Messages_DGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Scroll_Messages_DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ScrollMessages)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4822,6 +5265,40 @@
         public System.Windows.Forms.Button button17;
         public System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button Lineup_SendInitialLineup_Button;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.RadioButton radioButton13;
+        private System.Windows.Forms.RadioButton radioButton14;
+        private System.Windows.Forms.RadioButton radioButton10;
+        private System.Windows.Forms.RadioButton radioButton11;
+        private System.Windows.Forms.RadioButton radioButton7;
+        private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView Scroll_Messages_DGV;
+        private System.Data.DataSet Scroll_Messages_DataSet;
+        private System.Data.DataTable ScrollMessages;
+        private System.Data.DataColumn dataColumn9;
+        private System.Data.DataColumn dataColumn16;
+        private System.Data.DataColumn dataColumn17;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Label label13;
     }
 }
 

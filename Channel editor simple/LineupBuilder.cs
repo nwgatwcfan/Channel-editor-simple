@@ -172,17 +172,13 @@ namespace LineupBuilder
             if (PrevueDataSender.Properties.Settings.Default.Port_Selected == 'T')
             {
                 Network net = new Network();
-                //net.TransmitNetworkMessage("box on", PrevueDataSender.Properties.Settings.Default.Select_Code.ToCharArray());
                 net.TransmitNetworkMessage("channel", body);
-                //net.TransmitNetworkMessage("box off", empty);
                 return "Current day channel lineup sent over TCP/IP";
             }
             else if (PrevueDataSender.Properties.Settings.Default.Port_Selected == 'S')
             {
                 Serial s = new Serial();
-                //s.TransmitMessage(port, "box on", PrevueDataSender.Properties.Settings.Default.Select_Code.ToCharArray());
                 s.TransmitMessage(port, "channel", body);
-                //s.TransmitMessage(port, "box off", empty);
                 return "Current day channel lineup sent over serial port";
             }
             else
@@ -191,7 +187,88 @@ namespace LineupBuilder
             }
 
         }
-    
+
+        public string SendLineupAttr(SerialPort port, DataTable lineup, int jdate)
+        {
+            List<char> list = new List<char>();
+            list.AddRange(Convert.ToChar(jdate).ToString());
+
+            string sourceid = "11829"; //textBox94.Text;
+            //int telvue = 35; // Convert.ToInt16(textBox95.Text);
+            int sportsum = 255; // Convert.ToInt16(textBox96.Text);
+            int gridbckgclr = 100;  //Convert.ToInt16(textBox97.Text);
+            int gridforegclr = 100; // Convert.ToInt16(textBox98.Text);
+            string brushid = "00"; // textBox99.Text;
+
+            char[] length = new char[] { Convert.ToChar(10) };
+            
+
+
+            char[] srcid = sourceid.ToCharArray();
+            char[] sports = new char[] { Convert.ToChar(sportsum) };
+            char[] bgcolor = new char[] { Convert.ToChar(gridbckgclr) };
+            char[] fgcolor = new char[] { Convert.ToChar(gridforegclr) };
+            char[] brshid = brushid.ToCharArray();
+
+            list.AddRange(length);
+            list.AddRange(srcid);
+            list.AddRange(sports);
+            list.AddRange(bgcolor);
+            list.AddRange(fgcolor);
+            list.AddRange(brshid);
+
+            char[] body = list.ToArray();
+
+            /*
+
+            for (int counter = 0; counter < lineup.Rows.Count; counter++)
+            {
+                Calc c = new Calc();
+                int attr = c.CalculateBitmaskValue("1",
+                                                   lineup.Rows[counter]["RedHiLt"].ToString(),
+                                                   lineup.Rows[counter]["SBS"].ToString(),
+                                                   lineup.Rows[counter]["PTagDisable"].ToString(),
+                                                   lineup.Rows[counter]["PPVSrc"].ToString(),
+                                                   lineup.Rows[counter]["DittoEnable"].ToString(),
+                                                   lineup.Rows[counter]["LtBlueHiLt"].ToString(),
+                                                   lineup.Rows[counter]["StereoSrc"].ToString(), "1", "0");
+
+                list.AddRange(Convert.ToChar(18).ToString());
+                list.AddRange(Convert.ToChar(attr).ToString());
+                list.AddRange(lineup.Rows[counter]["SourceID"].ToString());
+                list.AddRange(Convert.ToChar(17).ToString());
+                list.AddRange(lineup.Rows[counter]["Number"].ToString());
+                list.AddRange(Convert.ToChar(20).ToString());
+                list.AddRange(Convert.ToChar(lineup.Rows[counter]["Daypt1"]).ToString());
+                list.AddRange(Convert.ToChar(lineup.Rows[counter]["Daypt2"]).ToString());
+                list.AddRange(Convert.ToChar(lineup.Rows[counter]["Daypt3"]).ToString());
+                list.AddRange(Convert.ToChar(lineup.Rows[counter]["Daypt4"]).ToString());
+                list.AddRange(Convert.ToChar(lineup.Rows[counter]["Daypt5"]).ToString());
+                list.AddRange(Convert.ToChar(lineup.Rows[counter]["Daypt6"]).ToString());
+                list.AddRange(Convert.ToChar(1).ToString());
+                list.AddRange(lineup.Rows[counter]["ID"].ToString());
+            }
+            char[] body = list.ToArray(); */
+            if (PrevueDataSender.Properties.Settings.Default.Port_Selected == 'T')
+            {
+                Network net = new Network();
+                net.TransmitNetworkMessage("chan attr", body);
+                return "Current day channel lineup sent over TCP/IP";
+            }
+            else if (PrevueDataSender.Properties.Settings.Default.Port_Selected == 'S')
+            {
+                Serial s = new Serial();
+                s.TransmitMessage(port, "chan attr", body);
+                return "Current day channel lineup sent over serial port";
+            }
+            else
+            {
+                return "Error with Port Selected Setting - check code";
+            }
+
+        }
+
+
     }
     
 

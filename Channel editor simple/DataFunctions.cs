@@ -18,6 +18,7 @@ using Calculator;
 using Weather;
 using FileIO;
 using System.Collections;
+using ColorSettings = PrevueDataSender.ListingColor;
 
 namespace DataFunctions
 {
@@ -349,6 +350,12 @@ namespace DataFunctions
             sportstitles.Add("2022 NCAA Men's Basketball Tournament");
             sportstitles.Add("World Poker Tour");
             sportstitles.Add("NFL's Greatest Games");
+            sportstitles.Add("Women's College Golf");
+            sportstitles.Add("Rodeo");
+            sportstitles.Add("Soccer");
+            sportstitles.Add("IndyCar Racing");
+            sportstitles.Add("Big3 Basketball");
+            sportstitles.Add("Swimming");
         }
 
     }
@@ -512,89 +519,44 @@ namespace DataFunctions
                 }
             }
         }
+
         public int GetCategoryValue(string category)
         {
-            if (category == "Movie") 
-            {
-                Calc c = new Calc();
-                BitArray bits = new BitArray(8);
-                bits[0] = true;
-                bits[1] = true;
-                bits[2] = true;
-                bits[3] = true;
-                bits[4] = false;
-                bits[5] = false;
-                bits[6] = false;
-                bits[7] = false;
+            BitArray bits = new BitArray(8); 
+            
+            bits[0] = true;     //"None - will always be true" ;
 
-                int valuetoreturn = c.ConvertToNumeral(bits);
-                return valuetoreturn;
-        
-            }
-            else if (category == "Sports") 
-            {
-                Calc c = new Calc();
-                BitArray bits = new BitArray(8);
-                bits[0] = true;
-                bits[1] = false;
-                bits[2] = true;
-                bits[3] = true;
-                bits[4] = true;
-                bits[5] = false;
-                bits[6] = false;
-                bits[7] = false;
+            if (category == "Movie" ) { bits[1] = true; /* Movie */ }
+            else { bits[1] = false; }
 
-                int valuetoreturn = c.ConvertToNumeral(bits);
-                return valuetoreturn;
-            }
-            else if (category == "Family") 
-            { 
-                Calc c = new Calc();
-                BitArray bits = new BitArray(8);
-                bits[0] = true;
-                bits[1] = false;
-                bits[2] = false;
-                bits[3] = true;
-                bits[4] = false;
-                bits[5] = false;
-                bits[6] = false;
-                bits[7] = false;
+            if (category == "Movie" && ColorSettings.Default.MovieRBSelected == 1) { bits[2] = true; /* AltHighltProg */ }
+            else if (category == "Sports" && ColorSettings.Default.SportsRBSelected == 1) { bits[2] = true; /* AltHighltProg */ }
+            else if (category == "Family" && ColorSettings.Default.FamilyRBSelected == 1) { bits[2] = true; /* AltHighltProg */ }
+            else if (category == "News" && ColorSettings.Default.NewsRBSelected == 1) { bits[2] = true; /* AltHighltProg */ }
+            else if (category != "Movie" && category != "Sports" && category != "Family" && category != "News" &&
+                    ColorSettings.Default.OtherRBSelected == 1) { bits[2] = true; /* AltHighltProg */ }
+            else { bits[2] = false; /* AltHighltProg */ }
 
-                int valuetoreturn = c.ConvertToNumeral(bits);
-                return valuetoreturn;
-            }
-            else if (category == "News") 
-            { 
-                Calc c = new Calc();
-                BitArray bits = new BitArray(8);
-                bits[0] = true;
-                bits[1] = false;
-                bits[2] = false;
-                bits[3] = true;
-                bits[4] = false;
-                bits[5] = false;
-                bits[6] = false;
-                bits[7] = false;
 
-                int valuetoreturn = c.ConvertToNumeral(bits);
-                return valuetoreturn;
-            }
-            else 
-            {
-                Calc c = new Calc();
-                BitArray bits = new BitArray(8);
-                bits[0] = true;
-                bits[1] = false;
-                bits[2] = false;
-                bits[3] = false;
-                bits[4] = false;
-                bits[5] = false;
-                bits[6] = false;
-                bits[7] = false;
+            if (category == "Movie") { bits[3] = true; /* TagProg */ }
+            else if (category == "Sports") { bits[3] = true; /* TagProg */ }
+            else if (category == "Family") { bits[3] = true; /* TagProg */ }
+            else if (category == "News") { bits[3] = true; /* TagProg */ }
+            else { bits[3] = false; }
 
-                int valuetoreturn = c.ConvertToNumeral(bits);
-                return valuetoreturn;
-            }
+            if (category == "Sports") { bits[4] = true; /* SportsProg */ }
+            else { bits[4] = false; }
+
+            bits[5] = false;    //"DView Used - will always be false" ;
+
+            bits[6] = false;    //"Repeat Prog - will always be false" ;
+
+            bits[7] = false;    //"Prev Day Data - will always be false" ;
+
+            Calc c = new Calc();
+            int valuetoreturn = c.ConvertToNumeral(bits);
+            return valuetoreturn;
+            
         }
         public string ChildNodeValue(XElement parentNode, string ChildNode)
         {

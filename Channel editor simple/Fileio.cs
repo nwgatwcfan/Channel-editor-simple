@@ -320,9 +320,84 @@ public class Zap2ItXMLFile
                 MessageBox.Show("Cannot save listings data", "My Application", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
-    }
 
-    
+
+        public void WriteScrollMessagesFile(DataTable scrollmsgtable)
+        {
+            string scrollmsgfilename = PrevueDataSender.Properties.Settings.Default.FolderPath + @"\ScrollMsgs.txt";
+            try
+            {
+                if (File.Exists(scrollmsgfilename))
+                {
+                    StreamWriter scrollmsgfile = new StreamWriter(scrollmsgfilename);
+
+                    for (int i = 0; i < scrollmsgtable.Rows.Count; i++)
+                    {
+                        scrollmsgfile.WriteLine(scrollmsgtable.Rows[i]["SourceID"] + "\x00" +
+                                               scrollmsgtable.Rows[i]["Attr"] + "\x00" +
+                                               scrollmsgtable.Rows[i]["Message"]);
+
+                        //f.toolStripStatusLabel1.Text = "File Saving:" + listing.Rows.Count + " listings saved";
+                    }
+
+                    scrollmsgfile.Close();
+                    //f.toolStripStatusLabel1.Text = "File Save Completed: " + listing.Rows.Count + " listings saved";
+                }
+                else
+                {
+                    // Create the file.
+                    File.Create(scrollmsgfilename);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Cannot save listings data", "My Application", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+
+        }
+
+        public void ReadScrollMessagesFile(DataTable scrollmsgtable)
+        {
+            string scrollmsgfilename = PrevueDataSender.Properties.Settings.Default.FolderPath + @"\ScrollMsgs.txt";
+            string data;
+            try
+            {
+                if (File.Exists(scrollmsgfilename))
+                {
+                    StreamReader scrollmsgfile = new StreamReader(scrollmsgfilename);
+
+                    while ((data = scrollmsgfile.ReadLine()) != null)
+                    {
+                        char[] delimiterChars = { '\x00' };
+                        string text = data;
+                        string[] parseinfo = text.Split(delimiterChars);
+
+                        DataRow workRow;
+                        workRow = scrollmsgtable.NewRow();
+                        workRow["SourceID"] = parseinfo[0];
+                        workRow["Attr"] = Int32.Parse(parseinfo[1]);
+                        workRow["Message"] = parseinfo[2];
+                        scrollmsgtable.Rows.Add(workRow);
+
+                        //f.toolStripStatusLabel1.Text = "File Uploading" + listing.Rows.Count + " listings found";
+
+                    }
+
+                    scrollmsgfile.Close();
+                    //f.toolStripStatusLabel1.Text = "File Reading Completed: " + listing.Rows.Count + " listings found";
+                }
+                else
+                {
+                    // Create the file.
+                    File.Create(scrollmsgfilename);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Cannot save listings data", "My Application", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
+    }
 
     class QTableFile
     {

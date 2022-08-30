@@ -64,6 +64,7 @@ namespace ListingsBuilder
 
 
                 string progcategory = xml.ChildNodeValue(prog, "category");
+                
                 string progattr = xml.GetCategoryValue(xml.ChildNodeValue(prog, "category")).ToString();
 
                 string progsubtitle = xml.ChildNodeValue(prog, "sub-title");
@@ -138,12 +139,26 @@ namespace ListingsBuilder
             ListingsFile list = new ListingsFile();
             list.WriteListingsFile(table_to_update);
         }
+        public void UpdateScrollMsgEntries(DataTable table_to_update)
+        {
+            TableChange change = new TableChange();
+            change.UpdateRows(table_to_update);
+            ListingsFile list = new ListingsFile();
+            list.WriteScrollMessagesFile(table_to_update);
+        }
         public void MoveEntry(DataGridView dgv, DataTable table_to_update, string direction)
         {
             TableChange change = new TableChange();
             change.MoveRow(dgv, table_to_update, direction);
             ListingsFile list = new ListingsFile();
             list.WriteListingsFile(table_to_update);
+        }
+        public void MoveScrollMsgEntry(DataGridView dgv, DataTable table_to_update, string direction)
+        {
+            TableChange change = new TableChange();
+            change.MoveRow(dgv, table_to_update, direction);
+            ListingsFile list = new ListingsFile();
+            list.WriteScrollMessagesFile(table_to_update);
         }
         public void InsertEntry(DataGridView dgv, DataTable table_to_update, string direction)
         {
@@ -152,6 +167,13 @@ namespace ListingsBuilder
             ListingsFile list = new ListingsFile();
             list.WriteListingsFile(table_to_update);
         }
+        public void InsertScrollMsgEntry(DataGridView dgv, DataTable table_to_update, string direction)
+        {
+            TableChange change = new TableChange();
+            change.InsertRow(dgv, table_to_update, direction);
+            ListingsFile list = new ListingsFile();
+            list.WriteScrollMessagesFile(table_to_update);
+        }
         public void DeleteSelectedEntries(DataGridView dgv, DataTable table_to_update)
         {
             TableChange change = new TableChange();
@@ -159,11 +181,21 @@ namespace ListingsBuilder
             ListingsFile list = new ListingsFile();
             list.WriteListingsFile(table_to_update);
         }
+
+        public void DeleteSelectedScrollMsgEntries(DataGridView dgv, DataTable table_to_update)
+        {
+            TableChange change = new TableChange();
+            change.DeleteSelectedRows(dgv, table_to_update);
+            ListingsFile list = new ListingsFile();
+            list.WriteScrollMessagesFile(table_to_update);
+        }
+
         public void Import_Z2IData(DataGridView dgv, DataTable from_table, DataTable to_table)
         {
             TableChange change = new TableChange();
             change.ReplaceListingsRows(dgv, from_table, to_table);
         }
+
         public string SendListings(SerialPort port, DataGridView dgv, DataTable listings, int jdate)
         {
             string message;
@@ -225,6 +257,63 @@ namespace ListingsBuilder
                 return message;
             }
         }
+
+        public string SendScrollMessages(SerialPort port, DataGridView dgv, DataTable scrollmsgs, int jdate)
+        {
+            string message;
+
+            if (PrevueDataSender.Properties.Settings.Default.Port_Selected == 'T')
+            {
+                Network net = new Network();
+                net.TransmitNetworkMessage("box on", PrevueDataSender.Properties.Settings.Default.Select_Code.ToCharArray());
+
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    List<char> list = new List<char>();
+                    list.AddRange(Convert.ToChar(1).ToString());
+                    list.AddRange(Convert.ToChar(jdate).ToString());
+                    list.AddRange(scrollmsgs.Rows[row.Index]["SourceID"].ToString());
+                    list.AddRange(Convert.ToChar(18).ToString());
+                    list.AddRange(Convert.ToChar(scrollmsgs.Rows[row.Index]["Attr"]).ToString());
+                    list.AddRange(scrollmsgs.Rows[row.Index]["Message"].ToString());
+
+                    char[] body = list.ToArray();
+
+                    net.TransmitNetworkMessage("listing", body);
+                }
+
+                net.TransmitNetworkMessage("box off", empty);
+                message = "Selected messages have been sent via TCP/IP.";
+                return message;
+            }
+            else if (PrevueDataSender.Properties.Settings.Default.Port_Selected == 'S')
+            {
+                Serial s = new Serial();
+                s.TransmitMessage(port, "box on", PrevueDataSender.Properties.Settings.Default.Select_Code.ToCharArray());
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                        List<char> list = new List<char>();
+                        list.AddRange(Convert.ToChar(1).ToString());
+                        list.AddRange(Convert.ToChar(jdate).ToString());
+                        list.AddRange(scrollmsgs.Rows[row.Index]["SourceID"].ToString());
+                        list.AddRange(Convert.ToChar(18).ToString());
+                        list.AddRange(Convert.ToChar(scrollmsgs.Rows[row.Index]["Attr"]).ToString());
+                        list.AddRange(scrollmsgs.Rows[row.Index]["Message"].ToString());
+
+                        char[] body = list.ToArray();
+                        s.TransmitMessage(port, "listing", body);
+                }
+                s.TransmitMessage(port, "box off", empty);
+                message = "Selected listings have been sent via serial.";
+                return message;
+            }
+            else
+            {
+                message = "Error with Port Selected Setting - check code";
+                return message;
+            }
+        }
+
         public string SendSelectedListings(SerialPort port, DataGridView dgv, DataTable listings)
         {
             string message;
@@ -276,6 +365,59 @@ namespace ListingsBuilder
                 return message;
             }
         }
+
+        public string SendSelectedScrollMessages(SerialPort port, DataGridView dgv, DataTable listings)
+        {
+            string message;
+
+            if (PrevueDataSender.Properties.Settings.Default.Port_Selected == 'T')
+            {
+                Network net = new Network();
+                net.TransmitNetworkMessage("box on", PrevueDataSender.Properties.Settings.Default.Select_Code.ToCharArray());
+
+                foreach (DataGridViewRow row in dgv.SelectedRows)
+                {
+                    List<char> list = new List<char>();
+                    list.AddRange(Convert.ToChar(listings.Rows[row.Index]["Timeslot"]).ToString());
+                    list.AddRange(Convert.ToChar(listings.Rows[row.Index]["JulianDay"]).ToString());
+                    list.AddRange(listings.Rows[row.Index]["SourceID"].ToString());
+                    list.AddRange(Convert.ToChar(18).ToString());
+                    list.AddRange(Convert.ToChar(listings.Rows[row.Index]["Attr"]).ToString());
+                    list.AddRange(listings.Rows[row.Index]["Title"].ToString());
+                    char[] body = list.ToArray();
+                    net.TransmitNetworkMessage("listing", body);
+                }
+                net.TransmitNetworkMessage("box off", empty);
+                message = "Selected listings have been sent via TCP/IP.";
+                return message;
+            }
+            else if (PrevueDataSender.Properties.Settings.Default.Port_Selected == 'S')
+            {
+                Serial s = new Serial();
+                s.TransmitMessage(port, "box on", PrevueDataSender.Properties.Settings.Default.Select_Code.ToCharArray());
+                foreach (DataGridViewRow row in dgv.SelectedRows)
+                {
+                    List<char> list = new List<char>();
+                    list.AddRange(Convert.ToChar(listings.Rows[row.Index]["Timeslot"]).ToString());
+                    list.AddRange(Convert.ToChar(listings.Rows[row.Index]["JulianDay"]).ToString());
+                    list.AddRange(listings.Rows[row.Index]["SourceID"].ToString());
+                    list.AddRange(Convert.ToChar(18).ToString());
+                    list.AddRange(Convert.ToChar(listings.Rows[row.Index]["Attr"]).ToString());
+                    list.AddRange(listings.Rows[row.Index]["Title"].ToString());
+                    char[] body = list.ToArray();
+                    s.TransmitMessage(port, "listing", body);
+                }
+                s.TransmitMessage(port, "box off", empty);
+                message = "Selected listings have been sent via serial.";
+                return message;
+            }
+            else
+            {
+                message = "Error with Port Selected Setting - check code";
+                return message;
+            }
+        }
+
     }
     
 }

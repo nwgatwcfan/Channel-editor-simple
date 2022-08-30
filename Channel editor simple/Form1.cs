@@ -170,7 +170,7 @@ namespace PrevueDataSender
             Properties.Settings.Default.Save();
             Application.Exit();
         }
-
+        
         private void RunAtStartup()
         {
             UserDataFolder data = new UserDataFolder();
@@ -178,13 +178,22 @@ namespace PrevueDataSender
             {
                 data.Select_UserDataFolder(User_Settings.Default.FirstRun, folderBrowserDialog1);
                 UserSettings_InitializeTextFields();
+                ListingColorSettings_InitializeRadioButtons(ListingColor.Default.MovieRBSelected,
+                                                            radioButton1, radioButton2);
+                ListingColorSettings_InitializeRadioButtons(ListingColor.Default.SportsRBSelected,
+                                                            radioButton4, radioButton5);
+                ListingColorSettings_InitializeRadioButtons(ListingColor.Default.FamilyRBSelected,
+                                                            radioButton7, radioButton8);
+                ListingColorSettings_InitializeRadioButtons(ListingColor.Default.NewsRBSelected,
+                                                            radioButton10, radioButton11);
+                ListingColorSettings_InitializeRadioButtons(ListingColor.Default.OtherRBSelected,
+                                                            radioButton13, radioButton14);
                 ReadConfigurationFile();
                 LineupFile lineupfile = new LineupFile();
                 lineupfile.ReadLineupFile(LineupDataSet.Tables["Lineup"]);
                 ListingsFile list = new ListingsFile();
                 list.ReadListingsFile(ListingDataSet.Tables["Listings"]);
-                //WeatherFile wthr = new WeatherFile();
-                //wthr.ReadWeatherFile(WeatherDataSet.Tables["Weather"]);
+                list.ReadScrollMessagesFile(Scroll_Messages_DataSet.Tables["ScrollMessages"]);
                 QTableFile qtable = new QTableFile();
                 qtable.ReadQTableFile(QTableDataSet.Tables["QTable"]);
                 Bind_DataSources();
@@ -192,6 +201,7 @@ namespace PrevueDataSender
                 Lineup_FormatDataGridView();
                 Z2ILineup_FormatDataGridView();
                 Z2IListings_FormatDataGridView();
+                Scroll_Messages_FormatDataGridView();
                 QTable_FormatDataGridView();
             }
             else
@@ -199,13 +209,22 @@ namespace PrevueDataSender
                 SerialFile serial = new SerialFile();
                 serial.ClearSerialLogFile();
                 UserSettings_InitializeTextFields();
+                ListingColorSettings_InitializeRadioButtons(ListingColor.Default.MovieRBSelected,
+                                                            radioButton1, radioButton2);
+                ListingColorSettings_InitializeRadioButtons(ListingColor.Default.SportsRBSelected,
+                                                            radioButton4, radioButton5);
+                ListingColorSettings_InitializeRadioButtons(ListingColor.Default.FamilyRBSelected,
+                                                            radioButton7, radioButton8);
+                ListingColorSettings_InitializeRadioButtons(ListingColor.Default.NewsRBSelected,
+                                                            radioButton10, radioButton11);
+                ListingColorSettings_InitializeRadioButtons(ListingColor.Default.OtherRBSelected,
+                                                            radioButton13, radioButton14);
                 ReadConfigurationFile();
                 LineupFile lineupfile = new LineupFile();
                 lineupfile.ReadLineupFile(LineupDataSet.Tables["Lineup"]);
                 ListingsFile list = new ListingsFile();
                 list.ReadListingsFile(ListingDataSet.Tables["Listings"]);
-                //WeatherFile wthr = new WeatherFile();
-                //wthr.ReadWeatherFile(WeatherDataSet.Tables["Weather"]);
+                list.ReadScrollMessagesFile(Scroll_Messages_DataSet.Tables["ScrollMessages"]);
                 QTableFile qtable = new QTableFile();
                 qtable.ReadQTableFile(QTableDataSet.Tables["QTable"]);
                 Bind_DataSources();
@@ -213,6 +232,7 @@ namespace PrevueDataSender
                 Lineup_FormatDataGridView();
                 Z2ILineup_FormatDataGridView();
                 Z2IListings_FormatDataGridView();
+                Scroll_Messages_FormatDataGridView();
                 QTable_FormatDataGridView();
             }
         }
@@ -228,8 +248,8 @@ namespace PrevueDataSender
             { DataSource = ListingDataSet.Tables["Z2IListings"] };
             BindingSource Z2ILineup_BindSource = new BindingSource
             { DataSource = LineupDataSet.Tables["Z2ILineup"] };
-            //BindingSource Weather_BindSource = new BindingSource
-            //{ DataSource = WeatherDataSet.Tables["Weather"] };
+            BindingSource Scroll_Messages_BindSource = new BindingSource
+            { DataSource = Scroll_Messages_DataSet.Tables["ScrollMessages"] };
             BindingSource QTable_BindSource = new BindingSource
             { DataSource = QTableDataSet.Tables["QTable"] };
 
@@ -238,7 +258,7 @@ namespace PrevueDataSender
             Listings_DGV.DataSource = Listing_BindSource;
             Z2I_Lineup_DGV.DataSource = Z2ILineup_BindSource;
             Z2I_Listings_DGV.DataSource = Z2IListing_BindSource;
-            //dataGridView4.DataSource = Weather_BindSource;
+            Scroll_Messages_DGV.DataSource = Scroll_Messages_BindSource;
             QTable_DGV.DataSource = QTable_BindSource;
            
         }
@@ -350,13 +370,166 @@ namespace PrevueDataSender
             toolStripStatusLabel1.Text = listings.SendSelectedListings(serialPort1, Listings_DGV, ListingDataSet.Tables["Listings"]);
         }
 
+
+        /// <summary>
+        /// Listing Color Atrributes:
+        /// 
+        /// This section contains the code for selecting genre defined colors inside the scroll/grid.
+        /// Genre Information is based off of Zap2It's information.
+        /// Controls are found in Listing Setup tab
+        /// </summary>
+
+        private void ListingColorSettings_InitializeRadioButtons(int selection, RadioButton rb1, RadioButton rb2)
+        {
+            if (selection == 1)
+            {
+                rb1.Checked = false;
+                rb2.Checked = true;
+            }
+            else
+            {
+                rb1.Checked = true;
+                rb2.Checked = false;
+            }
+        }
+
+        private void Movie_Listing_Color_CheckedChanged(object sender, EventArgs e)
+        {
+            var radioButtons = groupBox1.Controls.OfType<RadioButton>().ToArray();
+            var selectedIndex = Array.IndexOf(radioButtons, radioButtons.Single(rb => rb.Checked));
+
+            ListingColor.Default.MovieRBSelected = selectedIndex;
+            ListingColor.Default.Save();
+        }
+
+        private void Sports_Listing_Color_CheckedChanged(object sender, EventArgs e)
+        {
+            var radioButtons = groupBox2.Controls.OfType<RadioButton>().ToArray();
+            var selectedIndex = Array.IndexOf(radioButtons, radioButtons.Single(rb => rb.Checked));
+
+            ListingColor.Default.SportsRBSelected = selectedIndex;
+            ListingColor.Default.Save();
+        }
+
+        private void Family_Listing_Color_CheckedChanged(object sender, EventArgs e)
+        {
+            var radioButtons = groupBox3.Controls.OfType<RadioButton>().ToArray();
+            var selectedIndex = Array.IndexOf(radioButtons, radioButtons.Single(rb => rb.Checked));
+
+            ListingColor.Default.FamilyRBSelected = selectedIndex;
+            ListingColor.Default.Save();
+        }
+
+        private void News_Listing_Color_CheckedChanged(object sender, EventArgs e)
+        {
+            var radioButtons = groupBox4.Controls.OfType<RadioButton>().ToArray();
+            var selectedIndex = Array.IndexOf(radioButtons, radioButtons.Single(rb => rb.Checked));
+
+            ListingColor.Default.NewsRBSelected = selectedIndex;
+            ListingColor.Default.Save();
+        }
+
+        private void Other_Listing_Color_CheckedChanged(object sender, EventArgs e)
+        {
+            var radioButtons = groupBox5.Controls.OfType<RadioButton>().ToArray();
+            var selectedIndex = Array.IndexOf(radioButtons, radioButtons.Single(rb => rb.Checked));
+
+            ListingColor.Default.OtherRBSelected = selectedIndex;
+            ListingColor.Default.Save();
+        }
+
+        /// <summary>
+        /// Scroll Messages in Listings:
+        /// 
+        /// This section contains the code for building and sending messages for display in the scroll/grid.
+        /// Must hit update button to save the settings in the DataGridView
+        /// Controls are found in Listing Setup tab
+        /// </summary>
+
+        private void Scroll_Messages_FormatDataGridView()
+        {
+            Scroll_Messages_DGV.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            foreach (DataGridViewColumn dc in Scroll_Messages_DGV.Columns)
+            {
+                dc.SortMode = DataGridViewColumnSortMode.NotSortable;
+                dc.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+            Scroll_Messages_DGV.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            Properties.View settings = Properties.View.Default;
+
+            Scroll_Messages_DGV.Columns[0].Width = settings.ListingsDGV_SourceID_ColWidth;
+            Scroll_Messages_DGV.Columns[1].Width = settings.ListingsDGV_Attribute_ColWidth;
+            Scroll_Messages_DGV.Columns[2].Width = settings.ListingsDGV_Title_ColWidth;
+        }
+
+        private void Scroll_Messages_DGV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCell item = Scroll_Messages_DGV.CurrentCell;
+
+            switch (item.ColumnIndex)
+            {
+                case 1: { Update_Attr_Entries(1, item); break; }
+                default: { break; }
+            }
+        }
+        private void Scroll_Messages_UpdateEntries_Click(object sender, EventArgs e)
+        {
+            ListingsBuild listings = new ListingsBuild();
+            listings.UpdateScrollMsgEntries(Scroll_Messages_DataSet.Tables["ScrollMessages"]);
+        }
+        private void Scroll_Messages_MoveEntryUp_Click(object sender, EventArgs e)
+        {
+            ListingsBuild listings = new ListingsBuild();
+            listings.MoveScrollMsgEntry(Scroll_Messages_DGV, Scroll_Messages_DataSet.Tables["ScrollMessages"], "up");
+        }
+        private void Scroll_Messages_MoveEntryDown_Click(object sender, EventArgs e)
+        {
+            ListingsBuild listings = new ListingsBuild();
+            listings.MoveScrollMsgEntry(Scroll_Messages_DGV, Scroll_Messages_DataSet.Tables["ScrollMessages"], "down");
+        }
+        private void Scroll_Messages_InsertEntryAbove_Click(object sender, EventArgs e)
+        {
+            ListingsBuild listings = new ListingsBuild();
+            listings.InsertScrollMsgEntry(Scroll_Messages_DGV, Scroll_Messages_DataSet.Tables["ScrollMessages"], "above");
+        }
+        private void Scroll_Messages_InsertEntryBelow_Click(object sender, EventArgs e)
+        {
+            ListingsBuild listings = new ListingsBuild();
+            listings.InsertScrollMsgEntry(Scroll_Messages_DGV, Scroll_Messages_DataSet.Tables["ScrollMessages"], "below");
+        }
+        private void Scroll_Messages_DeleteSelectedEntries_Click(object sender, EventArgs e)
+        {
+            ListingsBuild listings = new ListingsBuild();
+            listings.DeleteSelectedScrollMsgEntries(Scroll_Messages_DGV, Scroll_Messages_DataSet.Tables["ScrollMessages"]);
+        }
+
+        private void Scroll_Messages_SendCurrentDayEntries_Click(object sender, EventArgs e)
+        {
+            ListingsBuild listings = new ListingsBuild();
+            toolStripStatusLabel1.Text = listings.SendScrollMessages(serialPort1, Scroll_Messages_DGV, Scroll_Messages_DataSet.Tables["ScrollMessages"],
+                                         clock.CurrentPrevueDayOfYear);
+        }
+        private void Scroll_Messages_SendNextDayEntries_Click(object sender, EventArgs e)
+        {
+            ListingsBuild listings = new ListingsBuild();
+            toolStripStatusLabel1.Text = listings.SendScrollMessages(serialPort1, Scroll_Messages_DGV, Scroll_Messages_DataSet.Tables["ScrollMessages"],
+                                         clock.CurrentPrevueDayOfYear + 1);
+        }
+        private void Scroll_Messages_SendSelectedEntries_Click(object sender, EventArgs e)
+        {
+            ListingsBuild listings = new ListingsBuild();
+            toolStripStatusLabel1.Text = listings.SendSelectedScrollMessages(serialPort1, Scroll_Messages_DGV, Scroll_Messages_DataSet.Tables["ScrollMessages"]);
+        }
+
+
         /// <summary>
         /// Channel Lineup Tab:
         /// 
         /// This section contains the code for sending setup commands.
         /// The screen controls are located in the Commands Tab.
         /// </summary>
-        
+
         private void Lineup_FormatDataGridView()
         {
             Lineup_DGV.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -1480,69 +1653,16 @@ namespace PrevueDataSender
 
         }
 
-
-
-
-
-
-
-
         //Experimental Work
 
 
         private void Button26_Click(object sender, EventArgs e)
         {
-            int messagelength = 0;
-
-            string sourceid = "32046"; //textBox94.Text;
-            int telvue = 35; // Convert.ToInt16(textBox95.Text);
-            int sportsum = 44; // Convert.ToInt16(textBox96.Text);
-            int gridbckgclr = 255;  //Convert.ToInt16(textBox97.Text);
-            int gridforegclr = 255; // Convert.ToInt16(textBox98.Text);
-            string brushid = "DT"; // textBox99.Text;
-
-            char[] jdte = new char[] { Convert.ToChar(clock.CurrentPrevueDayOfYear) };
-            char[] srcid = sourceid.ToCharArray();
-            char[] flag2 = new char[] { Convert.ToChar(telvue) };
-            char[] sports = new char[] { Convert.ToChar(sportsum) };
-            char[] bgcolor = new char[] { Convert.ToChar(gridbckgclr) };
-            char[] fgcolor = new char[] { Convert.ToChar(gridforegclr) };
-            char[] brshid = brushid.ToCharArray();
-
-            List<char> list = new List<char>();
-            list.AddRange(jdte);
-            messagelength = 0;
-
-            list.AddRange(srcid);
-            list.AddRange(flag2);
-            list.AddRange(sports);
-            list.AddRange(bgcolor);
-            list.AddRange(fgcolor);
-            list.AddRange(brshid);
-
-            char[] body = list.ToArray();
-
-            if (User_Settings.Default.Port_Selected == 'T')
-            {
-                Network net = new Network();
-                net.TransmitNetworkMessage("box on", User_Settings.Default.Select_Code.ToCharArray());
-                net.TransmitNewLookNetworkMessage("chan attr", body);
-                net.TransmitNetworkMessage("box off", empty);
-                toolStripStatusLabel1.Text = "Channel Lineup Attributes sent via TCP/IP";
-            }
-            else if (User_Settings.Default.Port_Selected == 'S')
-            {
-                Serial s = new Serial();
-                s.TransmitMessage(serialPort1, "box on", User_Settings.Default.Select_Code.ToCharArray());
-                s.TransmitMessage(serialPort1, "chan attr", body);
-                s.TransmitMessage(serialPort1, "box off", empty);
-                toolStripStatusLabel1.Text = "Channel Lineup Attributes sent via serial port";
-
-            }
-            else
-            {
-                toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
-            }
+            Command cmd = new Command();
+            toolStripStatusLabel1.Text = cmd.Box_On(serialPort1);
+            LineupBuild lineup = new LineupBuild();
+            toolStripStatusLabel1.Text = lineup.SendLineupAttr(serialPort1, LineupDataSet.Tables["Lineup"], clock.CurrentPrevueDayOfYear);
+            toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
 
         private void BuildQTable_Click(object sender, EventArgs e)

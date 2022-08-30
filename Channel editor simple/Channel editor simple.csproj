@@ -69,6 +69,11 @@
     <Compile Include="Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListingColor.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ListingColor.settings</DependentUpon>
+    </Compile>
     <Compile Include="Networkio.cs" />
     <Compile Include="Form3.cs">
       <SubType>Form</SubType>
@@ -135,6 +140,10 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="ListingColor.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ListingColor.Designer.cs</LastGenOutput>
+    </None>
     <None Include="PrevueConfig.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>PrevueConfig.Designer.cs</LastGenOutput>

@@ -129,7 +129,7 @@ namespace NetworkIO
                 byte[] body = array.CharArrayToByteArrayFunction(messagebody);
 
                 messagelength = body.Length + 2;
-                MessageBox.Show("length ", messagelength.ToString(), MessageBoxButtons.OK);
+                //MessageBox.Show("length ", messagelength.ToString(), MessageBoxButtons.OK);
                 byte[] msglength = new byte[] { (byte)'\u0000', (byte)messagelength};
 
                 List<byte> list = new List<byte>();
