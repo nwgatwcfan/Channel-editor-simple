@@ -19,6 +19,7 @@ using Weather;
 using FileIO;
 using System.Collections;
 using ColorSettings = PrevueDataSender.ListingColor;
+using TextSettings = PrevueDataSender.ListingText;
 
 namespace DataFunctions
 {
@@ -451,42 +452,96 @@ namespace DataFunctions
             else { return progcc; }
         }
 
+        public string CaseSelect(string category, string title)
+        {
+            string formattedtitle;
+
+            if (category == "Movie" && TextSettings.Default.MovieTextCaseSelected == 1)
+            {
+                formattedtitle = title.ToUpper();
+                return formattedtitle;
+            }
+            else if (category == "Movie" && TextSettings.Default.MovieTextCaseSelected == 0)
+            {
+                formattedtitle = title;
+                return formattedtitle;
+            }
+            else if (TextSettings.Default.AllTextCaseSelected == 1)
+            {
+                formattedtitle = title.ToUpper();
+                return formattedtitle;
+            }
+            else
+            {
+                formattedtitle = title;
+                return formattedtitle;
+            }
+        }
+
+        public int ConvertDisplayLengthtoIntegerLength(string length)
+        {
+            string[] splitlength = length.Split('(', ':', ')');
+
+            int hours = Convert.ToInt16(splitlength[1]);
+            int minutes = Convert.ToInt16(splitlength[2]);
+
+            int totalminutes = (hours * 60) + minutes;
+
+            return totalminutes;
+        }
+
+        public string SportsSubtitleSelect(string title, string subtitle, string length)
+        {
+            int proglength = ConvertDisplayLengthtoIntegerLength(length);
+            string formattedtitle;
+
+            if (proglength > 30)
+            {
+                formattedtitle = title + ": " + subtitle;
+                return formattedtitle;
+            }
+            else
+            {
+                formattedtitle = title;
+                return formattedtitle;
+            }
+        }
         public string FormatTitle(string category, string starttime, string rating, string title, string year,
                                   string subtitle, string desc, string cc, string length)
         {
-            SportsListBuilder sports = new SportsListBuilder();
-            sports.BuildSportsTitleList();
-
-            string formattedtitle;
+            //SportsListBuilder sports = new SportsListBuilder();
+            //sports.BuildSportsTitleList();
+            string adjustedlisting;
 
             if (category == "Movie")
             {
                 if (starttime != "")
                 {
-                    formattedtitle = starttime + " \"" + title + "\" " + rating + " (" + year + ") " + desc + " " + cc + " " + length;
-                    return formattedtitle;
+                    adjustedlisting = starttime + " \"" + CaseSelect(category, title) + "\" " + rating + " (" + year + ") " + desc + " " + cc + " " + length;
+                    return adjustedlisting;
                 }
                 else
                 {
-                    formattedtitle = "\"" + title + "\" " + rating + " (" + year + ") " + desc + " " + cc + " " + length;
-                    return formattedtitle;
+                    adjustedlisting = "\"" + CaseSelect(category, title) + "\" " + rating + " (" + year + ") " + desc + " " + cc + " " + length;
+                    return adjustedlisting;
                 }
             }
-            else if (sports.sportstitles.Contains(title))
+            //else if (sports.sportstitles.Contains(title))
+            else if (category == "Sports")
             {
                 if (starttime != "")
                 {
                     string content = subtitle ?? "";
                     if (content != "")
                     {
-                        formattedtitle = starttime + " " + title + ": " + subtitle + " " + cc;
-                        return formattedtitle;
+                        adjustedlisting = starttime + " " + SportsSubtitleSelect(title, subtitle, length) + " " + cc;
+                        return adjustedlisting;
 
                     }
                     else
                     {
-                        formattedtitle = starttime + " " + title + " " + cc;
-                        return formattedtitle;
+                        adjustedlisting = starttime + " " + CaseSelect(category, title) + " " + cc;
+                        return adjustedlisting;
                     }
                 }
                 else
@@ -495,13 +550,13 @@ namespace DataFunctions
 
                     if (content != "")
                     {
-                        formattedtitle = title + ": " + subtitle + " " + cc;
-                        return formattedtitle;
+                        adjustedlisting = SportsSubtitleSelect(title, subtitle, length) + " " + cc;
+                        return adjustedlisting;
                     }
                     else
                     {
-                        formattedtitle = title + " " + cc;
-                        return formattedtitle;
+                        adjustedlisting = CaseSelect(category, title) + " " + cc;
+                        return adjustedlisting;
                     }
                 }
             }
@@ -509,15 +564,31 @@ namespace DataFunctions
             {
                 if (starttime != "")
                 {
-                    formattedtitle = starttime + " " + title + " " + rating + " " + cc;
-                    return formattedtitle;
+                    if (TextSettings.Default.DisplayTVRatings == 1) 
+                    {
+                        adjustedlisting = starttime + " " + CaseSelect(category, title) + " " + rating + " " + cc;
+                        return adjustedlisting; 
+                    }
+                    else
+                    {
+                        adjustedlisting = starttime + " " + CaseSelect(category, title) + " " + cc;
+                        return adjustedlisting;
+                    }
                 }
                 else
                 {
-                    formattedtitle = title + " " + rating + " " + cc;
-                    return formattedtitle;
+                    if (TextSettings.Default.DisplayTVRatings == 1)
+                    {
+                        adjustedlisting = CaseSelect(category, title) + " " + rating + " " + cc;
+                        return adjustedlisting;
+                    }
+                    else
+                    {
+                        adjustedlisting = CaseSelect(category, title) + " " + cc;
+                        return adjustedlisting;
+                    }
                 }
-            }
+            } 
         }
 
         public int GetCategoryValue(string category)

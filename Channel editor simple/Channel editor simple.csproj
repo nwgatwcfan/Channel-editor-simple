@@ -74,6 +74,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>ListingColor.settings</DependentUpon>
     </Compile>
+    <Compile Include="ListingText.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>ListingText.settings</DependentUpon>
+    </Compile>
     <Compile Include="Networkio.cs" />
     <Compile Include="Form3.cs">
       <SubType>Form</SubType>
@@ -143,6 +148,10 @@
     <None Include="ListingColor.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>ListingColor.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ListingText.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ListingText.Designer.cs</LastGenOutput>
     </None>
     <None Include="PrevueConfig.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -188,6 +188,13 @@ namespace PrevueDataSender
                                                             radioButton10, radioButton11);
                 ListingColorSettings_InitializeRadioButtons(ListingColor.Default.OtherRBSelected,
                                                             radioButton13, radioButton14);
+                ListingTextSetting_InitializeRadioButtons(ListingText.Default.MovieTextCaseSelected,
+                                                            radioButton3, radioButton6);
+                ListingTextSetting_InitializeRadioButtons(ListingText.Default.AllTextCaseSelected,
+                                                            radioButton9, radioButton12);
+                ListingTextSetting_InitializeRadioButtons(ListingText.Default.DisplayTVRatings,
+                                                            radioButton15, radioButton16);
+
                 ReadConfigurationFile();
                 LineupFile lineupfile = new LineupFile();
                 lineupfile.ReadLineupFile(LineupDataSet.Tables["Lineup"]);
@@ -219,6 +226,13 @@ namespace PrevueDataSender
                                                             radioButton10, radioButton11);
                 ListingColorSettings_InitializeRadioButtons(ListingColor.Default.OtherRBSelected,
                                                             radioButton13, radioButton14);
+                ListingTextSetting_InitializeRadioButtons(ListingText.Default.MovieTextCaseSelected,
+                                                            radioButton3, radioButton6);
+                ListingTextSetting_InitializeRadioButtons(ListingText.Default.AllTextCaseSelected,
+                                                            radioButton9, radioButton12);
+                ListingTextSetting_InitializeRadioButtons(ListingText.Default.DisplayTVRatings,
+                                                            radioButton15, radioButton16);
+
                 ReadConfigurationFile();
                 LineupFile lineupfile = new LineupFile();
                 lineupfile.ReadLineupFile(LineupDataSet.Tables["Lineup"]);
@@ -436,6 +450,57 @@ namespace PrevueDataSender
 
             ListingColor.Default.OtherRBSelected = selectedIndex;
             ListingColor.Default.Save();
+        }
+
+        /// <summary>
+        /// Listing Text Atrributes:
+        /// 
+        /// This section contains the code for selecting the case of the listings.
+        /// Default Setting is Mixed case, but can be changed to uppercase letters in early Prevue 
+        /// listings.
+        /// Genre Information is based off of Zap2It's information.
+        /// Controls are found in Listing Setup tab
+        /// </summary>
+
+        private void ListingTextSetting_InitializeRadioButtons(int selection, RadioButton rb1, RadioButton rb2)
+        {
+            if (selection == 1)
+            {
+                rb1.Checked = false;
+                rb2.Checked = true;
+            }
+            else
+            {
+                rb1.Checked = true;
+                rb2.Checked = false;
+            }
+        }
+
+        private void MovieTitleTextSetting_CheckedChanged(object sender, EventArgs e)
+        {
+            var radioButtons = groupBox6.Controls.OfType<RadioButton>().ToArray();
+            var selectedIndex = Array.IndexOf(radioButtons, radioButtons.Single(rb => rb.Checked));
+
+            ListingText.Default.MovieTextCaseSelected = selectedIndex;
+            ListingText.Default.Save();
+        }
+
+        private void AllListings_TextSetting_CheckedChanged(object sender, EventArgs e)
+        {
+            var radioButtons = groupBox7.Controls.OfType<RadioButton>().ToArray();
+            var selectedIndex = Array.IndexOf(radioButtons, radioButtons.Single(rb => rb.Checked));
+
+            ListingText.Default.AllTextCaseSelected = selectedIndex;
+            ListingText.Default.Save();
+        }
+
+        private void TVRatings_Setting_CheckedChanged(object sender, EventArgs e)
+        {
+            var radioButtons = groupBox8.Controls.OfType<RadioButton>().ToArray();
+            var selectedIndex = Array.IndexOf(radioButtons, radioButtons.Single(rb => rb.Checked));
+
+            ListingText.Default.DisplayTVRatings = selectedIndex;
+            ListingText.Default.Save();
         }
 
         /// <summary>
