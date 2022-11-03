@@ -276,90 +276,6 @@ namespace DataFunctions
             }
         }
     }
-    public class SportsListBuilder
-    {
-        public List<string> sportstitles = new List<string>();
-
-        public void BuildSportsTitleList()
-        {
-            sportstitles.Add("MLB Baseball");
-            sportstitles.Add("NFL Football");
-            sportstitles.Add("NBA Basketball");
-            sportstitles.Add("NHL Hockey");
-            sportstitles.Add("MLS Soccer");
-            sportstitles.Add("NWSL Soccer");
-            sportstitles.Add("WNBA Basketball");
-            sportstitles.Add("Tennis");
-            sportstitles.Add("Baseball");
-            sportstitles.Add("College Baseball");
-            sportstitles.Add("College Football");
-            sportstitles.Add("College Basketball");
-            sportstitles.Add("College Hockey");
-            sportstitles.Add("Women's College Soccer");
-            sportstitles.Add("Women's College Volleyball");
-            sportstitles.Add("Women's College Basketball");
-            sportstitles.Add("European PGA Tour Golf");
-            sportstitles.Add("Women's Golf");
-            sportstitles.Add("LPGA Tour Golf");
-            sportstitles.Add("PGA Tour Golf");
-            sportstitles.Add("PGA Tour Champions Golf");
-            sportstitles.Add("Horse Racing");
-            sportstitles.Add(@"ATP/WTA Tennis");
-            sportstitles.Add("FIFA World Cup 2022 Qualifying");
-            sportstitles.Add("Boxing");
-            sportstitles.Add("Formula 1 Racing");
-            sportstitles.Add("Figure Skating");
-            sportstitles.Add("IMSA Weathertech Sportscar Championship");
-            sportstitles.Add("High School Basketball");
-            sportstitles.Add("High School Football");
-            sportstitles.Add("Center Court");
-            sportstitles.Add("Fight Sports: Boxing");
-            sportstitles.Add("Boat Racing");
-            sportstitles.Add("Major League Fishing");
-            sportstitles.Add("Lucas Oil Motorsports");
-            sportstitles.Add("FIFA Eliminatorias Copa Mundial 2022");
-            sportstitles.Add("Béisbol Liga Mexicana");
-            sportstitles.Add("Fútbol Americano Colegial de México");
-            sportstitles.Add("FIS Alpine Skiing");
-            sportstitles.Add("Premier League Soccer");
-            sportstitles.Add("2022 Winter Olympics");
-            sportstitles.Add("2022 NCAA Women's Basketball Tournament");
-            sportstitles.Add("2022 NIT Basketball Tournament");
-            sportstitles.Add("Women's College Hockey");
-            sportstitles.Add("Snowmobile Racing");
-            sportstitles.Add("PBR Bull Riding");
-            sportstitles.Add("College Gymnastics");
-            sportstitles.Add("Women's College Gymnastics");
-            sportstitles.Add("PBA Bowling");
-            sportstitles.Add("NASCAR Camping World Truck Series");
-            sportstitles.Add("NASCAR Xfinity Racing Series");
-            sportstitles.Add("NASCAR Cup Series");
-            sportstitles.Add("Motorcycle Racing");
-            sportstitles.Add("Major League Rugby");
-            sportstitles.Add("Athletes Unlimited Volleyball");
-            sportstitles.Add("Athletes Unlimited Basketball");
-            sportstitles.Add("Tennis Classics");
-            sportstitles.Add("Ladies Euro Tour Golf");
-            sportstitles.Add("ATP Tennis");
-            sportstitles.Add("WTA Tennis");
-            sportstitles.Add("College Softball");
-            sportstitles.Add("Women's College Lacrosse");
-            sportstitles.Add("College Swimming");
-            sportstitles.Add("2022 World Women's Curling Championship");
-            sportstitles.Add("Track and Field");
-            sportstitles.Add("Mexico Primera Division Soccer");
-            sportstitles.Add("2022 NCAA Men's Basketball Tournament");
-            sportstitles.Add("World Poker Tour");
-            sportstitles.Add("NFL's Greatest Games");
-            sportstitles.Add("Women's College Golf");
-            sportstitles.Add("Rodeo");
-            sportstitles.Add("Soccer");
-            sportstitles.Add("IndyCar Racing");
-            sportstitles.Add("Big3 Basketball");
-            sportstitles.Add("Swimming");
-        }
-
-    }
 
     public class ConvertArray
     {
@@ -495,9 +411,19 @@ namespace DataFunctions
             int proglength = ConvertDisplayLengthtoIntegerLength(length);
             string formattedtitle;
 
-            if (proglength > 30)
+            if (proglength > 30 && TextSettings.Default.AllTextCaseSelected == 1)
+            {
+                formattedtitle = title.ToUpper() + ": " + subtitle.ToUpper();
+                return formattedtitle;
+            }
+            else if (proglength > 30 && TextSettings.Default.AllTextCaseSelected == 0)
             {
                 formattedtitle = title + ": " + subtitle;
+                return formattedtitle;
+            }
+            else if (TextSettings.Default.AllTextCaseSelected == 1)
+            {
+                formattedtitle = title.ToUpper();
                 return formattedtitle;
             }
             else
