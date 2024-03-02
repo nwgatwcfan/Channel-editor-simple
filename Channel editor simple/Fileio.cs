@@ -25,8 +25,8 @@ namespace FileIO
     {
         public void Select_UserDataFolder(bool firstrun, FolderBrowserDialog folderselect)
         {
-            if(firstrun == true)
-            { 
+            if (firstrun == true)
+            {
                 DialogResult result = folderselect.ShowDialog();
                 if (result == DialogResult.OK)
                 {
@@ -42,7 +42,7 @@ namespace FileIO
                     System.Windows.Forms.Application.Exit();
                 }
             }
-            else 
+            else
             {
                 DialogResult result = folderselect.ShowDialog();
                 if (result == DialogResult.OK)
@@ -54,11 +54,11 @@ namespace FileIO
                     PrevueDataSender.Properties.Settings.Default.Save();
                     MessageBox.Show("Selected folder:" + PrevueDataSender.Properties.Settings.Default.FolderPath, "Message");
                 }
-                else{ }
+                else { }
             }
         }
     }
-    class SerialFile 
+    class SerialFile
     {
         public void WriteSerialLogFile(byte[] array)
         {
@@ -109,8 +109,8 @@ namespace FileIO
                 MessageBox.Show(ex.ToString());
             }
         }
-}
-public class Zap2ItXMLFile
+    }
+    public class Zap2ItXMLFile
     {
         public void DownloadZap2ItXMLInfo()
         {
@@ -119,12 +119,12 @@ public class Zap2ItXMLFile
             /// This uses a Process to open the program up and the data for the username,
             /// password, and number of days to pull are User defined settings and stored in the
             /// Properties.Settings.Default
-            
+
             string folderpath = PrevueDataSender.Properties.Settings.Default.FolderPath;
             string numofdays = PrevueDataSender.Properties.Settings.Default.DlNumberOfDays;
             string username = @PrevueDataSender.Properties.Settings.Default.DlUsername;
             string password = @PrevueDataSender.Properties.Settings.Default.DlPassword;
-                
+
             Process OpenZap2XMLProgram = new Process();
             //PrevueDataSender.Form1.toolStripStatusLabel1.Text = "Zap2Xml Information downloading. Please wait...";
             OpenZap2XMLProgram.StartInfo.FileName = folderpath + @"\zap2xml.exe";
@@ -140,7 +140,7 @@ public class Zap2ItXMLFile
 
     }
 
-    class LineupFile 
+    class LineupFile
     {
         public void ReadLineupFile(DataTable lineup)
         {
@@ -470,4 +470,91 @@ public class Zap2ItXMLFile
 
     }
 
+    class LocalAdsFile
+    {
+        public void WriteLocalAdsFile(DataTable localads)
+        {
+            string localadsfilename = PrevueDataSender.Properties.Settings.Default.FolderPath + @"\LocalAds.txt";
+            try
+            {
+                if (File.Exists(localadsfilename))
+                {
+                    StreamWriter localadsfile = new StreamWriter(localadsfilename);
+
+                    for (int i = 0; i < localads.Rows.Count; i++)
+                    {
+                        localadsfile.WriteLine(localads.Rows[i]["AdNumber"] + "\x00" +
+                                               localads.Rows[i]["LineNumber"] + "\x00" +
+                                               localads.Rows[i]["LineActive"] + "\x00" +
+                                               localads.Rows[i]["LineLeft"] + "\x00" +
+                                               localads.Rows[i]["LineCenter"] + "\x00" +
+                                               localads.Rows[i]["LineRight"] + "\x00" +
+                                               localads.Rows[i]["LineMessage"]);
+
+                        //f.toolStripStatusLabel1.Text = "File Saving:" + listing.Rows.Count + " listings saved";
+                    }
+
+                    localadsfile.Close();
+                    //f.toolStripStatusLabel1.Text = "File Save Completed: " + listing.Rows.Count + " listings saved";
+                }
+                else
+                {
+                    // Create the file.
+                    File.Create(localadsfilename);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Cannot save local ads data", "My Application", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+
+        }
+
+        public void ReadLocalAdsFile(DataTable localads)
+        {
+            string localadsfilename = PrevueDataSender.Properties.Settings.Default.FolderPath + @"\LocalAds.txt";
+            string data;
+            try
+            {
+                if (File.Exists(localadsfilename))
+                {
+                    StreamReader localadsfile = new StreamReader(localadsfilename);
+
+                    while ((data = localadsfile.ReadLine()) != null)
+                    {
+                        char[] delimiterChars = { '\x00' };
+                        string text = data;
+                        string[] parseinfo = text.Split(delimiterChars);
+
+                        DataRow workRow;
+                        workRow = localads.NewRow();
+                        workRow["AdNumber"] = Int32.Parse(parseinfo[0]);
+                        workRow["LineNumber"] = Int32.Parse(parseinfo[1]);
+                        workRow["LineActive"] = Int32.Parse(parseinfo[2]);
+                        workRow["LineLeft"] = Int32.Parse(parseinfo[3]);
+                        workRow["LineCenter"] = Int32.Parse(parseinfo[4]);
+                        workRow["LineRight"] = Int32.Parse(parseinfo[5]);
+                        workRow["LineMessage"] = parseinfo[6];
+                        localads.Rows.Add(workRow);
+
+                        //f.toolStripStatusLabel1.Text = "File Uploading" + listing.Rows.Count + " listings found";
+
+                    }
+
+                    localadsfile.Close();
+                    //f.toolStripStatusLabel1.Text = "File Reading Completed: " + listing.Rows.Count + " listings found";
+                }
+                else
+                {
+                    // Create the file.
+                    File.Create(localadsfilename);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Cannot save local ads data", "My Application", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
+
+    }
 }

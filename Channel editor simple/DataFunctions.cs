@@ -258,6 +258,9 @@ namespace DataFunctions
                 case "bottom line":
                     modeselected = new char[] { 'B' };
                     return modeselected;
+                case "local ad":
+                    modeselected = new char[] { 'L' };
+                    return modeselected;
                 case "config":
                     modeselected = new char[] { 'F' };
                     return modeselected;

@@ -82,6 +82,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>ListingText.settings</DependentUpon>
     </Compile>
+    <Compile Include="LocalAds.cs" />
     <Compile Include="Networkio.cs" />
     <Compile Include="Form3.cs">
       <SubType>Form</SubType>

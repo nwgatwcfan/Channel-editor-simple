@@ -194,27 +194,21 @@ namespace LineupBuilder
             list.AddRange(Convert.ToChar(jdate).ToString());
 
             string sourceid = "11829"; //textBox94.Text;
-            //int telvue = 35; // Convert.ToInt16(textBox95.Text);
-            int sportsum = 255; // Convert.ToInt16(textBox96.Text);
+            char telvue = 'Y'; // Convert.ToInt16(textBox95.Text);
+            char sportsum = 'Y'; // Convert.ToInt16(textBox96.Text);
             int gridbckgclr = 100;  //Convert.ToInt16(textBox97.Text);
             int gridforegclr = 100; // Convert.ToInt16(textBox98.Text);
             string brushid = "00"; // textBox99.Text;
 
             char[] length = new char[] { Convert.ToChar(10) };
-            
-
-
-            char[] srcid = sourceid.ToCharArray();
-            char[] sports = new char[] { Convert.ToChar(sportsum) };
-            char[] bgcolor = new char[] { Convert.ToChar(gridbckgclr) };
-            char[] fgcolor = new char[] { Convert.ToChar(gridforegclr) };
             char[] brshid = brushid.ToCharArray();
 
             list.AddRange(length);
-            list.AddRange(srcid);
-            list.AddRange(sports);
-            list.AddRange(bgcolor);
-            list.AddRange(fgcolor);
+            list.AddRange(sourceid.ToCharArray());
+            list.AddRange(Convert.ToChar(telvue).ToString());
+            list.AddRange(Convert.ToChar(sportsum).ToString());
+            list.AddRange(Convert.ToChar(gridbckgclr).ToString());
+            list.AddRange(Convert.ToChar(gridforegclr).ToString());
             list.AddRange(brshid);
 
             char[] body = list.ToArray();

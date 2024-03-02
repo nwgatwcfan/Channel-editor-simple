@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.CurDateTime = new System.Windows.Forms.Label();
             this.CurrentDayofYear = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -439,6 +439,16 @@
             this.TimeSlotLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.radioButton15 = new System.Windows.Forms.RadioButton();
+            this.radioButton16 = new System.Windows.Forms.RadioButton();
+            this.label14 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.radioButton12 = new System.Windows.Forms.RadioButton();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.label13 = new System.Windows.Forms.Label();
             this.button18 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
@@ -467,21 +477,98 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label19 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.LADViewButton = new System.Windows.Forms.Button();
+            this.LADNumberTextBox = new System.Windows.Forms.TextBox();
+            this.LADLn8Label = new System.Windows.Forms.Label();
+            this.LADLn7Label = new System.Windows.Forms.Label();
+            this.LADLn6Label = new System.Windows.Forms.Label();
+            this.LADLn5Label = new System.Windows.Forms.Label();
+            this.LADLn4Label = new System.Windows.Forms.Label();
+            this.LADLn3Label = new System.Windows.Forms.Label();
+            this.LADLn2Label = new System.Windows.Forms.Label();
+            this.LADLn1Label = new System.Windows.Forms.Label();
+            this.LADLine8 = new System.Windows.Forms.GroupBox();
+            this.LADLn8Active = new System.Windows.Forms.CheckBox();
+            this.LADLn8Left = new System.Windows.Forms.RadioButton();
+            this.LADLn8Center = new System.Windows.Forms.RadioButton();
+            this.LADLn8Right = new System.Windows.Forms.RadioButton();
+            this.LADLn8Msg = new System.Windows.Forms.TextBox();
+            this.LADLine7 = new System.Windows.Forms.GroupBox();
+            this.LADLn7Active = new System.Windows.Forms.CheckBox();
+            this.LADLn7Left = new System.Windows.Forms.RadioButton();
+            this.LADLn7Center = new System.Windows.Forms.RadioButton();
+            this.LADLn7Right = new System.Windows.Forms.RadioButton();
+            this.LADLn7Msg = new System.Windows.Forms.TextBox();
+            this.LADLine6 = new System.Windows.Forms.GroupBox();
+            this.LADLn6Active = new System.Windows.Forms.CheckBox();
+            this.LADLn6Left = new System.Windows.Forms.RadioButton();
+            this.LADLn6Center = new System.Windows.Forms.RadioButton();
+            this.LADLn6Right = new System.Windows.Forms.RadioButton();
+            this.LADLn6Msg = new System.Windows.Forms.TextBox();
+            this.LADLine2 = new System.Windows.Forms.GroupBox();
+            this.LADLn2Active = new System.Windows.Forms.CheckBox();
+            this.LADLn2Left = new System.Windows.Forms.RadioButton();
+            this.LADLn2Center = new System.Windows.Forms.RadioButton();
+            this.LADLn2Right = new System.Windows.Forms.RadioButton();
+            this.LADLn2Msg = new System.Windows.Forms.TextBox();
+            this.LADLine5 = new System.Windows.Forms.GroupBox();
+            this.LADLn5Active = new System.Windows.Forms.CheckBox();
+            this.LADLn5Left = new System.Windows.Forms.RadioButton();
+            this.LADLn5Center = new System.Windows.Forms.RadioButton();
+            this.LADLn5Right = new System.Windows.Forms.RadioButton();
+            this.LADLn5Msg = new System.Windows.Forms.TextBox();
+            this.LADLine4 = new System.Windows.Forms.GroupBox();
+            this.LADLn4Active = new System.Windows.Forms.CheckBox();
+            this.LADLn4Left = new System.Windows.Forms.RadioButton();
+            this.LADLn4Center = new System.Windows.Forms.RadioButton();
+            this.LADLn4Right = new System.Windows.Forms.RadioButton();
+            this.LADLn4Msg = new System.Windows.Forms.TextBox();
+            this.LADLine3 = new System.Windows.Forms.GroupBox();
+            this.LADLn3Active = new System.Windows.Forms.CheckBox();
+            this.LADLn3Left = new System.Windows.Forms.RadioButton();
+            this.LADLn3Center = new System.Windows.Forms.RadioButton();
+            this.LADLn3Right = new System.Windows.Forms.RadioButton();
+            this.LADLn3Msg = new System.Windows.Forms.TextBox();
+            this.LADLine1 = new System.Windows.Forms.GroupBox();
+            this.LADLn1Active = new System.Windows.Forms.CheckBox();
+            this.LADLn1Left = new System.Windows.Forms.RadioButton();
+            this.LADLn1Center = new System.Windows.Forms.RadioButton();
+            this.LADLn1Right = new System.Windows.Forms.RadioButton();
+            this.LADLn1Msg = new System.Windows.Forms.TextBox();
+            this.button33 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.textBox100 = new System.Windows.Forms.TextBox();
+            this.textBox92 = new System.Windows.Forms.TextBox();
+            this.textBox88 = new System.Windows.Forms.TextBox();
+            this.textBox87 = new System.Windows.Forms.TextBox();
+            this.textBox81 = new System.Windows.Forms.TextBox();
+            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.button19 = new System.Windows.Forms.Button();
+            this.textBox101 = new System.Windows.Forms.TextBox();
             this.Scroll_Messages_DataSet = new System.Data.DataSet();
             this.ScrollMessages = new System.Data.DataTable();
             this.dataColumn9 = new System.Data.DataColumn();
             this.dataColumn16 = new System.Data.DataColumn();
             this.dataColumn17 = new System.Data.DataColumn();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
-            this.radioButton12 = new System.Windows.Forms.RadioButton();
-            this.label14 = new System.Windows.Forms.Label();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.radioButton15 = new System.Windows.Forms.RadioButton();
-            this.radioButton16 = new System.Windows.Forms.RadioButton();
+            this.LocalAdsDataSet = new System.Data.DataSet();
+            this.LocalAds = new System.Data.DataTable();
+            this.AdNumber = new System.Data.DataColumn();
+            this.LineNumber = new System.Data.DataColumn();
+            this.LineActive = new System.Data.DataColumn();
+            this.LineLeft = new System.Data.DataColumn();
+            this.LineCenter = new System.Data.DataColumn();
+            this.LineRight = new System.Data.DataColumn();
+            this.LineMessage = new System.Data.DataColumn();
+            this.button34 = new System.Windows.Forms.Button();
+            this.button35 = new System.Windows.Forms.Button();
+            this.button37 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.SelectedAd = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.LineupRtClickMenu.SuspendLayout();
@@ -513,17 +600,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.Listings_DGV)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Scroll_Messages_DGV)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.LADLine8.SuspendLayout();
+            this.LADLine7.SuspendLayout();
+            this.LADLine6.SuspendLayout();
+            this.LADLine2.SuspendLayout();
+            this.LADLine5.SuspendLayout();
+            this.LADLine4.SuspendLayout();
+            this.LADLine3.SuspendLayout();
+            this.LADLine1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Scroll_Messages_DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScrollMessages)).BeginInit();
-            this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalAdsDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalAds)).BeginInit();
             this.SuspendLayout();
             // 
             // CurDateTime
@@ -3959,8 +4058,8 @@
             this.Z2I_Listings_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Z2I_Listings_DGV.Location = new System.Drawing.Point(8, 158);
             this.Z2I_Listings_DGV.Name = "Z2I_Listings_DGV";
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Z2I_Listings_DGV.RowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Z2I_Listings_DGV.RowsDefaultCellStyle = dataGridViewCellStyle22;
             this.Z2I_Listings_DGV.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Z2I_Listings_DGV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Z2I_Listings_DGV.Size = new System.Drawing.Size(919, 341);
@@ -4410,6 +4509,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(0, 49);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -4446,6 +4546,120 @@
             this.tabPage3.TabIndex = 10;
             this.tabPage3.Text = "Listing Setup";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.radioButton15);
+            this.groupBox8.Controls.Add(this.radioButton16);
+            this.groupBox8.Location = new System.Drawing.Point(773, 31);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(75, 82);
+            this.groupBox8.TabIndex = 66;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "TV Ratings";
+            // 
+            // radioButton15
+            // 
+            this.radioButton15.AutoSize = true;
+            this.radioButton15.Location = new System.Drawing.Point(6, 19);
+            this.radioButton15.Name = "radioButton15";
+            this.radioButton15.Size = new System.Drawing.Size(39, 17);
+            this.radioButton15.TabIndex = 20;
+            this.radioButton15.TabStop = true;
+            this.radioButton15.Text = "Off";
+            this.radioButton15.UseVisualStyleBackColor = true;
+            this.radioButton15.CheckedChanged += new System.EventHandler(this.TVRatings_Setting_CheckedChanged);
+            // 
+            // radioButton16
+            // 
+            this.radioButton16.AutoSize = true;
+            this.radioButton16.Location = new System.Drawing.Point(6, 55);
+            this.radioButton16.Name = "radioButton16";
+            this.radioButton16.Size = new System.Drawing.Size(39, 17);
+            this.radioButton16.TabIndex = 19;
+            this.radioButton16.TabStop = true;
+            this.radioButton16.Text = "On";
+            this.radioButton16.UseVisualStyleBackColor = true;
+            this.radioButton16.CheckedChanged += new System.EventHandler(this.TVRatings_Setting_CheckedChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(593, 12);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(88, 13);
+            this.label14.TabIndex = 65;
+            this.label14.Text = "Listing Text Case";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.radioButton9);
+            this.groupBox7.Controls.Add(this.radioButton12);
+            this.groupBox7.Location = new System.Drawing.Point(623, 31);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(115, 82);
+            this.groupBox7.TabIndex = 64;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "All Listings";
+            // 
+            // radioButton9
+            // 
+            this.radioButton9.AutoSize = true;
+            this.radioButton9.Location = new System.Drawing.Point(6, 19);
+            this.radioButton9.Name = "radioButton9";
+            this.radioButton9.Size = new System.Drawing.Size(80, 17);
+            this.radioButton9.TabIndex = 20;
+            this.radioButton9.TabStop = true;
+            this.radioButton9.Text = "Mixed Case";
+            this.radioButton9.UseVisualStyleBackColor = true;
+            this.radioButton9.CheckedChanged += new System.EventHandler(this.AllListings_TextSetting_CheckedChanged);
+            // 
+            // radioButton12
+            // 
+            this.radioButton12.AutoSize = true;
+            this.radioButton12.Location = new System.Drawing.Point(6, 55);
+            this.radioButton12.Name = "radioButton12";
+            this.radioButton12.Size = new System.Drawing.Size(107, 17);
+            this.radioButton12.TabIndex = 19;
+            this.radioButton12.TabStop = true;
+            this.radioButton12.Text = "Force Uppercase";
+            this.radioButton12.UseVisualStyleBackColor = true;
+            this.radioButton12.CheckedChanged += new System.EventHandler(this.AllListings_TextSetting_CheckedChanged);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.radioButton3);
+            this.groupBox6.Controls.Add(this.radioButton6);
+            this.groupBox6.Location = new System.Drawing.Point(502, 31);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(115, 82);
+            this.groupBox6.TabIndex = 63;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Movie";
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(6, 19);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(80, 17);
+            this.radioButton3.TabIndex = 20;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Mixed Case";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.MovieTitleTextSetting_CheckedChanged);
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Location = new System.Drawing.Point(6, 55);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(107, 17);
+            this.radioButton6.TabIndex = 19;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Force Uppercase";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButton6.CheckedChanged += new System.EventHandler(this.MovieTitleTextSetting_CheckedChanged);
             // 
             // label13
             // 
@@ -4556,21 +4770,21 @@
             this.Scroll_Messages_DGV.AllowUserToAddRows = false;
             this.Scroll_Messages_DGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.Scroll_Messages_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Scroll_Messages_DGV.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Scroll_Messages_DGV.DefaultCellStyle = dataGridViewCellStyle23;
             this.Scroll_Messages_DGV.Location = new System.Drawing.Point(66, 139);
             this.Scroll_Messages_DGV.Margin = new System.Windows.Forms.Padding(2);
             this.Scroll_Messages_DGV.Name = "Scroll_Messages_DGV";
             this.Scroll_Messages_DGV.RowHeadersWidth = 51;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Scroll_Messages_DGV.RowsDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Scroll_Messages_DGV.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.Scroll_Messages_DGV.RowTemplate.Height = 24;
             this.Scroll_Messages_DGV.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Scroll_Messages_DGV.Size = new System.Drawing.Size(782, 299);
@@ -4764,13 +4978,775 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.SelectedAd);
+            this.tabPage4.Controls.Add(this.label15);
+            this.tabPage4.Controls.Add(this.button37);
+            this.tabPage4.Controls.Add(this.button35);
+            this.tabPage4.Controls.Add(this.button34);
+            this.tabPage4.Controls.Add(this.LADViewButton);
+            this.tabPage4.Controls.Add(this.LADNumberTextBox);
+            this.tabPage4.Controls.Add(this.LADLn8Label);
+            this.tabPage4.Controls.Add(this.LADLn7Label);
+            this.tabPage4.Controls.Add(this.LADLn6Label);
+            this.tabPage4.Controls.Add(this.LADLn5Label);
+            this.tabPage4.Controls.Add(this.LADLn4Label);
+            this.tabPage4.Controls.Add(this.LADLn3Label);
+            this.tabPage4.Controls.Add(this.LADLn2Label);
+            this.tabPage4.Controls.Add(this.LADLn1Label);
+            this.tabPage4.Controls.Add(this.LADLine8);
+            this.tabPage4.Controls.Add(this.LADLine7);
+            this.tabPage4.Controls.Add(this.LADLine6);
+            this.tabPage4.Controls.Add(this.LADLine2);
+            this.tabPage4.Controls.Add(this.LADLine5);
+            this.tabPage4.Controls.Add(this.LADLine4);
+            this.tabPage4.Controls.Add(this.LADLine3);
+            this.tabPage4.Controls.Add(this.LADLine1);
+            this.tabPage4.Controls.Add(this.button33);
+            this.tabPage4.Controls.Add(this.button27);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(935, 504);
             this.tabPage4.TabIndex = 11;
-            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.Text = "Ads";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // LADViewButton
+            // 
+            this.LADViewButton.Location = new System.Drawing.Point(178, 348);
+            this.LADViewButton.Name = "LADViewButton";
+            this.LADViewButton.Size = new System.Drawing.Size(102, 31);
+            this.LADViewButton.TabIndex = 42;
+            this.LADViewButton.Text = "View";
+            this.LADViewButton.UseVisualStyleBackColor = true;
+            this.LADViewButton.Click += new System.EventHandler(this.LADViewButton_Click);
+            // 
+            // LADNumberTextBox
+            // 
+            this.LADNumberTextBox.Location = new System.Drawing.Point(123, 354);
+            this.LADNumberTextBox.Name = "LADNumberTextBox";
+            this.LADNumberTextBox.Size = new System.Drawing.Size(46, 20);
+            this.LADNumberTextBox.TabIndex = 41;
+            // 
+            // LADLn8Label
+            // 
+            this.LADLn8Label.AutoSize = true;
+            this.LADLn8Label.Location = new System.Drawing.Point(56, 279);
+            this.LADLn8Label.Name = "LADLn8Label";
+            this.LADLn8Label.Size = new System.Drawing.Size(36, 13);
+            this.LADLn8Label.TabIndex = 40;
+            this.LADLn8Label.Text = "Line 8";
+            // 
+            // LADLn7Label
+            // 
+            this.LADLn7Label.AutoSize = true;
+            this.LADLn7Label.Location = new System.Drawing.Point(56, 246);
+            this.LADLn7Label.Name = "LADLn7Label";
+            this.LADLn7Label.Size = new System.Drawing.Size(36, 13);
+            this.LADLn7Label.TabIndex = 39;
+            this.LADLn7Label.Text = "Line 7";
+            // 
+            // LADLn6Label
+            // 
+            this.LADLn6Label.AutoSize = true;
+            this.LADLn6Label.Location = new System.Drawing.Point(56, 207);
+            this.LADLn6Label.Name = "LADLn6Label";
+            this.LADLn6Label.Size = new System.Drawing.Size(36, 13);
+            this.LADLn6Label.TabIndex = 38;
+            this.LADLn6Label.Text = "Line 6";
+            // 
+            // LADLn5Label
+            // 
+            this.LADLn5Label.AutoSize = true;
+            this.LADLn5Label.Location = new System.Drawing.Point(56, 171);
+            this.LADLn5Label.Name = "LADLn5Label";
+            this.LADLn5Label.Size = new System.Drawing.Size(36, 13);
+            this.LADLn5Label.TabIndex = 37;
+            this.LADLn5Label.Text = "Line 5";
+            // 
+            // LADLn4Label
+            // 
+            this.LADLn4Label.AutoSize = true;
+            this.LADLn4Label.Location = new System.Drawing.Point(56, 135);
+            this.LADLn4Label.Name = "LADLn4Label";
+            this.LADLn4Label.Size = new System.Drawing.Size(36, 13);
+            this.LADLn4Label.TabIndex = 36;
+            this.LADLn4Label.Text = "Line 4";
+            // 
+            // LADLn3Label
+            // 
+            this.LADLn3Label.AutoSize = true;
+            this.LADLn3Label.Location = new System.Drawing.Point(56, 99);
+            this.LADLn3Label.Name = "LADLn3Label";
+            this.LADLn3Label.Size = new System.Drawing.Size(36, 13);
+            this.LADLn3Label.TabIndex = 35;
+            this.LADLn3Label.Text = "Line 3";
+            // 
+            // LADLn2Label
+            // 
+            this.LADLn2Label.AutoSize = true;
+            this.LADLn2Label.Location = new System.Drawing.Point(56, 63);
+            this.LADLn2Label.Name = "LADLn2Label";
+            this.LADLn2Label.Size = new System.Drawing.Size(36, 13);
+            this.LADLn2Label.TabIndex = 34;
+            this.LADLn2Label.Text = "Line 2";
+            // 
+            // LADLn1Label
+            // 
+            this.LADLn1Label.AutoSize = true;
+            this.LADLn1Label.Location = new System.Drawing.Point(56, 28);
+            this.LADLn1Label.Name = "LADLn1Label";
+            this.LADLn1Label.Size = new System.Drawing.Size(36, 13);
+            this.LADLn1Label.TabIndex = 33;
+            this.LADLn1Label.Text = "Line 1";
+            // 
+            // LADLine8
+            // 
+            this.LADLine8.Controls.Add(this.LADLn8Active);
+            this.LADLine8.Controls.Add(this.LADLn8Left);
+            this.LADLine8.Controls.Add(this.LADLn8Center);
+            this.LADLine8.Controls.Add(this.LADLn8Right);
+            this.LADLine8.Controls.Add(this.LADLn8Msg);
+            this.LADLine8.Location = new System.Drawing.Point(123, 266);
+            this.LADLine8.Margin = new System.Windows.Forms.Padding(0);
+            this.LADLine8.Name = "LADLine8";
+            this.LADLine8.Padding = new System.Windows.Forms.Padding(0);
+            this.LADLine8.Size = new System.Drawing.Size(712, 36);
+            this.LADLine8.TabIndex = 32;
+            this.LADLine8.TabStop = false;
+            // 
+            // LADLn8Active
+            // 
+            this.LADLn8Active.AutoSize = true;
+            this.LADLn8Active.Location = new System.Drawing.Point(3, 13);
+            this.LADLn8Active.Name = "LADLn8Active";
+            this.LADLn8Active.Size = new System.Drawing.Size(56, 17);
+            this.LADLn8Active.TabIndex = 33;
+            this.LADLn8Active.Text = "Active";
+            this.LADLn8Active.UseVisualStyleBackColor = true;
+            // 
+            // LADLn8Left
+            // 
+            this.LADLn8Left.AutoSize = true;
+            this.LADLn8Left.Location = new System.Drawing.Point(68, 14);
+            this.LADLn8Left.Name = "LADLn8Left";
+            this.LADLn8Left.Size = new System.Drawing.Size(43, 17);
+            this.LADLn8Left.TabIndex = 14;
+            this.LADLn8Left.TabStop = true;
+            this.LADLn8Left.Text = "Left";
+            this.LADLn8Left.UseVisualStyleBackColor = true;
+            // 
+            // LADLn8Center
+            // 
+            this.LADLn8Center.AutoSize = true;
+            this.LADLn8Center.Location = new System.Drawing.Point(117, 14);
+            this.LADLn8Center.Name = "LADLn8Center";
+            this.LADLn8Center.Size = new System.Drawing.Size(56, 17);
+            this.LADLn8Center.TabIndex = 15;
+            this.LADLn8Center.TabStop = true;
+            this.LADLn8Center.Text = "Center";
+            this.LADLn8Center.UseVisualStyleBackColor = true;
+            // 
+            // LADLn8Right
+            // 
+            this.LADLn8Right.AutoSize = true;
+            this.LADLn8Right.Location = new System.Drawing.Point(179, 14);
+            this.LADLn8Right.Name = "LADLn8Right";
+            this.LADLn8Right.Size = new System.Drawing.Size(50, 17);
+            this.LADLn8Right.TabIndex = 16;
+            this.LADLn8Right.TabStop = true;
+            this.LADLn8Right.Text = "Right";
+            this.LADLn8Right.UseVisualStyleBackColor = true;
+            // 
+            // LADLn8Msg
+            // 
+            this.LADLn8Msg.Location = new System.Drawing.Point(244, 10);
+            this.LADLn8Msg.Name = "LADLn8Msg";
+            this.LADLn8Msg.Size = new System.Drawing.Size(465, 20);
+            this.LADLn8Msg.TabIndex = 24;
+            // 
+            // LADLine7
+            // 
+            this.LADLine7.Controls.Add(this.LADLn7Active);
+            this.LADLine7.Controls.Add(this.LADLn7Left);
+            this.LADLine7.Controls.Add(this.LADLn7Center);
+            this.LADLine7.Controls.Add(this.LADLn7Right);
+            this.LADLine7.Controls.Add(this.LADLn7Msg);
+            this.LADLine7.Location = new System.Drawing.Point(123, 230);
+            this.LADLine7.Margin = new System.Windows.Forms.Padding(0);
+            this.LADLine7.Name = "LADLine7";
+            this.LADLine7.Padding = new System.Windows.Forms.Padding(0);
+            this.LADLine7.Size = new System.Drawing.Size(712, 36);
+            this.LADLine7.TabIndex = 31;
+            this.LADLine7.TabStop = false;
+            // 
+            // LADLn7Active
+            // 
+            this.LADLn7Active.AutoSize = true;
+            this.LADLn7Active.Location = new System.Drawing.Point(3, 13);
+            this.LADLn7Active.Name = "LADLn7Active";
+            this.LADLn7Active.Size = new System.Drawing.Size(56, 17);
+            this.LADLn7Active.TabIndex = 33;
+            this.LADLn7Active.Text = "Active";
+            this.LADLn7Active.UseVisualStyleBackColor = true;
+            // 
+            // LADLn7Left
+            // 
+            this.LADLn7Left.AutoSize = true;
+            this.LADLn7Left.Location = new System.Drawing.Point(68, 14);
+            this.LADLn7Left.Name = "LADLn7Left";
+            this.LADLn7Left.Size = new System.Drawing.Size(43, 17);
+            this.LADLn7Left.TabIndex = 14;
+            this.LADLn7Left.TabStop = true;
+            this.LADLn7Left.Text = "Left";
+            this.LADLn7Left.UseVisualStyleBackColor = true;
+            // 
+            // LADLn7Center
+            // 
+            this.LADLn7Center.AutoSize = true;
+            this.LADLn7Center.Location = new System.Drawing.Point(117, 14);
+            this.LADLn7Center.Name = "LADLn7Center";
+            this.LADLn7Center.Size = new System.Drawing.Size(56, 17);
+            this.LADLn7Center.TabIndex = 15;
+            this.LADLn7Center.TabStop = true;
+            this.LADLn7Center.Text = "Center";
+            this.LADLn7Center.UseVisualStyleBackColor = true;
+            // 
+            // LADLn7Right
+            // 
+            this.LADLn7Right.AutoSize = true;
+            this.LADLn7Right.Location = new System.Drawing.Point(179, 14);
+            this.LADLn7Right.Name = "LADLn7Right";
+            this.LADLn7Right.Size = new System.Drawing.Size(50, 17);
+            this.LADLn7Right.TabIndex = 16;
+            this.LADLn7Right.TabStop = true;
+            this.LADLn7Right.Text = "Right";
+            this.LADLn7Right.UseVisualStyleBackColor = true;
+            // 
+            // LADLn7Msg
+            // 
+            this.LADLn7Msg.Location = new System.Drawing.Point(244, 10);
+            this.LADLn7Msg.Name = "LADLn7Msg";
+            this.LADLn7Msg.Size = new System.Drawing.Size(465, 20);
+            this.LADLn7Msg.TabIndex = 23;
+            // 
+            // LADLine6
+            // 
+            this.LADLine6.Controls.Add(this.LADLn6Active);
+            this.LADLine6.Controls.Add(this.LADLn6Left);
+            this.LADLine6.Controls.Add(this.LADLn6Center);
+            this.LADLine6.Controls.Add(this.LADLn6Right);
+            this.LADLine6.Controls.Add(this.LADLn6Msg);
+            this.LADLine6.Location = new System.Drawing.Point(123, 194);
+            this.LADLine6.Margin = new System.Windows.Forms.Padding(0);
+            this.LADLine6.Name = "LADLine6";
+            this.LADLine6.Padding = new System.Windows.Forms.Padding(0);
+            this.LADLine6.Size = new System.Drawing.Size(712, 36);
+            this.LADLine6.TabIndex = 30;
+            this.LADLine6.TabStop = false;
+            // 
+            // LADLn6Active
+            // 
+            this.LADLn6Active.AutoSize = true;
+            this.LADLn6Active.Location = new System.Drawing.Point(3, 13);
+            this.LADLn6Active.Name = "LADLn6Active";
+            this.LADLn6Active.Size = new System.Drawing.Size(56, 17);
+            this.LADLn6Active.TabIndex = 33;
+            this.LADLn6Active.Text = "Active";
+            this.LADLn6Active.UseVisualStyleBackColor = true;
+            // 
+            // LADLn6Left
+            // 
+            this.LADLn6Left.AutoSize = true;
+            this.LADLn6Left.Location = new System.Drawing.Point(68, 14);
+            this.LADLn6Left.Name = "LADLn6Left";
+            this.LADLn6Left.Size = new System.Drawing.Size(43, 17);
+            this.LADLn6Left.TabIndex = 14;
+            this.LADLn6Left.TabStop = true;
+            this.LADLn6Left.Text = "Left";
+            this.LADLn6Left.UseVisualStyleBackColor = true;
+            // 
+            // LADLn6Center
+            // 
+            this.LADLn6Center.AutoSize = true;
+            this.LADLn6Center.Location = new System.Drawing.Point(117, 14);
+            this.LADLn6Center.Name = "LADLn6Center";
+            this.LADLn6Center.Size = new System.Drawing.Size(56, 17);
+            this.LADLn6Center.TabIndex = 15;
+            this.LADLn6Center.TabStop = true;
+            this.LADLn6Center.Text = "Center";
+            this.LADLn6Center.UseVisualStyleBackColor = true;
+            // 
+            // LADLn6Right
+            // 
+            this.LADLn6Right.AutoSize = true;
+            this.LADLn6Right.Location = new System.Drawing.Point(179, 14);
+            this.LADLn6Right.Name = "LADLn6Right";
+            this.LADLn6Right.Size = new System.Drawing.Size(50, 17);
+            this.LADLn6Right.TabIndex = 16;
+            this.LADLn6Right.TabStop = true;
+            this.LADLn6Right.Text = "Right";
+            this.LADLn6Right.UseVisualStyleBackColor = true;
+            // 
+            // LADLn6Msg
+            // 
+            this.LADLn6Msg.Location = new System.Drawing.Point(244, 10);
+            this.LADLn6Msg.Name = "LADLn6Msg";
+            this.LADLn6Msg.Size = new System.Drawing.Size(465, 20);
+            this.LADLn6Msg.TabIndex = 22;
+            // 
+            // LADLine2
+            // 
+            this.LADLine2.Controls.Add(this.LADLn2Active);
+            this.LADLine2.Controls.Add(this.LADLn2Left);
+            this.LADLine2.Controls.Add(this.LADLn2Center);
+            this.LADLine2.Controls.Add(this.LADLn2Right);
+            this.LADLine2.Controls.Add(this.LADLn2Msg);
+            this.LADLine2.Location = new System.Drawing.Point(123, 50);
+            this.LADLine2.Margin = new System.Windows.Forms.Padding(0);
+            this.LADLine2.Name = "LADLine2";
+            this.LADLine2.Padding = new System.Windows.Forms.Padding(0);
+            this.LADLine2.Size = new System.Drawing.Size(712, 36);
+            this.LADLine2.TabIndex = 26;
+            this.LADLine2.TabStop = false;
+            // 
+            // LADLn2Active
+            // 
+            this.LADLn2Active.AutoSize = true;
+            this.LADLn2Active.Location = new System.Drawing.Point(3, 13);
+            this.LADLn2Active.Name = "LADLn2Active";
+            this.LADLn2Active.Size = new System.Drawing.Size(56, 17);
+            this.LADLn2Active.TabIndex = 19;
+            this.LADLn2Active.Text = "Active";
+            this.LADLn2Active.UseVisualStyleBackColor = true;
+            // 
+            // LADLn2Left
+            // 
+            this.LADLn2Left.AutoSize = true;
+            this.LADLn2Left.Location = new System.Drawing.Point(68, 14);
+            this.LADLn2Left.Name = "LADLn2Left";
+            this.LADLn2Left.Size = new System.Drawing.Size(43, 17);
+            this.LADLn2Left.TabIndex = 14;
+            this.LADLn2Left.TabStop = true;
+            this.LADLn2Left.Text = "Left";
+            this.LADLn2Left.UseVisualStyleBackColor = true;
+            // 
+            // LADLn2Center
+            // 
+            this.LADLn2Center.AutoSize = true;
+            this.LADLn2Center.Location = new System.Drawing.Point(117, 14);
+            this.LADLn2Center.Name = "LADLn2Center";
+            this.LADLn2Center.Size = new System.Drawing.Size(56, 17);
+            this.LADLn2Center.TabIndex = 15;
+            this.LADLn2Center.TabStop = true;
+            this.LADLn2Center.Text = "Center";
+            this.LADLn2Center.UseVisualStyleBackColor = true;
+            // 
+            // LADLn2Right
+            // 
+            this.LADLn2Right.AutoSize = true;
+            this.LADLn2Right.Location = new System.Drawing.Point(179, 14);
+            this.LADLn2Right.Name = "LADLn2Right";
+            this.LADLn2Right.Size = new System.Drawing.Size(50, 17);
+            this.LADLn2Right.TabIndex = 16;
+            this.LADLn2Right.TabStop = true;
+            this.LADLn2Right.Text = "Right";
+            this.LADLn2Right.UseVisualStyleBackColor = true;
+            // 
+            // LADLn2Msg
+            // 
+            this.LADLn2Msg.Location = new System.Drawing.Point(244, 13);
+            this.LADLn2Msg.Name = "LADLn2Msg";
+            this.LADLn2Msg.Size = new System.Drawing.Size(465, 20);
+            this.LADLn2Msg.TabIndex = 18;
+            // 
+            // LADLine5
+            // 
+            this.LADLine5.Controls.Add(this.LADLn5Active);
+            this.LADLine5.Controls.Add(this.LADLn5Left);
+            this.LADLine5.Controls.Add(this.LADLn5Center);
+            this.LADLine5.Controls.Add(this.LADLn5Right);
+            this.LADLine5.Controls.Add(this.LADLn5Msg);
+            this.LADLine5.Location = new System.Drawing.Point(123, 158);
+            this.LADLine5.Margin = new System.Windows.Forms.Padding(0);
+            this.LADLine5.Name = "LADLine5";
+            this.LADLine5.Padding = new System.Windows.Forms.Padding(0);
+            this.LADLine5.Size = new System.Drawing.Size(712, 36);
+            this.LADLine5.TabIndex = 29;
+            this.LADLine5.TabStop = false;
+            // 
+            // LADLn5Active
+            // 
+            this.LADLn5Active.AutoSize = true;
+            this.LADLn5Active.Location = new System.Drawing.Point(3, 13);
+            this.LADLn5Active.Name = "LADLn5Active";
+            this.LADLn5Active.Size = new System.Drawing.Size(56, 17);
+            this.LADLn5Active.TabIndex = 33;
+            this.LADLn5Active.Text = "Active";
+            this.LADLn5Active.UseVisualStyleBackColor = true;
+            // 
+            // LADLn5Left
+            // 
+            this.LADLn5Left.AutoSize = true;
+            this.LADLn5Left.Location = new System.Drawing.Point(68, 14);
+            this.LADLn5Left.Name = "LADLn5Left";
+            this.LADLn5Left.Size = new System.Drawing.Size(43, 17);
+            this.LADLn5Left.TabIndex = 14;
+            this.LADLn5Left.TabStop = true;
+            this.LADLn5Left.Text = "Left";
+            this.LADLn5Left.UseVisualStyleBackColor = true;
+            // 
+            // LADLn5Center
+            // 
+            this.LADLn5Center.AutoSize = true;
+            this.LADLn5Center.Location = new System.Drawing.Point(117, 14);
+            this.LADLn5Center.Name = "LADLn5Center";
+            this.LADLn5Center.Size = new System.Drawing.Size(56, 17);
+            this.LADLn5Center.TabIndex = 15;
+            this.LADLn5Center.TabStop = true;
+            this.LADLn5Center.Text = "Center";
+            this.LADLn5Center.UseVisualStyleBackColor = true;
+            // 
+            // LADLn5Right
+            // 
+            this.LADLn5Right.AutoSize = true;
+            this.LADLn5Right.Location = new System.Drawing.Point(179, 14);
+            this.LADLn5Right.Name = "LADLn5Right";
+            this.LADLn5Right.Size = new System.Drawing.Size(50, 17);
+            this.LADLn5Right.TabIndex = 16;
+            this.LADLn5Right.TabStop = true;
+            this.LADLn5Right.Text = "Right";
+            this.LADLn5Right.UseVisualStyleBackColor = true;
+            // 
+            // LADLn5Msg
+            // 
+            this.LADLn5Msg.Location = new System.Drawing.Point(244, 13);
+            this.LADLn5Msg.Name = "LADLn5Msg";
+            this.LADLn5Msg.Size = new System.Drawing.Size(465, 20);
+            this.LADLn5Msg.TabIndex = 21;
+            // 
+            // LADLine4
+            // 
+            this.LADLine4.Controls.Add(this.LADLn4Active);
+            this.LADLine4.Controls.Add(this.LADLn4Left);
+            this.LADLine4.Controls.Add(this.LADLn4Center);
+            this.LADLine4.Controls.Add(this.LADLn4Right);
+            this.LADLine4.Controls.Add(this.LADLn4Msg);
+            this.LADLine4.Location = new System.Drawing.Point(123, 122);
+            this.LADLine4.Margin = new System.Windows.Forms.Padding(0);
+            this.LADLine4.Name = "LADLine4";
+            this.LADLine4.Padding = new System.Windows.Forms.Padding(0);
+            this.LADLine4.Size = new System.Drawing.Size(712, 36);
+            this.LADLine4.TabIndex = 28;
+            this.LADLine4.TabStop = false;
+            // 
+            // LADLn4Active
+            // 
+            this.LADLn4Active.AutoSize = true;
+            this.LADLn4Active.Location = new System.Drawing.Point(3, 13);
+            this.LADLn4Active.Name = "LADLn4Active";
+            this.LADLn4Active.Size = new System.Drawing.Size(56, 17);
+            this.LADLn4Active.TabIndex = 33;
+            this.LADLn4Active.Text = "Active";
+            this.LADLn4Active.UseVisualStyleBackColor = true;
+            // 
+            // LADLn4Left
+            // 
+            this.LADLn4Left.AutoSize = true;
+            this.LADLn4Left.Location = new System.Drawing.Point(68, 14);
+            this.LADLn4Left.Name = "LADLn4Left";
+            this.LADLn4Left.Size = new System.Drawing.Size(43, 17);
+            this.LADLn4Left.TabIndex = 14;
+            this.LADLn4Left.TabStop = true;
+            this.LADLn4Left.Text = "Left";
+            this.LADLn4Left.UseVisualStyleBackColor = true;
+            // 
+            // LADLn4Center
+            // 
+            this.LADLn4Center.AutoSize = true;
+            this.LADLn4Center.Location = new System.Drawing.Point(117, 14);
+            this.LADLn4Center.Name = "LADLn4Center";
+            this.LADLn4Center.Size = new System.Drawing.Size(56, 17);
+            this.LADLn4Center.TabIndex = 15;
+            this.LADLn4Center.TabStop = true;
+            this.LADLn4Center.Text = "Center";
+            this.LADLn4Center.UseVisualStyleBackColor = true;
+            // 
+            // LADLn4Right
+            // 
+            this.LADLn4Right.AutoSize = true;
+            this.LADLn4Right.Location = new System.Drawing.Point(179, 14);
+            this.LADLn4Right.Name = "LADLn4Right";
+            this.LADLn4Right.Size = new System.Drawing.Size(50, 17);
+            this.LADLn4Right.TabIndex = 16;
+            this.LADLn4Right.TabStop = true;
+            this.LADLn4Right.Text = "Right";
+            this.LADLn4Right.UseVisualStyleBackColor = true;
+            // 
+            // LADLn4Msg
+            // 
+            this.LADLn4Msg.Location = new System.Drawing.Point(244, 13);
+            this.LADLn4Msg.Name = "LADLn4Msg";
+            this.LADLn4Msg.Size = new System.Drawing.Size(465, 20);
+            this.LADLn4Msg.TabIndex = 20;
+            // 
+            // LADLine3
+            // 
+            this.LADLine3.Controls.Add(this.LADLn3Active);
+            this.LADLine3.Controls.Add(this.LADLn3Left);
+            this.LADLine3.Controls.Add(this.LADLn3Center);
+            this.LADLine3.Controls.Add(this.LADLn3Right);
+            this.LADLine3.Controls.Add(this.LADLn3Msg);
+            this.LADLine3.Location = new System.Drawing.Point(123, 86);
+            this.LADLine3.Margin = new System.Windows.Forms.Padding(0);
+            this.LADLine3.Name = "LADLine3";
+            this.LADLine3.Padding = new System.Windows.Forms.Padding(0);
+            this.LADLine3.Size = new System.Drawing.Size(712, 36);
+            this.LADLine3.TabIndex = 27;
+            this.LADLine3.TabStop = false;
+            // 
+            // LADLn3Active
+            // 
+            this.LADLn3Active.AutoSize = true;
+            this.LADLn3Active.Location = new System.Drawing.Point(3, 13);
+            this.LADLn3Active.Name = "LADLn3Active";
+            this.LADLn3Active.Size = new System.Drawing.Size(56, 17);
+            this.LADLn3Active.TabIndex = 33;
+            this.LADLn3Active.Text = "Active";
+            this.LADLn3Active.UseVisualStyleBackColor = true;
+            // 
+            // LADLn3Left
+            // 
+            this.LADLn3Left.AutoSize = true;
+            this.LADLn3Left.Location = new System.Drawing.Point(68, 14);
+            this.LADLn3Left.Name = "LADLn3Left";
+            this.LADLn3Left.Size = new System.Drawing.Size(43, 17);
+            this.LADLn3Left.TabIndex = 14;
+            this.LADLn3Left.TabStop = true;
+            this.LADLn3Left.Text = "Left";
+            this.LADLn3Left.UseVisualStyleBackColor = true;
+            // 
+            // LADLn3Center
+            // 
+            this.LADLn3Center.AutoSize = true;
+            this.LADLn3Center.Location = new System.Drawing.Point(117, 14);
+            this.LADLn3Center.Name = "LADLn3Center";
+            this.LADLn3Center.Size = new System.Drawing.Size(56, 17);
+            this.LADLn3Center.TabIndex = 15;
+            this.LADLn3Center.TabStop = true;
+            this.LADLn3Center.Text = "Center";
+            this.LADLn3Center.UseVisualStyleBackColor = true;
+            // 
+            // LADLn3Right
+            // 
+            this.LADLn3Right.AutoSize = true;
+            this.LADLn3Right.Location = new System.Drawing.Point(179, 14);
+            this.LADLn3Right.Name = "LADLn3Right";
+            this.LADLn3Right.Size = new System.Drawing.Size(50, 17);
+            this.LADLn3Right.TabIndex = 16;
+            this.LADLn3Right.TabStop = true;
+            this.LADLn3Right.Text = "Right";
+            this.LADLn3Right.UseVisualStyleBackColor = true;
+            // 
+            // LADLn3Msg
+            // 
+            this.LADLn3Msg.Location = new System.Drawing.Point(244, 13);
+            this.LADLn3Msg.Name = "LADLn3Msg";
+            this.LADLn3Msg.Size = new System.Drawing.Size(465, 20);
+            this.LADLn3Msg.TabIndex = 19;
+            // 
+            // LADLine1
+            // 
+            this.LADLine1.Controls.Add(this.LADLn1Active);
+            this.LADLine1.Controls.Add(this.LADLn1Left);
+            this.LADLine1.Controls.Add(this.LADLn1Center);
+            this.LADLine1.Controls.Add(this.LADLn1Right);
+            this.LADLine1.Controls.Add(this.LADLn1Msg);
+            this.LADLine1.Location = new System.Drawing.Point(123, 14);
+            this.LADLine1.Margin = new System.Windows.Forms.Padding(0);
+            this.LADLine1.Name = "LADLine1";
+            this.LADLine1.Padding = new System.Windows.Forms.Padding(0);
+            this.LADLine1.Size = new System.Drawing.Size(712, 36);
+            this.LADLine1.TabIndex = 25;
+            this.LADLine1.TabStop = false;
+            // 
+            // LADLn1Active
+            // 
+            this.LADLn1Active.AutoSize = true;
+            this.LADLn1Active.Location = new System.Drawing.Point(3, 13);
+            this.LADLn1Active.Name = "LADLn1Active";
+            this.LADLn1Active.Size = new System.Drawing.Size(56, 17);
+            this.LADLn1Active.TabIndex = 17;
+            this.LADLn1Active.Text = "Active";
+            this.LADLn1Active.UseVisualStyleBackColor = true;
+            // 
+            // LADLn1Left
+            // 
+            this.LADLn1Left.AutoSize = true;
+            this.LADLn1Left.Location = new System.Drawing.Point(68, 14);
+            this.LADLn1Left.Name = "LADLn1Left";
+            this.LADLn1Left.Size = new System.Drawing.Size(43, 17);
+            this.LADLn1Left.TabIndex = 14;
+            this.LADLn1Left.TabStop = true;
+            this.LADLn1Left.Text = "Left";
+            this.LADLn1Left.UseVisualStyleBackColor = true;
+            // 
+            // LADLn1Center
+            // 
+            this.LADLn1Center.AutoSize = true;
+            this.LADLn1Center.Location = new System.Drawing.Point(117, 14);
+            this.LADLn1Center.Name = "LADLn1Center";
+            this.LADLn1Center.Size = new System.Drawing.Size(56, 17);
+            this.LADLn1Center.TabIndex = 15;
+            this.LADLn1Center.TabStop = true;
+            this.LADLn1Center.Text = "Center";
+            this.LADLn1Center.UseVisualStyleBackColor = true;
+            // 
+            // LADLn1Right
+            // 
+            this.LADLn1Right.AutoSize = true;
+            this.LADLn1Right.Location = new System.Drawing.Point(179, 14);
+            this.LADLn1Right.Name = "LADLn1Right";
+            this.LADLn1Right.Size = new System.Drawing.Size(50, 17);
+            this.LADLn1Right.TabIndex = 16;
+            this.LADLn1Right.TabStop = true;
+            this.LADLn1Right.Text = "Right";
+            this.LADLn1Right.UseVisualStyleBackColor = true;
+            // 
+            // LADLn1Msg
+            // 
+            this.LADLn1Msg.Location = new System.Drawing.Point(244, 13);
+            this.LADLn1Msg.Name = "LADLn1Msg";
+            this.LADLn1Msg.Size = new System.Drawing.Size(465, 20);
+            this.LADLn1Msg.TabIndex = 12;
+            // 
+            // button33
+            // 
+            this.button33.Location = new System.Drawing.Point(685, 348);
+            this.button33.Name = "button33";
+            this.button33.Size = new System.Drawing.Size(84, 31);
+            this.button33.TabIndex = 17;
+            this.button33.Text = "Reset Ads";
+            this.button33.UseVisualStyleBackColor = true;
+            this.button33.Click += new System.EventHandler(this.LocalAdResetBtn_Click);
+            // 
+            // button27
+            // 
+            this.button27.Location = new System.Drawing.Point(591, 348);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(88, 31);
+            this.button27.TabIndex = 13;
+            this.button27.Text = "Send Ad";
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.LocalAdSendBtn_Click);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.textBox100);
+            this.tabPage5.Controls.Add(this.textBox92);
+            this.tabPage5.Controls.Add(this.textBox88);
+            this.tabPage5.Controls.Add(this.textBox87);
+            this.tabPage5.Controls.Add(this.textBox81);
+            this.tabPage5.Controls.Add(this.textBox20);
+            this.tabPage5.Controls.Add(this.textBox19);
+            this.tabPage5.Controls.Add(this.textBox15);
+            this.tabPage5.Controls.Add(this.textBox13);
+            this.tabPage5.Controls.Add(this.textBox10);
+            this.tabPage5.Controls.Add(this.button19);
+            this.tabPage5.Controls.Add(this.textBox101);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(935, 504);
+            this.tabPage5.TabIndex = 12;
+            this.tabPage5.Text = "tabPage5";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // textBox100
+            // 
+            this.textBox100.Location = new System.Drawing.Point(786, 115);
+            this.textBox100.Name = "textBox100";
+            this.textBox100.Size = new System.Drawing.Size(100, 20);
+            this.textBox100.TabIndex = 23;
+            // 
+            // textBox92
+            // 
+            this.textBox92.Location = new System.Drawing.Point(786, 89);
+            this.textBox92.Name = "textBox92";
+            this.textBox92.Size = new System.Drawing.Size(100, 20);
+            this.textBox92.TabIndex = 22;
+            // 
+            // textBox88
+            // 
+            this.textBox88.Location = new System.Drawing.Point(680, 89);
+            this.textBox88.Name = "textBox88";
+            this.textBox88.Size = new System.Drawing.Size(100, 20);
+            this.textBox88.TabIndex = 21;
+            // 
+            // textBox87
+            // 
+            this.textBox87.Location = new System.Drawing.Point(574, 89);
+            this.textBox87.Name = "textBox87";
+            this.textBox87.Size = new System.Drawing.Size(100, 20);
+            this.textBox87.TabIndex = 20;
+            // 
+            // textBox81
+            // 
+            this.textBox81.Location = new System.Drawing.Point(468, 89);
+            this.textBox81.Name = "textBox81";
+            this.textBox81.Size = new System.Drawing.Size(100, 20);
+            this.textBox81.TabIndex = 19;
+            // 
+            // textBox20
+            // 
+            this.textBox20.Location = new System.Drawing.Point(362, 89);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(100, 20);
+            this.textBox20.TabIndex = 18;
+            // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(256, 89);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(100, 20);
+            this.textBox19.TabIndex = 17;
+            // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(150, 89);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(100, 20);
+            this.textBox15.TabIndex = 16;
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(44, 89);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(100, 20);
+            this.textBox13.TabIndex = 15;
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(44, 63);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(100, 20);
+            this.textBox10.TabIndex = 14;
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(310, 19);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(109, 38);
+            this.button19.TabIndex = 13;
+            this.button19.Text = "button19";
+            this.button19.UseVisualStyleBackColor = true;
+            // 
+            // textBox101
+            // 
+            this.textBox101.Location = new System.Drawing.Point(150, 29);
+            this.textBox101.Name = "textBox101";
+            this.textBox101.Size = new System.Drawing.Size(100, 20);
+            this.textBox101.TabIndex = 12;
             // 
             // Scroll_Messages_DataSet
             // 
@@ -4801,119 +5777,116 @@
             // 
             this.dataColumn17.ColumnName = "Message";
             // 
-            // groupBox6
+            // LocalAdsDataSet
             // 
-            this.groupBox6.Controls.Add(this.radioButton3);
-            this.groupBox6.Controls.Add(this.radioButton6);
-            this.groupBox6.Location = new System.Drawing.Point(502, 31);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(115, 82);
-            this.groupBox6.TabIndex = 63;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Movie";
+            this.LocalAdsDataSet.DataSetName = "LocalAdsDataSet";
+            this.LocalAdsDataSet.Tables.AddRange(new System.Data.DataTable[] {
+            this.LocalAds});
             // 
-            // radioButton3
+            // LocalAds
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 19);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(80, 17);
-            this.radioButton3.TabIndex = 20;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Mixed Case";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.MovieTitleTextSetting_CheckedChanged);
+            this.LocalAds.Columns.AddRange(new System.Data.DataColumn[] {
+            this.AdNumber,
+            this.LineNumber,
+            this.LineActive,
+            this.LineLeft,
+            this.LineCenter,
+            this.LineRight,
+            this.LineMessage});
+            this.LocalAds.MinimumCapacity = 48;
+            this.LocalAds.TableName = "LocalAds";
             // 
-            // radioButton6
+            // AdNumber
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(6, 55);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(107, 17);
-            this.radioButton6.TabIndex = 19;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Force Uppercase";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            this.radioButton6.CheckedChanged += new System.EventHandler(this.MovieTitleTextSetting_CheckedChanged);
+            this.AdNumber.AllowDBNull = false;
+            this.AdNumber.ColumnName = "AdNumber";
+            this.AdNumber.DataType = typeof(int);
             // 
-            // groupBox7
+            // LineNumber
             // 
-            this.groupBox7.Controls.Add(this.radioButton9);
-            this.groupBox7.Controls.Add(this.radioButton12);
-            this.groupBox7.Location = new System.Drawing.Point(623, 31);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(115, 82);
-            this.groupBox7.TabIndex = 64;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "All Listings";
+            this.LineNumber.AllowDBNull = false;
+            this.LineNumber.ColumnName = "LineNumber";
+            this.LineNumber.DataType = typeof(int);
             // 
-            // radioButton9
+            // LineActive
             // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(6, 19);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(80, 17);
-            this.radioButton9.TabIndex = 20;
-            this.radioButton9.TabStop = true;
-            this.radioButton9.Text = "Mixed Case";
-            this.radioButton9.UseVisualStyleBackColor = true;
-            this.radioButton9.CheckedChanged += new System.EventHandler(this.AllListings_TextSetting_CheckedChanged);
+            this.LineActive.AllowDBNull = false;
+            this.LineActive.Caption = "Active";
+            this.LineActive.ColumnName = "LineActive";
+            this.LineActive.DataType = typeof(int);
             // 
-            // radioButton12
+            // LineLeft
             // 
-            this.radioButton12.AutoSize = true;
-            this.radioButton12.Location = new System.Drawing.Point(6, 55);
-            this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(107, 17);
-            this.radioButton12.TabIndex = 19;
-            this.radioButton12.TabStop = true;
-            this.radioButton12.Text = "Force Uppercase";
-            this.radioButton12.UseVisualStyleBackColor = true;
-            this.radioButton12.CheckedChanged += new System.EventHandler(this.AllListings_TextSetting_CheckedChanged);
+            this.LineLeft.AllowDBNull = false;
+            this.LineLeft.Caption = "Left";
+            this.LineLeft.ColumnName = "LineLeft";
+            this.LineLeft.DataType = typeof(int);
             // 
-            // label14
+            // LineCenter
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(593, 12);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(88, 13);
-            this.label14.TabIndex = 65;
-            this.label14.Text = "Listing Text Case";
+            this.LineCenter.AllowDBNull = false;
+            this.LineCenter.Caption = "Center";
+            this.LineCenter.ColumnName = "LineCenter";
+            this.LineCenter.DataType = typeof(int);
             // 
-            // groupBox8
+            // LineRight
             // 
-            this.groupBox8.Controls.Add(this.radioButton15);
-            this.groupBox8.Controls.Add(this.radioButton16);
-            this.groupBox8.Location = new System.Drawing.Point(773, 31);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(75, 82);
-            this.groupBox8.TabIndex = 66;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "TV Ratings";
+            this.LineRight.AllowDBNull = false;
+            this.LineRight.Caption = "Right";
+            this.LineRight.ColumnName = "LineRight";
+            this.LineRight.DataType = typeof(int);
             // 
-            // radioButton15
+            // LineMessage
             // 
-            this.radioButton15.AutoSize = true;
-            this.radioButton15.Location = new System.Drawing.Point(6, 19);
-            this.radioButton15.Name = "radioButton15";
-            this.radioButton15.Size = new System.Drawing.Size(39, 17);
-            this.radioButton15.TabIndex = 20;
-            this.radioButton15.TabStop = true;
-            this.radioButton15.Text = "Off";
-            this.radioButton15.UseVisualStyleBackColor = true;
-            this.radioButton15.CheckedChanged += new System.EventHandler(this.TVRatings_Setting_CheckedChanged);
+            this.LineMessage.Caption = "Message";
+            this.LineMessage.ColumnName = "LineMessage";
             // 
-            // radioButton16
+            // button34
             // 
-            this.radioButton16.AutoSize = true;
-            this.radioButton16.Location = new System.Drawing.Point(6, 55);
-            this.radioButton16.Name = "radioButton16";
-            this.radioButton16.Size = new System.Drawing.Size(39, 17);
-            this.radioButton16.TabIndex = 19;
-            this.radioButton16.TabStop = true;
-            this.radioButton16.Text = "On";
-            this.radioButton16.UseVisualStyleBackColor = true;
-            this.radioButton16.CheckedChanged += new System.EventHandler(this.TVRatings_Setting_CheckedChanged);
+            this.button34.Location = new System.Drawing.Point(302, 348);
+            this.button34.Name = "button34";
+            this.button34.Size = new System.Drawing.Size(75, 31);
+            this.button34.TabIndex = 43;
+            this.button34.Text = "Add";
+            this.button34.UseVisualStyleBackColor = true;
+            this.button34.Click += new System.EventHandler(this.LADAddButton_Click);
+            // 
+            // button35
+            // 
+            this.button35.Location = new System.Drawing.Point(464, 348);
+            this.button35.Name = "button35";
+            this.button35.Size = new System.Drawing.Size(75, 31);
+            this.button35.TabIndex = 44;
+            this.button35.Text = "Delete";
+            this.button35.UseVisualStyleBackColor = true;
+            this.button35.Click += new System.EventHandler(this.LADDeleteButton_Click);
+            // 
+            // button37
+            // 
+            this.button37.Location = new System.Drawing.Point(383, 348);
+            this.button37.Name = "button37";
+            this.button37.Size = new System.Drawing.Size(75, 31);
+            this.button37.TabIndex = 45;
+            this.button37.Text = "Update";
+            this.button37.UseVisualStyleBackColor = true;
+            this.button37.Click += new System.EventHandler(this.LADUpdateButton_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(300, 314);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(97, 13);
+            this.label15.TabIndex = 47;
+            this.label15.Text = "Selected Local Ad:";
+            // 
+            // SelectedAd
+            // 
+            this.SelectedAd.AutoSize = true;
+            this.SelectedAd.Location = new System.Drawing.Point(413, 314);
+            this.SelectedAd.Name = "SelectedAd";
+            this.SelectedAd.Size = new System.Drawing.Size(0, 13);
+            this.SelectedAd.TabIndex = 48;
             // 
             // Form1
             // 
@@ -4971,6 +5944,12 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Scroll_Messages_DGV)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -4982,14 +5961,30 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.LADLine8.ResumeLayout(false);
+            this.LADLine8.PerformLayout();
+            this.LADLine7.ResumeLayout(false);
+            this.LADLine7.PerformLayout();
+            this.LADLine6.ResumeLayout(false);
+            this.LADLine6.PerformLayout();
+            this.LADLine2.ResumeLayout(false);
+            this.LADLine2.PerformLayout();
+            this.LADLine5.ResumeLayout(false);
+            this.LADLine5.PerformLayout();
+            this.LADLine4.ResumeLayout(false);
+            this.LADLine4.PerformLayout();
+            this.LADLine3.ResumeLayout(false);
+            this.LADLine3.PerformLayout();
+            this.LADLine1.ResumeLayout(false);
+            this.LADLine1.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Scroll_Messages_DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScrollMessages)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalAdsDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalAds)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5446,6 +6441,93 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.RadioButton radioButton15;
         private System.Windows.Forms.RadioButton radioButton16;
+        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button button33;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TextBox textBox101;
+        private System.Windows.Forms.TextBox textBox100;
+        private System.Windows.Forms.TextBox textBox92;
+        private System.Windows.Forms.TextBox textBox88;
+        private System.Windows.Forms.TextBox textBox87;
+        private System.Windows.Forms.TextBox textBox81;
+        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Label LADLn8Label;
+        private System.Windows.Forms.Label LADLn7Label;
+        private System.Windows.Forms.Label LADLn6Label;
+        private System.Windows.Forms.Label LADLn5Label;
+        private System.Windows.Forms.Label LADLn4Label;
+        private System.Windows.Forms.Label LADLn3Label;
+        private System.Windows.Forms.Label LADLn2Label;
+        private System.Windows.Forms.Label LADLn1Label;
+        public System.Windows.Forms.GroupBox LADLine8;
+        public System.Windows.Forms.GroupBox LADLine7;
+        public System.Windows.Forms.GroupBox LADLine6;
+        public System.Windows.Forms.GroupBox LADLine2;
+        public System.Windows.Forms.GroupBox LADLine5;
+        public System.Windows.Forms.GroupBox LADLine4;
+        public System.Windows.Forms.GroupBox LADLine3;
+        public System.Windows.Forms.GroupBox LADLine1;
+        public System.Windows.Forms.TextBox LADLn1Msg;
+        public System.Windows.Forms.TextBox LADLn2Msg;
+        public System.Windows.Forms.RadioButton LADLn1Right;
+        public System.Windows.Forms.RadioButton LADLn1Center;
+        public System.Windows.Forms.RadioButton LADLn1Left;
+        public System.Windows.Forms.RadioButton LADLn2Left;
+        public System.Windows.Forms.RadioButton LADLn2Center;
+        public System.Windows.Forms.RadioButton LADLn2Right;
+        public System.Windows.Forms.CheckBox LADLn2Active;
+        public System.Windows.Forms.CheckBox LADLn1Active;
+        public System.Windows.Forms.TextBox LADLn4Msg;
+        public System.Windows.Forms.TextBox LADLn3Msg;
+        public System.Windows.Forms.RadioButton LADLn4Left;
+        public System.Windows.Forms.RadioButton LADLn4Center;
+        public System.Windows.Forms.RadioButton LADLn4Right;
+        public System.Windows.Forms.RadioButton LADLn3Left;
+        public System.Windows.Forms.RadioButton LADLn3Center;
+        public System.Windows.Forms.RadioButton LADLn3Right;
+        public System.Windows.Forms.CheckBox LADLn5Active;
+        public System.Windows.Forms.CheckBox LADLn4Active;
+        public System.Windows.Forms.CheckBox LADLn3Active;
+        public System.Windows.Forms.TextBox LADLn8Msg;
+        public System.Windows.Forms.TextBox LADLn7Msg;
+        public System.Windows.Forms.TextBox LADLn6Msg;
+        public System.Windows.Forms.TextBox LADLn5Msg;
+        public System.Windows.Forms.RadioButton LADLn8Left;
+        public System.Windows.Forms.RadioButton LADLn8Center;
+        public System.Windows.Forms.RadioButton LADLn8Right;
+        public System.Windows.Forms.RadioButton LADLn7Left;
+        public System.Windows.Forms.RadioButton LADLn7Center;
+        public System.Windows.Forms.RadioButton LADLn7Right;
+        public System.Windows.Forms.RadioButton LADLn6Left;
+        public System.Windows.Forms.RadioButton LADLn6Center;
+        public System.Windows.Forms.RadioButton LADLn6Right;
+        public System.Windows.Forms.RadioButton LADLn5Left;
+        public System.Windows.Forms.RadioButton LADLn5Center;
+        public System.Windows.Forms.RadioButton LADLn5Right;
+        public System.Windows.Forms.CheckBox LADLn8Active;
+        public System.Windows.Forms.CheckBox LADLn7Active;
+        public System.Windows.Forms.CheckBox LADLn6Active;
+        private System.Data.DataSet LocalAdsDataSet;
+        private System.Data.DataTable LocalAds;
+        private System.Data.DataColumn AdNumber;
+        private System.Data.DataColumn LineNumber;
+        private System.Data.DataColumn LineActive;
+        private System.Data.DataColumn LineLeft;
+        private System.Data.DataColumn LineCenter;
+        private System.Data.DataColumn LineRight;
+        private System.Data.DataColumn LineMessage;
+        private System.Windows.Forms.Button LADViewButton;
+        private System.Windows.Forms.TextBox LADNumberTextBox;
+        private System.Windows.Forms.Button button34;
+        private System.Windows.Forms.Button button35;
+        private System.Windows.Forms.Button button37;
+        private System.Windows.Forms.Label SelectedAd;
+        private System.Windows.Forms.Label label15;
     }
 }
 

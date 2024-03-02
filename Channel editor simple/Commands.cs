@@ -284,6 +284,8 @@ namespace Commands
                 return "Error with Port Selected Setting - check code";
             }
         }
+
+
         /*
         public string Utility(SerialPort port)
         {

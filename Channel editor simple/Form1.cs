@@ -24,7 +24,14 @@ using NetworkIO;
 using LineupBuilder;
 using ListingsBuilder;
 using Commands;
+using LocalAds;
 using User_Settings = PrevueDataSender.Properties.Settings;
+using System.Net.Sockets;
+using System.IO.Ports;
+using System.Runtime.Remoting;
+using System.Security.Cryptography;
+using System.Runtime.CompilerServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PrevueDataSender
 {
@@ -42,6 +49,8 @@ namespace PrevueDataSender
         }
 
         public ClockData clock = new ClockData();
+
+        public LocalAd lad = new LocalAd();
 
         // Global Variables throughout program:
 
@@ -170,7 +179,7 @@ namespace PrevueDataSender
             Properties.Settings.Default.Save();
             Application.Exit();
         }
-        
+
         private void RunAtStartup()
         {
             UserDataFolder data = new UserDataFolder();
@@ -203,6 +212,8 @@ namespace PrevueDataSender
                 list.ReadScrollMessagesFile(Scroll_Messages_DataSet.Tables["ScrollMessages"]);
                 QTableFile qtable = new QTableFile();
                 qtable.ReadQTableFile(QTableDataSet.Tables["QTable"]);
+                LocalAdsFile localAds = new LocalAdsFile();
+                localAds.ReadLocalAdsFile(LocalAdsDataSet.Tables["LocalAds"]);
                 Bind_DataSources();
                 Listings_FormatDataGridView();
                 Lineup_FormatDataGridView();
@@ -241,6 +252,9 @@ namespace PrevueDataSender
                 list.ReadScrollMessagesFile(Scroll_Messages_DataSet.Tables["ScrollMessages"]);
                 QTableFile qtable = new QTableFile();
                 qtable.ReadQTableFile(QTableDataSet.Tables["QTable"]);
+                LocalAdsFile localAds = new LocalAdsFile();
+                localAds.ReadLocalAdsFile(LocalAdsDataSet.Tables["LocalAds"]);
+
                 Bind_DataSources();
                 Listings_FormatDataGridView();
                 Lineup_FormatDataGridView();
@@ -266,6 +280,8 @@ namespace PrevueDataSender
             { DataSource = Scroll_Messages_DataSet.Tables["ScrollMessages"] };
             BindingSource QTable_BindSource = new BindingSource
             { DataSource = QTableDataSet.Tables["QTable"] };
+            BindingSource LocalAds_BindSource = new BindingSource
+            { DataSource = LocalAdsDataSet.Tables["LocalAds"] };
 
             // Binding the table sources to each DataGridView's data source   
             Lineup_DGV.DataSource = Lineup_BindSource;
@@ -274,7 +290,7 @@ namespace PrevueDataSender
             Z2I_Listings_DGV.DataSource = Z2IListing_BindSource;
             Scroll_Messages_DGV.DataSource = Scroll_Messages_BindSource;
             QTable_DGV.DataSource = QTable_BindSource;
-           
+
         }
 
         /// <summary>
@@ -383,6 +399,8 @@ namespace PrevueDataSender
             ListingsBuild listings = new ListingsBuild();
             toolStripStatusLabel1.Text = listings.SendSelectedListings(serialPort1, Listings_DGV, ListingDataSet.Tables["Listings"]);
         }
+
+
 
 
         /// <summary>
@@ -625,13 +643,13 @@ namespace PrevueDataSender
             };
 
             using (Form3 frm = new Form3() { TSInfo = entry })
-               {
-                   if (frm.ShowDialog() == DialogResult.OK)
-                   {
-                       item.Value = entry.DaypartValue;
-                   }
-               }
-           toolStripStatusLabel1.Text = "Entries have been updated to lineup.";
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    item.Value = entry.DaypartValue;
+                }
+            }
+            toolStripStatusLabel1.Text = "Entries have been updated to lineup.";
         }
         private void Lineup_DGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -647,7 +665,7 @@ namespace PrevueDataSender
                 case 15: { Update_TS_Entries(6, item); break; }
                 default: { break; }
             }
-        }       
+        }
         private void Lineup_MoveEntryUp_Click(object sender, EventArgs e)
         {
             LineupBuild lineup = new LineupBuild();
@@ -698,7 +716,7 @@ namespace PrevueDataSender
             LineupBuild lineup = new LineupBuild();
             toolStripStatusLabel1.Text = lineup.SendLineup(serialPort1, LineupDataSet.Tables["Lineup"], clock.CurrentPrevueDayOfYear);
             toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
-        }        
+        }
         private void Lineup_SendNextDay_Click(object sender, EventArgs e)
         {
             Command cmd = new Command();
@@ -707,7 +725,7 @@ namespace PrevueDataSender
             toolStripStatusLabel1.Text = lineup.SendLineup(serialPort1, LineupDataSet.Tables["Lineup"], clock.CurrentPrevueDayOfYear + 1);
             toolStripStatusLabel1.Text = cmd.Box_Off(serialPort1);
         }
-        private void Lineup_Z2I_Import_Click(object sender, EventArgs e) 
+        private void Lineup_Z2I_Import_Click(object sender, EventArgs e)
         {
             LineupBuild lineup = new LineupBuild();
             lineup.Import_Z2IData(Lineup_DGV, LineupDataSet.Tables["Z2ILineup"], LineupDataSet.Tables["Lineup"]);
@@ -722,7 +740,7 @@ namespace PrevueDataSender
         /// </summary>
 
         private void Z2ILineup_FormatDataGridView()
-        {           
+        {
             foreach (DataGridViewColumn dc in Z2I_Lineup_DGV.Columns)
             {
                 dc.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -765,7 +783,7 @@ namespace PrevueDataSender
             Z2I_Listings_DGV.Columns[3].Width = settings.Z2IListingsDGV_Attribute_ColWidth;
             Z2I_Listings_DGV.Columns[4].Width = settings.Z2IListingsDGV_Title_ColWidth;
             Z2I_Listings_DGV.Columns[5].Width = settings.Z2IListingsDGV_Subtitle_ColWidth;
-            Z2I_Listings_DGV.Columns[6].Width = settings.Z2IListingsDGV_Description_ColWidth;            
+            Z2I_Listings_DGV.Columns[6].Width = settings.Z2IListingsDGV_Description_ColWidth;
         }
         private void Z2I_Download_Click(object sender, EventArgs e)
         {
@@ -918,7 +936,7 @@ namespace PrevueDataSender
         /// 
         private void UserSettings_InitializeTextFields()
         {
-            if(User_Settings.Default.Port_Selected == 'T') 
+            if (User_Settings.Default.Port_Selected == 'T')
             {
                 TCP_IP_Button.Checked = true;
                 Serial_Button.Checked = false;
@@ -926,7 +944,7 @@ namespace PrevueDataSender
                 Port_TextBox.Enabled = true;
                 SerialPort_DropDownBox.Enabled = false;
             }
-            else if(User_Settings.Default.Port_Selected == 'S') 
+            else if (User_Settings.Default.Port_Selected == 'S')
             {
                 Serial_Button.Checked = true;
                 TCP_IP_Button.Checked = false;
@@ -954,10 +972,10 @@ namespace PrevueDataSender
             WeatherParseCycleTextBox.Text = User_Settings.Default.WeatherParseCycle;
 
             EPG_TopLine_TextBox.Text = User_Settings.Default.TopLine;
-            EPG_BottomLine_TextBox.Text = User_Settings.Default.BottomLine;      
+            EPG_BottomLine_TextBox.Text = User_Settings.Default.BottomLine;
         }
 
-       private void ChangeSaveFolder_Click(object sender, EventArgs e)
+        private void ChangeSaveFolder_Click(object sender, EventArgs e)
         {
             serialPort1.Close();
             UserDataFolder data = new UserDataFolder();
@@ -1003,7 +1021,7 @@ namespace PrevueDataSender
             }
 
         }
- 
+
         private void SerialPort_DropDownBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
             //Separated from other user settings to allow for on the fly changes to the serial port.
@@ -1020,8 +1038,8 @@ namespace PrevueDataSender
                 MessageBox.Show("Error setting serial port: ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation,
     MessageBoxDefaultButton.Button1);
             }
-        }        
-        
+        }
+
         private void UpdateUserSettings_Click(object sender, EventArgs e)
         {
             if (User_Settings.Default.Port_Selected == 'T')
@@ -1075,7 +1093,7 @@ namespace PrevueDataSender
             textBox84.Text = disp.Wind;
             textBox83.Text = disp.Pressure;
             textBox82.Text = disp.Humidity;
-            textBox6.Text =  disp.DewPoint;
+            textBox6.Text = disp.DewPoint;
             textBox85.Text = disp.Visibility;
         }
 
@@ -1137,7 +1155,7 @@ namespace PrevueDataSender
         /// The screen controls are located in the Config and Config 2 Tabs.
         /// 
         /// </summary>
-       
+
         private void ReadConfigurationFile()
         {
             Calc c = new Calc();
@@ -1163,9 +1181,9 @@ namespace PrevueDataSender
             //Time Zone
             textBox28.Text = PrevueOldConfig.Default.Time_Zone.ToString();
             //Observe DST Flag
-            textBox29.Text =  c.ConvertTestValue(PrevueOldConfig.Default.Observe_DST_Flag, "Y", "N");
+            textBox29.Text = c.ConvertTestValue(PrevueOldConfig.Default.Observe_DST_Flag, "Y", "N");
             //Continued Flag
-            textBox30.Text = c.ConvertTestValue(PrevueOldConfig.Default.Continued_Flag, "Y", "N");         
+            textBox30.Text = c.ConvertTestValue(PrevueOldConfig.Default.Continued_Flag, "Y", "N");
             //Keyboard Flag
             textBox31.Text = c.ConvertTestValue(PrevueOldConfig.Default.Keyboard_Flag, "Y", "N");
             //10 Minute Window
@@ -1182,7 +1200,7 @@ namespace PrevueDataSender
             textBox37.Text = PrevueOldConfig.Default.Video_Insertion_Enabled_Flag.ToString();
             //Time Zone Minutes Adjustment
             textBox38.Text = PrevueOldConfig.Default.Time_Zone_Minutes_Adjustment.ToString();
-                    
+
             // New Config Settings
 
             //f.Grid_Hold_Time
@@ -1300,7 +1318,7 @@ namespace PrevueDataSender
 
             // New Config Settings
 
-            PrevueConfig.Default.Grid_Hold_Time = Convert.ToInt16(textBox39.Text); 
+            PrevueConfig.Default.Grid_Hold_Time = Convert.ToInt16(textBox39.Text);
             PrevueConfig.Default.Grid_Source_Channel_Order = textBox40.Text;
             PrevueConfig.Default.Grid_Movie_Recap_Frequency = Convert.ToInt16(textBox41.Text);
             PrevueConfig.Default.Grid_SBS_Frequency = Convert.ToInt16(textBox42.Text);
@@ -1342,12 +1360,12 @@ namespace PrevueDataSender
             PrevueConfig.Default.Flexible_Grid = c.ConvertValueTest(textBox78.Text, "Y", "N");
             PrevueConfig.Default.Retail_Trade_Zone_System = textBox79.Text;
             PrevueConfig.Default.Clock_Command = Convert.ToInt16(textBox80.Text);
-            
+
             PrevueConfig.Default.Save();
         }
 
         private void SendOldConfig_Click(object sender, EventArgs e)
-        {        
+        {
             //DataTable config = ConfigDataSet.Tables["Config"];            
             List<char> list = new List<char>();
             Calc c = new Calc();
@@ -1358,71 +1376,71 @@ namespace PrevueDataSender
             //Timeslot Forward Display
             //PrevueOldConfig.Default.Timeslot_Forward_Display
             list.AddRange(PrevueOldConfig.Default.Timeslot_Forward_Display);
-            
+
             //Scroll Speed
             //PrevueOldConfig.Default.Scroll_Speed
             list.AddRange(PrevueOldConfig.Default.Scroll_Speed.ToString());
-            
+
             //Num. Text Ads
             //PrevueOldConfig.Default.Number_of_Text_Ads
             list.AddRange(PrevueOldConfig.Default.Number_of_Text_Ads.ToString().PadLeft(2, '0'));
-            
+
             //Num. Text Ad Lines
             //PrevueOldConfig.Default.Number_of_Text_Ad_Lines
             list.AddRange(PrevueOldConfig.Default.Number_of_Text_Ad_Lines.ToString());
-            
+
             //Ignore National Ads Flag / Crawl
             //PrevueOldConfig.Default.Ignore_National_Ads_Flag
             list.AddRange(c.ConvertTestValue(PrevueOldConfig.Default.Ignore_National_Ads_Flag, "Y", "N"));
-            
+
             //Before Timeslot Minutes
             //PrevueOldConfig.Default.Before_TimeSlot_Minutes
             list.AddRange(Convert.ToChar(PrevueOldConfig.Default.Before_TimeSlot_Minutes).ToString());
-            
+
             //After Timeslot Minutes
             //PrevueOldConfig.Default.After_TimeSlot_Minutes
             list.AddRange(Convert.ToChar(PrevueOldConfig.Default.After_TimeSlot_Minutes).ToString());
-            
+
             //Time Zone
             //PrevueOldConfig.Default.Time_Zone
             list.AddRange(PrevueOldConfig.Default.Time_Zone.ToString());
-            
+
             //Observe DST Flag
             // PrevueOldConfig.Default.Observe_DST_Flag
             list.AddRange(c.ConvertTestValue(PrevueOldConfig.Default.Observe_DST_Flag, "Y", "N"));
-            
+
             //Continued Flag
             //PrevueOldConfig.Default.Continued_Flag
             list.AddRange(c.ConvertTestValue(PrevueOldConfig.Default.Continued_Flag, "Y", "N"));
-            
+
             //Keyboard Flag
             //PrevueOldConfig.Default.Keyboard_Flag
             list.AddRange(c.ConvertTestValue(PrevueOldConfig.Default.Keyboard_Flag, "Y", "N"));
-            
+
             //10 Minute Window
             //PrevueOldConfig.Default.Ten_Minute_Window
             list.AddRange(c.ConvertTestValue(PrevueOldConfig.Default.Ten_Minute_Window, "Y", "N"));
-            
+
             //3 Minute Window
             //PrevueOldConfig.Default.Three_Minute_Window
             list.AddRange(c.ConvertTestValue(PrevueOldConfig.Default.Three_Minute_Window, "Y", "N"));
-            
+
             //Ignore VCR Plus Flag / Movie summary Pay
             //PrevueOldConfig.Default.Ignore_VCR_Plus_Flag
             list.AddRange(c.ConvertTestValue(PrevueOldConfig.Default.Ignore_VCR_Plus_Flag, "Y", "N"));
-            
+
             //Laser Format / Movie Summary
             //PrevueOldConfig.Default.Laser_Format
             list.AddRange(PrevueOldConfig.Default.Laser_Format);
-            
+
             //Graphic Ads Enabled Flag
             //PrevueOldConfig.Default.Graphic_Ads_Enabled_Flag
             list.AddRange(PrevueOldConfig.Default.Graphic_Ads_Enabled_Flag);
-            
+
             //Video Insertion Enabled Flag
             //PrevueOldConfig.Default.Video_Insertion_Enabled_Flag
             list.AddRange(PrevueOldConfig.Default.Video_Insertion_Enabled_Flag);
-            
+
             //Time Zone Minutes Adjustment
             //PrevueOldConfig.Default.Time_Zone_Minutes_Adjustment
             list.AddRange(Convert.ToChar(PrevueOldConfig.Default.Time_Zone_Minutes_Adjustment).ToString());
@@ -1465,7 +1483,7 @@ namespace PrevueDataSender
 
             //PrevueConfig.Default.Grid_Source_Channel_Order
             list.AddRange(PrevueConfig.Default.Grid_Source_Channel_Order);
-            
+
             //PrevueConfig.Default.Grid_Movie_Recap_Frequency
             list.AddRange(PrevueConfig.Default.Grid_Movie_Recap_Frequency.ToString());
 
@@ -1552,7 +1570,7 @@ namespace PrevueDataSender
 
             //PrevueConfig.Default.Weather_Roll_and_Hold
             list.AddRange(c.ConvertTestValue(PrevueConfig.Default.Weather_Roll_and_Hold, "Y", "N"));
-            
+
             //PrevueConfig.Default.Military_Time_Flag
             list.AddRange(c.ConvertTestValue(PrevueConfig.Default.Military_Time_Flag, "Y", "N"));
 
@@ -1718,8 +1736,237 @@ namespace PrevueDataSender
 
         }
 
-        //Experimental Work
+        /// <summary>
+        /// This section contains the code for the Local Ads set up and sending.
+        /// The screen controls are located in the Ad Tab.
+        /// 
+        /// </summary>
 
+        private void DisplayLocalAdLineInfo(DataRow line)
+        {
+            LocalAd local = new LocalAd();
+            if ((Convert.ToInt32(line["LineNumber"]) == 1))
+                {
+                    local.LocalAdLineActive_SetCheckBox(Convert.ToInt32(line["LineActive"]), LADLn1Active, LADLn1Left, LADLn1Center, LADLn1Right, LADLn1Msg);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineLeft"]), LADLn1Left);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineCenter"]), LADLn1Center);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineRight"]), LADLn1Right);
+                    LADLn1Msg.Text = line["LineMessage"].ToString();
+                }
+                else if (Convert.ToInt32(line["LineNumber"]) == 2)
+                {
+                    local.LocalAdLineActive_SetCheckBox(Convert.ToInt32(line["LineActive"]), LADLn2Active, LADLn2Left, LADLn2Center, LADLn2Right, LADLn2Msg);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineLeft"]), LADLn2Left);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineCenter"]), LADLn2Center);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineRight"]), LADLn2Right);
+                    LADLn2Msg.Text = line["LineMessage"].ToString();
+                }
+                else if (Convert.ToInt32(line["LineNumber"]) == 3)
+                {
+                    local.LocalAdLineActive_SetCheckBox(Convert.ToInt32(line["LineActive"]), LADLn3Active, LADLn3Left, LADLn3Center, LADLn3Right, LADLn3Msg);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineLeft"]), LADLn3Left);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineCenter"]), LADLn3Center);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineRight"]), LADLn3Right);
+                    LADLn3Msg.Text = line["LineMessage"].ToString();
+                }
+                else if (Convert.ToInt32(line["LineNumber"]) == 4)
+                {
+                    local.LocalAdLineActive_SetCheckBox(Convert.ToInt32(line["LineActive"]), LADLn4Active, LADLn4Left, LADLn4Center, LADLn4Right, LADLn4Msg);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineLeft"]), LADLn4Left);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineCenter"]), LADLn4Center);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineRight"]), LADLn4Right);
+                    LADLn4Msg.Text = line["LineMessage"].ToString();
+                }
+                else if (Convert.ToInt32(line["LineNumber"]) == 5)
+                {
+                    local.LocalAdLineActive_SetCheckBox(Convert.ToInt32(line["LineActive"]), LADLn5Active, LADLn5Left, LADLn5Center, LADLn5Right, LADLn5Msg);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineLeft"]), LADLn5Left);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineCenter"]), LADLn5Center);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineRight"]), LADLn5Right);
+                    LADLn5Msg.Text = line["LineMessage"].ToString();
+                }
+                else if (Convert.ToInt32(line["LineNumber"]) == 6)
+                {
+                    local.LocalAdLineActive_SetCheckBox(Convert.ToInt32(line["LineActive"]), LADLn6Active, LADLn6Left, LADLn6Center, LADLn6Right, LADLn6Msg);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineLeft"]), LADLn6Left);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineCenter"]), LADLn6Center);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineRight"]), LADLn6Right);
+                    LADLn6Msg.Text = line["LineMessage"].ToString();
+                }
+                else if (Convert.ToInt32(line["LineNumber"]) == 7)
+                {
+                    local.LocalAdLineActive_SetCheckBox(Convert.ToInt32(line["LineActive"]), LADLn7Active, LADLn7Left, LADLn7Center, LADLn7Right, LADLn7Msg);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineLeft"]), LADLn7Left);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineCenter"]), LADLn7Center);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineRight"]), LADLn7Right);
+                    LADLn7Msg.Text = line["LineMessage"].ToString();
+                }
+                else if (Convert.ToInt32(line["LineNumber"]) == 8)
+                {
+                    local.LocalAdLineActive_SetCheckBox(Convert.ToInt32(line["LineActive"]), LADLn8Active, LADLn8Left, LADLn8Center, LADLn8Right, LADLn8Msg);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineLeft"]), LADLn8Left);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineCenter"]), LADLn8Center);
+                    local.LocalAdJustify_SetRadioButtons(Convert.ToInt32(line["LineRight"]), LADLn8Right);
+                    LADLn8Msg.Text = line["LineMessage"].ToString();
+                }
+                else
+                {
+
+                }
+        }
+
+        private void LADResetDisplay()
+        {
+            LADLn1Active.Checked = false;
+            LADLn1Left.Checked = false;
+            LADLn1Center.Checked = false;
+            LADLn1Right.Checked = false;
+            LADLn1Msg.Text = "";
+
+            LADLn2Active.Checked = false;
+            LADLn2Left.Checked = false;
+            LADLn2Center.Checked = false;
+            LADLn2Right.Checked = false;
+            LADLn2Msg.Text = "";
+
+            LADLn3Active.Checked = false;
+            LADLn3Left.Checked = false;
+            LADLn3Center.Checked = false;
+            LADLn3Right.Checked = false;
+            LADLn3Msg.Text = "";
+
+            LADLn4Active.Checked = false;
+            LADLn4Left.Checked = false;
+            LADLn4Center.Checked = false;
+            LADLn4Right.Checked = false;
+            LADLn4Msg.Text = "";
+
+            LADLn5Active.Checked = false;
+            LADLn5Left.Checked = false;
+            LADLn5Center.Checked = false;
+            LADLn5Right.Checked = false;
+            LADLn5Msg.Text = "";
+
+            LADLn6Active.Checked = false;
+            LADLn6Left.Checked = false;
+            LADLn6Center.Checked = false;
+            LADLn6Right.Checked = false;
+            LADLn6Msg.Text = "";
+
+            LADLn7Active.Checked = false;
+            LADLn7Left.Checked = false;
+            LADLn7Center.Checked = false;
+            LADLn7Right.Checked = false;
+            LADLn7Msg.Text = "";
+
+            LADLn8Active.Checked = false;
+            LADLn8Left.Checked = false;
+            LADLn8Center.Checked = false;
+            LADLn8Right.Checked = false;
+            LADLn8Msg.Text = "";
+        }
+
+        private void LADViewButton_Click(object sender, EventArgs e)
+        {
+            LADResetDisplay();
+            SelectedAd.Text = LADNumberTextBox.Text;
+
+            int adnumbertoselect = Convert.ToInt32(SelectedAd.Text);
+
+            DataTable adinfo = LocalAdsDataSet.Tables["LocalAds"];
+
+            foreach (DataRow linedata in adinfo.Rows)
+            {
+                if (Convert.ToInt32(linedata["AdNumber"]) == adnumbertoselect)
+                {
+                   DisplayLocalAdLineInfo(linedata);
+                }
+            }
+        }
+        private void LADAddButton_Click(object sender, EventArgs e)
+        {
+            int adnumber = Convert.ToInt32(SelectedAd.Text);
+            DataTable adinfo = LocalAdsDataSet.Tables["LocalAds"];
+
+            LocalAd local = new LocalAd();
+
+            local.LocalAdAdd(adinfo, adnumber, 1, LADLn1Active, LADLn1Left, LADLn1Center, LADLn1Right, LADLn1Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 2, LADLn2Active, LADLn2Left, LADLn2Center, LADLn2Right, LADLn2Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 3, LADLn3Active, LADLn3Left, LADLn3Center, LADLn3Right, LADLn3Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 4, LADLn4Active, LADLn4Left, LADLn4Center, LADLn4Right, LADLn4Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 5, LADLn5Active, LADLn5Left, LADLn5Center, LADLn5Right, LADLn5Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 6, LADLn6Active, LADLn6Left, LADLn6Center, LADLn6Right, LADLn6Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 7, LADLn7Active, LADLn7Left, LADLn7Center, LADLn7Right, LADLn7Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 8, LADLn8Active, LADLn8Left, LADLn8Center, LADLn8Right, LADLn8Msg.Text);
+
+            LocalAdsFile localadsfile = new LocalAdsFile();
+            localadsfile.WriteLocalAdsFile(adinfo);
+
+            toolStripStatusLabel1.Text = "Local ad added.";
+        }
+
+        private void LADUpdateButton_Click(object sender, EventArgs e)
+        {
+            int adnumber = Convert.ToInt32(SelectedAd.Text);
+            DataTable adinfo = LocalAdsDataSet.Tables["LocalAds"];
+            
+            LocalAd local = new LocalAd();
+
+            local.LocalAdDelete(adinfo, adnumber);
+
+            local.LocalAdAdd(adinfo, adnumber, 1, LADLn1Active, LADLn1Left, LADLn1Center, LADLn1Right, LADLn1Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 2, LADLn2Active, LADLn2Left, LADLn2Center, LADLn2Right, LADLn2Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 3, LADLn3Active, LADLn3Left, LADLn3Center, LADLn3Right, LADLn3Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 4, LADLn4Active, LADLn4Left, LADLn4Center, LADLn4Right, LADLn4Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 5, LADLn5Active, LADLn5Left, LADLn5Center, LADLn5Right, LADLn5Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 6, LADLn6Active, LADLn6Left, LADLn6Center, LADLn6Right, LADLn6Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 7, LADLn7Active, LADLn7Left, LADLn7Center, LADLn7Right, LADLn7Msg.Text);
+            local.LocalAdAdd(adinfo, adnumber, 8, LADLn8Active, LADLn8Left, LADLn8Center, LADLn8Right, LADLn8Msg.Text);
+
+            LocalAdsFile localadsfile = new LocalAdsFile();
+            localadsfile.WriteLocalAdsFile(adinfo);
+
+            toolStripStatusLabel1.Text = "Local ad updated.";
+        }
+
+        private void LADDeleteButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Would you like to to delete the selected ad?", "My Application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                int adnumber = Convert.ToInt32(SelectedAd.Text);
+                DataTable adinfo = LocalAdsDataSet.Tables["LocalAds"];
+
+                LocalAd local = new LocalAd();
+                local.LocalAdDelete(adinfo, adnumber);
+
+                LocalAdsFile localadsfile = new LocalAdsFile();
+                localadsfile.WriteLocalAdsFile(adinfo);
+
+                LADResetDisplay();
+                toolStripStatusLabel1.Text = "Local ad deleted.";
+            }
+            else
+            {
+                toolStripStatusLabel1.Text = "Local ad not deleted.";
+            }
+        }
+
+        public void LocalAdSendBtn_Click(object sender, EventArgs e)
+        {
+            LocalAd local = new LocalAd();
+            toolStripStatusLabel1.Text = local.SendLocalAds(serialPort1, LocalAdsDataSet.Tables["LocalAds"], Convert.ToInt32(SelectedAd.Text));
+        }
+
+        private void LocalAdResetBtn_Click(object sender, EventArgs e)
+        {
+           LocalAd local = new LocalAd();
+           toolStripStatusLabel1.Text = local.SendResetLocalAds(serialPort1);
+        }
+
+
+
+
+        //Experimental Work
 
         private void Button26_Click(object sender, EventArgs e)
         {
@@ -1749,11 +1996,39 @@ namespace PrevueDataSender
             toolStripStatusLabel1.Text = "QTable build command sent via serial";
         }
 
-        private void Button5_Click(object sender, EventArgs e)
+        private void Button19_Click(object sender, EventArgs e)
         {
-            Serial s = new Serial();
+            byte[] mode = new byte[] { (byte)'\u0001' };
+            byte[] body = new byte[] { (byte)'\u0033' };
+            byte[] endcommand = new byte[] { (byte)'\u000d' };
 
-            //char[] info = new char[] { '\x04','\u0095','N','0','1','0','0','2','\x12','\x01','\x18','W','A','T','C','H','\x19','T','H','E',' ','P','R','E','V','U','E',' ','G','U','I','D','E','\x18','1','-','9','9','9','-','9','9','9','-','9','9','9','9' };
+            ConvertArray array = new ConvertArray();
+            //ModeSelect m = new ModeSelect();
+
+            //byte[] mode = array.CharArrayToByteArrayFunction(m.Get_Mode_Select(selectedmode));
+            //byte[] body = array.CharArrayToByteArrayFunction(messagebody);
+            Serial s = new Serial();
+            List<byte> list = new List<byte>();
+            list.AddRange(mode);
+            list.AddRange(body);
+            list.AddRange(endcommand);
+ 
+            
+            byte[] messagebuild = list.ToArray();
+            byte[] checksum = new byte[] { (byte)array.XORByteArrayFunction(messagebuild) };
+
+            List<byte> messagetosend = new List<byte>();
+            messagetosend.AddRange(messagebuild);
+            messagetosend.AddRange(checksum);
+  //          byte[] messagetotransmit = messagetosend.ToArray();
+
+            //s.TransmitControlData(serialPort1, messagetosend.ToArray());
+
+
+            s.TransmitTestControlData(serialPort1);
+
+
+            /*char[] info = new char[] { '\x04','\u0095','N','0','1','0','0','2','\x12','\x01','\x18','W','A','T','C','H','\x19','T','H','E',' ','P','R','E','V','U','E',' ','G','U','I','D','E','\x18','1','-','9','9','9','-','9','9','9','-','9','9','9','9' };
 
             char[] jdate = new char[] { Convert.ToChar(1) };
             string title = "YOU ARE WATCHING PREVUE GUIDE";
@@ -1786,7 +2061,7 @@ namespace PrevueDataSender
             s.TransmitMessage(serialPort1, "new listing", body);
             s.TransmitMessage(serialPort1, "box off", empty);
 
-            toolStripStatusLabel1.Text = "test sent via serial";
+            toolStripStatusLabel1.Text = "test sent via serial";*/
         }
     }
 }
