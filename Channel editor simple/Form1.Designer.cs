@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
             this.CurDateTime = new System.Windows.Forms.Label();
             this.CurrentDayofYear = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -4058,8 +4058,8 @@
             this.Z2I_Listings_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Z2I_Listings_DGV.Location = new System.Drawing.Point(8, 158);
             this.Z2I_Listings_DGV.Name = "Z2I_Listings_DGV";
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Z2I_Listings_DGV.RowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle49.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Z2I_Listings_DGV.RowsDefaultCellStyle = dataGridViewCellStyle49;
             this.Z2I_Listings_DGV.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Z2I_Listings_DGV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Z2I_Listings_DGV.Size = new System.Drawing.Size(919, 341);
@@ -4770,21 +4770,21 @@
             this.Scroll_Messages_DGV.AllowUserToAddRows = false;
             this.Scroll_Messages_DGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.Scroll_Messages_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Scroll_Messages_DGV.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle50.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle50.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle50.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle50.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Scroll_Messages_DGV.DefaultCellStyle = dataGridViewCellStyle50;
             this.Scroll_Messages_DGV.Location = new System.Drawing.Point(66, 139);
             this.Scroll_Messages_DGV.Margin = new System.Windows.Forms.Padding(2);
             this.Scroll_Messages_DGV.Name = "Scroll_Messages_DGV";
             this.Scroll_Messages_DGV.RowHeadersWidth = 51;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Scroll_Messages_DGV.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle51.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Scroll_Messages_DGV.RowsDefaultCellStyle = dataGridViewCellStyle51;
             this.Scroll_Messages_DGV.RowTemplate.Height = 24;
             this.Scroll_Messages_DGV.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Scroll_Messages_DGV.Size = new System.Drawing.Size(782, 299);
@@ -5016,7 +5016,7 @@
             this.LADViewButton.Location = new System.Drawing.Point(178, 348);
             this.LADViewButton.Name = "LADViewButton";
             this.LADViewButton.Size = new System.Drawing.Size(102, 31);
-            this.LADViewButton.TabIndex = 42;
+            this.LADViewButton.TabIndex = 2;
             this.LADViewButton.Text = "View";
             this.LADViewButton.UseVisualStyleBackColor = true;
             this.LADViewButton.Click += new System.EventHandler(this.LADViewButton_Click);
@@ -5026,7 +5026,7 @@
             this.LADNumberTextBox.Location = new System.Drawing.Point(123, 354);
             this.LADNumberTextBox.Name = "LADNumberTextBox";
             this.LADNumberTextBox.Size = new System.Drawing.Size(46, 20);
-            this.LADNumberTextBox.TabIndex = 41;
+            this.LADNumberTextBox.TabIndex = 1;
             // 
             // LADLn8Label
             // 
@@ -5121,7 +5121,7 @@
             this.LADLn8Active.Location = new System.Drawing.Point(3, 13);
             this.LADLn8Active.Name = "LADLn8Active";
             this.LADLn8Active.Size = new System.Drawing.Size(56, 17);
-            this.LADLn8Active.TabIndex = 33;
+            this.LADLn8Active.TabIndex = 38;
             this.LADLn8Active.Text = "Active";
             this.LADLn8Active.UseVisualStyleBackColor = true;
             // 
@@ -5131,7 +5131,7 @@
             this.LADLn8Left.Location = new System.Drawing.Point(68, 14);
             this.LADLn8Left.Name = "LADLn8Left";
             this.LADLn8Left.Size = new System.Drawing.Size(43, 17);
-            this.LADLn8Left.TabIndex = 14;
+            this.LADLn8Left.TabIndex = 39;
             this.LADLn8Left.TabStop = true;
             this.LADLn8Left.Text = "Left";
             this.LADLn8Left.UseVisualStyleBackColor = true;
@@ -5142,7 +5142,7 @@
             this.LADLn8Center.Location = new System.Drawing.Point(117, 14);
             this.LADLn8Center.Name = "LADLn8Center";
             this.LADLn8Center.Size = new System.Drawing.Size(56, 17);
-            this.LADLn8Center.TabIndex = 15;
+            this.LADLn8Center.TabIndex = 40;
             this.LADLn8Center.TabStop = true;
             this.LADLn8Center.Text = "Center";
             this.LADLn8Center.UseVisualStyleBackColor = true;
@@ -5153,7 +5153,7 @@
             this.LADLn8Right.Location = new System.Drawing.Point(179, 14);
             this.LADLn8Right.Name = "LADLn8Right";
             this.LADLn8Right.Size = new System.Drawing.Size(50, 17);
-            this.LADLn8Right.TabIndex = 16;
+            this.LADLn8Right.TabIndex = 41;
             this.LADLn8Right.TabStop = true;
             this.LADLn8Right.Text = "Right";
             this.LADLn8Right.UseVisualStyleBackColor = true;
@@ -5163,7 +5163,7 @@
             this.LADLn8Msg.Location = new System.Drawing.Point(244, 10);
             this.LADLn8Msg.Name = "LADLn8Msg";
             this.LADLn8Msg.Size = new System.Drawing.Size(465, 20);
-            this.LADLn8Msg.TabIndex = 24;
+            this.LADLn8Msg.TabIndex = 42;
             // 
             // LADLine7
             // 
@@ -5196,7 +5196,7 @@
             this.LADLn7Left.Location = new System.Drawing.Point(68, 14);
             this.LADLn7Left.Name = "LADLn7Left";
             this.LADLn7Left.Size = new System.Drawing.Size(43, 17);
-            this.LADLn7Left.TabIndex = 14;
+            this.LADLn7Left.TabIndex = 34;
             this.LADLn7Left.TabStop = true;
             this.LADLn7Left.Text = "Left";
             this.LADLn7Left.UseVisualStyleBackColor = true;
@@ -5207,7 +5207,7 @@
             this.LADLn7Center.Location = new System.Drawing.Point(117, 14);
             this.LADLn7Center.Name = "LADLn7Center";
             this.LADLn7Center.Size = new System.Drawing.Size(56, 17);
-            this.LADLn7Center.TabIndex = 15;
+            this.LADLn7Center.TabIndex = 35;
             this.LADLn7Center.TabStop = true;
             this.LADLn7Center.Text = "Center";
             this.LADLn7Center.UseVisualStyleBackColor = true;
@@ -5218,7 +5218,7 @@
             this.LADLn7Right.Location = new System.Drawing.Point(179, 14);
             this.LADLn7Right.Name = "LADLn7Right";
             this.LADLn7Right.Size = new System.Drawing.Size(50, 17);
-            this.LADLn7Right.TabIndex = 16;
+            this.LADLn7Right.TabIndex = 36;
             this.LADLn7Right.TabStop = true;
             this.LADLn7Right.Text = "Right";
             this.LADLn7Right.UseVisualStyleBackColor = true;
@@ -5228,7 +5228,7 @@
             this.LADLn7Msg.Location = new System.Drawing.Point(244, 10);
             this.LADLn7Msg.Name = "LADLn7Msg";
             this.LADLn7Msg.Size = new System.Drawing.Size(465, 20);
-            this.LADLn7Msg.TabIndex = 23;
+            this.LADLn7Msg.TabIndex = 37;
             // 
             // LADLine6
             // 
@@ -5251,7 +5251,7 @@
             this.LADLn6Active.Location = new System.Drawing.Point(3, 13);
             this.LADLn6Active.Name = "LADLn6Active";
             this.LADLn6Active.Size = new System.Drawing.Size(56, 17);
-            this.LADLn6Active.TabIndex = 33;
+            this.LADLn6Active.TabIndex = 28;
             this.LADLn6Active.Text = "Active";
             this.LADLn6Active.UseVisualStyleBackColor = true;
             // 
@@ -5261,7 +5261,7 @@
             this.LADLn6Left.Location = new System.Drawing.Point(68, 14);
             this.LADLn6Left.Name = "LADLn6Left";
             this.LADLn6Left.Size = new System.Drawing.Size(43, 17);
-            this.LADLn6Left.TabIndex = 14;
+            this.LADLn6Left.TabIndex = 29;
             this.LADLn6Left.TabStop = true;
             this.LADLn6Left.Text = "Left";
             this.LADLn6Left.UseVisualStyleBackColor = true;
@@ -5272,7 +5272,7 @@
             this.LADLn6Center.Location = new System.Drawing.Point(117, 14);
             this.LADLn6Center.Name = "LADLn6Center";
             this.LADLn6Center.Size = new System.Drawing.Size(56, 17);
-            this.LADLn6Center.TabIndex = 15;
+            this.LADLn6Center.TabIndex = 30;
             this.LADLn6Center.TabStop = true;
             this.LADLn6Center.Text = "Center";
             this.LADLn6Center.UseVisualStyleBackColor = true;
@@ -5283,7 +5283,7 @@
             this.LADLn6Right.Location = new System.Drawing.Point(179, 14);
             this.LADLn6Right.Name = "LADLn6Right";
             this.LADLn6Right.Size = new System.Drawing.Size(50, 17);
-            this.LADLn6Right.TabIndex = 16;
+            this.LADLn6Right.TabIndex = 31;
             this.LADLn6Right.TabStop = true;
             this.LADLn6Right.Text = "Right";
             this.LADLn6Right.UseVisualStyleBackColor = true;
@@ -5293,7 +5293,7 @@
             this.LADLn6Msg.Location = new System.Drawing.Point(244, 10);
             this.LADLn6Msg.Name = "LADLn6Msg";
             this.LADLn6Msg.Size = new System.Drawing.Size(465, 20);
-            this.LADLn6Msg.TabIndex = 22;
+            this.LADLn6Msg.TabIndex = 32;
             // 
             // LADLine2
             // 
@@ -5316,7 +5316,7 @@
             this.LADLn2Active.Location = new System.Drawing.Point(3, 13);
             this.LADLn2Active.Name = "LADLn2Active";
             this.LADLn2Active.Size = new System.Drawing.Size(56, 17);
-            this.LADLn2Active.TabIndex = 19;
+            this.LADLn2Active.TabIndex = 8;
             this.LADLn2Active.Text = "Active";
             this.LADLn2Active.UseVisualStyleBackColor = true;
             // 
@@ -5326,7 +5326,7 @@
             this.LADLn2Left.Location = new System.Drawing.Point(68, 14);
             this.LADLn2Left.Name = "LADLn2Left";
             this.LADLn2Left.Size = new System.Drawing.Size(43, 17);
-            this.LADLn2Left.TabIndex = 14;
+            this.LADLn2Left.TabIndex = 9;
             this.LADLn2Left.TabStop = true;
             this.LADLn2Left.Text = "Left";
             this.LADLn2Left.UseVisualStyleBackColor = true;
@@ -5337,7 +5337,7 @@
             this.LADLn2Center.Location = new System.Drawing.Point(117, 14);
             this.LADLn2Center.Name = "LADLn2Center";
             this.LADLn2Center.Size = new System.Drawing.Size(56, 17);
-            this.LADLn2Center.TabIndex = 15;
+            this.LADLn2Center.TabIndex = 10;
             this.LADLn2Center.TabStop = true;
             this.LADLn2Center.Text = "Center";
             this.LADLn2Center.UseVisualStyleBackColor = true;
@@ -5348,7 +5348,7 @@
             this.LADLn2Right.Location = new System.Drawing.Point(179, 14);
             this.LADLn2Right.Name = "LADLn2Right";
             this.LADLn2Right.Size = new System.Drawing.Size(50, 17);
-            this.LADLn2Right.TabIndex = 16;
+            this.LADLn2Right.TabIndex = 11;
             this.LADLn2Right.TabStop = true;
             this.LADLn2Right.Text = "Right";
             this.LADLn2Right.UseVisualStyleBackColor = true;
@@ -5358,7 +5358,7 @@
             this.LADLn2Msg.Location = new System.Drawing.Point(244, 13);
             this.LADLn2Msg.Name = "LADLn2Msg";
             this.LADLn2Msg.Size = new System.Drawing.Size(465, 20);
-            this.LADLn2Msg.TabIndex = 18;
+            this.LADLn2Msg.TabIndex = 12;
             // 
             // LADLine5
             // 
@@ -5381,7 +5381,7 @@
             this.LADLn5Active.Location = new System.Drawing.Point(3, 13);
             this.LADLn5Active.Name = "LADLn5Active";
             this.LADLn5Active.Size = new System.Drawing.Size(56, 17);
-            this.LADLn5Active.TabIndex = 33;
+            this.LADLn5Active.TabIndex = 23;
             this.LADLn5Active.Text = "Active";
             this.LADLn5Active.UseVisualStyleBackColor = true;
             // 
@@ -5391,7 +5391,7 @@
             this.LADLn5Left.Location = new System.Drawing.Point(68, 14);
             this.LADLn5Left.Name = "LADLn5Left";
             this.LADLn5Left.Size = new System.Drawing.Size(43, 17);
-            this.LADLn5Left.TabIndex = 14;
+            this.LADLn5Left.TabIndex = 24;
             this.LADLn5Left.TabStop = true;
             this.LADLn5Left.Text = "Left";
             this.LADLn5Left.UseVisualStyleBackColor = true;
@@ -5402,7 +5402,7 @@
             this.LADLn5Center.Location = new System.Drawing.Point(117, 14);
             this.LADLn5Center.Name = "LADLn5Center";
             this.LADLn5Center.Size = new System.Drawing.Size(56, 17);
-            this.LADLn5Center.TabIndex = 15;
+            this.LADLn5Center.TabIndex = 25;
             this.LADLn5Center.TabStop = true;
             this.LADLn5Center.Text = "Center";
             this.LADLn5Center.UseVisualStyleBackColor = true;
@@ -5413,7 +5413,7 @@
             this.LADLn5Right.Location = new System.Drawing.Point(179, 14);
             this.LADLn5Right.Name = "LADLn5Right";
             this.LADLn5Right.Size = new System.Drawing.Size(50, 17);
-            this.LADLn5Right.TabIndex = 16;
+            this.LADLn5Right.TabIndex = 26;
             this.LADLn5Right.TabStop = true;
             this.LADLn5Right.Text = "Right";
             this.LADLn5Right.UseVisualStyleBackColor = true;
@@ -5423,7 +5423,7 @@
             this.LADLn5Msg.Location = new System.Drawing.Point(244, 13);
             this.LADLn5Msg.Name = "LADLn5Msg";
             this.LADLn5Msg.Size = new System.Drawing.Size(465, 20);
-            this.LADLn5Msg.TabIndex = 21;
+            this.LADLn5Msg.TabIndex = 27;
             // 
             // LADLine4
             // 
@@ -5446,7 +5446,7 @@
             this.LADLn4Active.Location = new System.Drawing.Point(3, 13);
             this.LADLn4Active.Name = "LADLn4Active";
             this.LADLn4Active.Size = new System.Drawing.Size(56, 17);
-            this.LADLn4Active.TabIndex = 33;
+            this.LADLn4Active.TabIndex = 18;
             this.LADLn4Active.Text = "Active";
             this.LADLn4Active.UseVisualStyleBackColor = true;
             // 
@@ -5456,7 +5456,7 @@
             this.LADLn4Left.Location = new System.Drawing.Point(68, 14);
             this.LADLn4Left.Name = "LADLn4Left";
             this.LADLn4Left.Size = new System.Drawing.Size(43, 17);
-            this.LADLn4Left.TabIndex = 14;
+            this.LADLn4Left.TabIndex = 19;
             this.LADLn4Left.TabStop = true;
             this.LADLn4Left.Text = "Left";
             this.LADLn4Left.UseVisualStyleBackColor = true;
@@ -5467,7 +5467,7 @@
             this.LADLn4Center.Location = new System.Drawing.Point(117, 14);
             this.LADLn4Center.Name = "LADLn4Center";
             this.LADLn4Center.Size = new System.Drawing.Size(56, 17);
-            this.LADLn4Center.TabIndex = 15;
+            this.LADLn4Center.TabIndex = 20;
             this.LADLn4Center.TabStop = true;
             this.LADLn4Center.Text = "Center";
             this.LADLn4Center.UseVisualStyleBackColor = true;
@@ -5478,7 +5478,7 @@
             this.LADLn4Right.Location = new System.Drawing.Point(179, 14);
             this.LADLn4Right.Name = "LADLn4Right";
             this.LADLn4Right.Size = new System.Drawing.Size(50, 17);
-            this.LADLn4Right.TabIndex = 16;
+            this.LADLn4Right.TabIndex = 21;
             this.LADLn4Right.TabStop = true;
             this.LADLn4Right.Text = "Right";
             this.LADLn4Right.UseVisualStyleBackColor = true;
@@ -5488,7 +5488,7 @@
             this.LADLn4Msg.Location = new System.Drawing.Point(244, 13);
             this.LADLn4Msg.Name = "LADLn4Msg";
             this.LADLn4Msg.Size = new System.Drawing.Size(465, 20);
-            this.LADLn4Msg.TabIndex = 20;
+            this.LADLn4Msg.TabIndex = 22;
             // 
             // LADLine3
             // 
@@ -5511,7 +5511,7 @@
             this.LADLn3Active.Location = new System.Drawing.Point(3, 13);
             this.LADLn3Active.Name = "LADLn3Active";
             this.LADLn3Active.Size = new System.Drawing.Size(56, 17);
-            this.LADLn3Active.TabIndex = 33;
+            this.LADLn3Active.TabIndex = 13;
             this.LADLn3Active.Text = "Active";
             this.LADLn3Active.UseVisualStyleBackColor = true;
             // 
@@ -5553,7 +5553,7 @@
             this.LADLn3Msg.Location = new System.Drawing.Point(244, 13);
             this.LADLn3Msg.Name = "LADLn3Msg";
             this.LADLn3Msg.Size = new System.Drawing.Size(465, 20);
-            this.LADLn3Msg.TabIndex = 19;
+            this.LADLn3Msg.TabIndex = 17;
             // 
             // LADLine1
             // 
@@ -5576,7 +5576,7 @@
             this.LADLn1Active.Location = new System.Drawing.Point(3, 13);
             this.LADLn1Active.Name = "LADLn1Active";
             this.LADLn1Active.Size = new System.Drawing.Size(56, 17);
-            this.LADLn1Active.TabIndex = 17;
+            this.LADLn1Active.TabIndex = 3;
             this.LADLn1Active.Text = "Active";
             this.LADLn1Active.UseVisualStyleBackColor = true;
             // 
@@ -5586,7 +5586,7 @@
             this.LADLn1Left.Location = new System.Drawing.Point(68, 14);
             this.LADLn1Left.Name = "LADLn1Left";
             this.LADLn1Left.Size = new System.Drawing.Size(43, 17);
-            this.LADLn1Left.TabIndex = 14;
+            this.LADLn1Left.TabIndex = 4;
             this.LADLn1Left.TabStop = true;
             this.LADLn1Left.Text = "Left";
             this.LADLn1Left.UseVisualStyleBackColor = true;
@@ -5597,7 +5597,7 @@
             this.LADLn1Center.Location = new System.Drawing.Point(117, 14);
             this.LADLn1Center.Name = "LADLn1Center";
             this.LADLn1Center.Size = new System.Drawing.Size(56, 17);
-            this.LADLn1Center.TabIndex = 15;
+            this.LADLn1Center.TabIndex = 5;
             this.LADLn1Center.TabStop = true;
             this.LADLn1Center.Text = "Center";
             this.LADLn1Center.UseVisualStyleBackColor = true;
@@ -5608,7 +5608,7 @@
             this.LADLn1Right.Location = new System.Drawing.Point(179, 14);
             this.LADLn1Right.Name = "LADLn1Right";
             this.LADLn1Right.Size = new System.Drawing.Size(50, 17);
-            this.LADLn1Right.TabIndex = 16;
+            this.LADLn1Right.TabIndex = 6;
             this.LADLn1Right.TabStop = true;
             this.LADLn1Right.Text = "Right";
             this.LADLn1Right.UseVisualStyleBackColor = true;
@@ -5618,14 +5618,14 @@
             this.LADLn1Msg.Location = new System.Drawing.Point(244, 13);
             this.LADLn1Msg.Name = "LADLn1Msg";
             this.LADLn1Msg.Size = new System.Drawing.Size(465, 20);
-            this.LADLn1Msg.TabIndex = 12;
+            this.LADLn1Msg.TabIndex = 7;
             // 
             // button33
             // 
             this.button33.Location = new System.Drawing.Point(685, 348);
             this.button33.Name = "button33";
             this.button33.Size = new System.Drawing.Size(84, 31);
-            this.button33.TabIndex = 17;
+            this.button33.TabIndex = 47;
             this.button33.Text = "Reset Ads";
             this.button33.UseVisualStyleBackColor = true;
             this.button33.Click += new System.EventHandler(this.LocalAdResetBtn_Click);
@@ -5635,7 +5635,7 @@
             this.button27.Location = new System.Drawing.Point(591, 348);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(88, 31);
-            this.button27.TabIndex = 13;
+            this.button27.TabIndex = 46;
             this.button27.Text = "Send Ad";
             this.button27.UseVisualStyleBackColor = true;
             this.button27.Click += new System.EventHandler(this.LocalAdSendBtn_Click);
@@ -5856,7 +5856,7 @@
             this.button35.Location = new System.Drawing.Point(464, 348);
             this.button35.Name = "button35";
             this.button35.Size = new System.Drawing.Size(75, 31);
-            this.button35.TabIndex = 44;
+            this.button35.TabIndex = 45;
             this.button35.Text = "Delete";
             this.button35.UseVisualStyleBackColor = true;
             this.button35.Click += new System.EventHandler(this.LADDeleteButton_Click);
@@ -5866,7 +5866,7 @@
             this.button37.Location = new System.Drawing.Point(383, 348);
             this.button37.Name = "button37";
             this.button37.Size = new System.Drawing.Size(75, 31);
-            this.button37.TabIndex = 45;
+            this.button37.TabIndex = 44;
             this.button37.Text = "Update";
             this.button37.UseVisualStyleBackColor = true;
             this.button37.Click += new System.EventHandler(this.LADUpdateButton_Click);

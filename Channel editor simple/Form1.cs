@@ -1628,11 +1628,7 @@ namespace PrevueDataSender
             {
                 toolStripStatusLabel1.Text = "Error with Port Selected Setting - check code";
             }
-
-
-
         }
-
 
 
         private void QTable_FormatDataGridView()
